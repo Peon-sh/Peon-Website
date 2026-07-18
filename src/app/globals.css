@@ -1,0 +1,177 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --font-heading: var(--font-archivo);
+    --font-sans: var(--font-inter);
+    --font-mono: var(--font-plex-mono);
+    --font-display: var(--font-archivo);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-border-bright: var(--border-bright);
+    --color-destructive: var(--destructive);
+    --color-success: var(--success);
+    --color-warning: var(--warning);
+    --color-info: var(--info);
+    --color-violet: var(--violet);
+    --color-phosphor: var(--phosphor);
+    --color-phosphor-dim: var(--phosphor-dim);
+    --color-faint: var(--faint);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 10px;
+    --radius-xl: 12px;
+}
+
+:root {
+    --background: #F5F7F6;
+    --foreground: #17211C;
+    --card: #FFFFFF;
+    --card-foreground: #17211C;
+    --popover: #FFFFFF;
+    --popover-foreground: #17211C;
+    --primary: #0C9268;
+    --primary-foreground: #FFFFFF;
+    --secondary: #EFF3F1;
+    --secondary-foreground: #17211C;
+    --muted: #EFF3F1;
+    --muted-foreground: #5B6B62;
+    --accent: #E5EBE8;
+    --accent-foreground: #17211C;
+    --destructive: #CE3B41;
+    --success: #0C9268;
+    --warning: #A96D08;
+    --info: #1B76B6;
+    --violet: #6455BD;
+    --phosphor: #0C9268;
+    --phosphor-dim: #A9DCC6;
+    --faint: #98A69E;
+    --border: #DEE5E1;
+    --border-bright: #C4CFC9;
+    --input: #DEE5E1;
+    --ring: #0C9268;
+    --radius: 10px;
+}
+
+.dark {
+    --background: #050807;
+    --foreground: #E8F0EC;
+    --card: #0A100D;
+    --card-foreground: #E8F0EC;
+    --popover: #0E1612;
+    --popover-foreground: #E8F0EC;
+    --primary: #3ECF8E;
+    --primary-foreground: #050807;
+    --secondary: #0E1612;
+    --secondary-foreground: #E8F0EC;
+    --muted: #0E1612;
+    --muted-foreground: #94A89D;
+    --accent: #121C17;
+    --accent-foreground: #E8F0EC;
+    --destructive: #E5484D;
+    --success: #3ECF8E;
+    --warning: #E8A33D;
+    --info: #52A9DF;
+    --violet: #9B8AE6;
+    --phosphor: #3ECF8E;
+    --phosphor-dim: #1E5C41;
+    --faint: #55685E;
+    --border: #1B2822;
+    --border-bright: #2A3E34;
+    --input: #1B2822;
+    --ring: #3ECF8E;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overscroll-behavior: none;
+    background-color: var(--background);
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-size: 14px;
+    overscroll-behavior: none;
+    background-color: var(--background);
+  }
+  h1, h2, h3, h4 {
+    @apply font-heading tracking-tight;
+    text-wrap: balance;
+  }
+  ::selection {
+    background: var(--phosphor);
+    color: var(--background);
+  }
+}
+
+@utility panel-title-slashes {
+  &::before {
+    content: "// ";
+    color: var(--faint);
+    font-weight: 400;
+  }
+}
+
+@utility bg-hero {
+  background-color: var(--background);
+  background-image: radial-gradient(
+    ellipse 70% 50% at 50% 0%,
+    color-mix(in oklab, var(--phosphor) 12%, transparent),
+    transparent 70%
+  );
+  background-repeat: no-repeat;
+}
+
+@utility font-800 {
+  font-weight: 800;
+}
+@utility font-700 {
+  font-weight: 700;
+}
+
+/* CMS blog body HTML (classes also embedded from peon-analytics polish) */
+.prose-blog > :first-child {
+  margin-top: 0 !important;
+}
+.prose-blog > section + section {
+  margin-top: 2.5rem;
+}
+.prose-blog h2 {
+  margin-top: 2.5rem !important;
+}
+.prose-blog ul {
+  list-style: none;
+  padding-left: 0;
+}
+.prose-blog ul > li::before {
+  content: "›";
+  color: var(--phosphor);
+  margin-top: 0.1rem;
+  flex-shrink: 0;
+  line-height: 1.55;
+}
+.prose-blog a:hover {
+  text-decoration: underline;
+}
