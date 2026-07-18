@@ -343,7 +343,7 @@ export default function LandingPage() {
 
             <div className="mt-12 w-full max-w-3xl">
               <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground sm:text-sm">
-                Partners you can deploy on
+                Partners you can deploy on and many more
               </p>
               <div className="mt-6 flex flex-wrap items-center justify-center gap-8 sm:gap-12">
                 <a
