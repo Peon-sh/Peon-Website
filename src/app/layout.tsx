@@ -2,6 +2,10 @@ import type { Metadata } from 'next';
 import { Archivo, IBM_Plex_Mono, Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { MarketingTheme } from '@/components/marketing/marketing-theme';
+import {
+  GoogleTagManager,
+  GoogleTagManagerNoscript,
+} from '@/components/analytics/google-tag-manager';
 import { cn } from '@/lib/utils';
 import { publicEnv } from '@/lib/env';
 import './globals.css';
@@ -49,6 +53,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={cn('dark antialiased', archivo.variable, plexMono.variable, inter.variable)}
     >
       <body>
+        <GoogleTagManagerNoscript />
+        <GoogleTagManager />
         <ThemeProvider>
           <MarketingTheme>
             <div className="bg-background text-foreground min-h-screen">{children}</div>

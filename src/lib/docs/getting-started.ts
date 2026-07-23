@@ -11,7 +11,7 @@ export const GETTING_STARTED_PAGES: DocPage[] = [
         h: 'What is Peon?',
         p: [
           'Peon is an open-source, self-hostable deployment platform. You connect Linux servers over SSH; Peon installs Docker and a reverse proxy, then deploys your apps and databases onto those servers. Your workloads run on hardware you own — Hetzner, DigitalOcean, AWS EC2, OVH, Contabo, bare metal, or a machine under your desk.',
-          'Peon Cloud hosts the control plane (dashboard, orchestration, updates) for $3 per project per month with unlimited team members and unlimited servers. Self-hosting the control plane is free; you still bring your own application servers either way.',
+          'Peon Cloud hosts the control plane (dashboard, orchestration, updates) for $3 per project per month or $30 per year with unlimited team members and unlimited servers. Self-hosting the control plane is free; you still bring your own application servers either way.',
         ],
       },
       {
@@ -104,7 +104,7 @@ pnpm worker                # deployments, backups, async jobs`,
       {
         h: 'Peon Cloud',
         p: [
-          'Cloud is $3 per project per month with unlimited servers and unlimited seats. Only the control plane is hosted; application data stays on your VPS. Enterprise adds SSO/SAML, SCIM, white label and commercial terms — contact support@peon.sh.',
+          'Cloud is $3 per project per month or $30 per year with unlimited servers and unlimited seats. Only the control plane is hosted; application data stays on your VPS. Enterprise adds SSO/SAML, SCIM, white label and commercial terms — contact support@peon.sh.',
         ],
       },
     ],

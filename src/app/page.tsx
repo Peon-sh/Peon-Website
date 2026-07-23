@@ -194,11 +194,11 @@ const COMPARISON_ROWS: { feature: string; cells: string[]; peonEdge?: boolean }[
 const FAQ = [
   {
     q: "How is Peon only $3 per project?",
-    a: "You bring the servers, so we don't resell compute at a markup. You pay a flat $3 per project for the deployment pipeline, dashboard, TLS, backups and team access. A $4 Hetzner VPS plus Peon can run several production apps for less than one Vercel seat.",
+    a: "You bring the servers, so we don't resell compute at a markup. Cloud is $3 per project per month, or $30 per year (about 17% off vs paying monthly). That covers the deployment pipeline, dashboard, TLS, backups and team access. A $4 Hetzner VPS plus Peon can run several production apps for less than one Vercel seat.",
   },
   {
     q: "Is pricing per project or per server?",
-    a: "Per project. Cloud is $3 per project per month with unlimited servers and unlimited seats — so cost tracks how you organize apps, not headcount or connected-server count.",
+    a: "Per project. Cloud is $3 per project per month or $30 per year, with unlimited servers and unlimited seats — so cost tracks how you organize apps, not headcount or connected-server count.",
   },
   {
     q: "Do I need my own server for Peon Cloud?",
@@ -206,7 +206,7 @@ const FAQ = [
   },
   {
     q: "How is Peon different from Coolify or Dokploy?",
-    a: "All three deploy to servers you own. Peon is the one that ships workspace and project RBAC, included audit logs, a hosted MCP server, and an in-app AI assistant together on standard plans — plus flat $3/project Cloud with unlimited servers and seats. That combination is why teams choose Peon.",
+    a: "All three deploy to servers you own. Peon is the one that ships workspace and project RBAC, included audit logs, a hosted MCP server, and an in-app AI assistant together on standard plans — plus flat $3/project/month or $30/year Cloud with unlimited servers and seats. That combination is why teams choose Peon.",
   },
   {
     q: "Is Peon a Vercel or Heroku alternative?",
@@ -324,7 +324,7 @@ export default function LandingPage() {
               templates onto hardware you control.
             </p>
             <p className="mt-4 font-mono text-xs uppercase tracking-widest text-phosphor">
-              Open source · self-host free · cloud from $3 / project
+              Open source · self-host free · cloud from $3 / mo or $30 / yr
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <Link
@@ -550,8 +550,8 @@ export default function LandingPage() {
               Simple, affordable pricing
             </h2>
             <p className="mt-3 max-w-2xl text-muted-foreground">
-              Self-host free, run the control plane with us for $3 per project, or go
-              Enterprise for SSO, white-label, and managed options.
+              Self-host free, run the control plane with us for $3 per project / month or $30 /
+              year (save ~17%), or go Enterprise for SSO, white-label, and managed options.
             </p>
             <div className="mt-10 grid gap-6 lg:grid-cols-3">
               {/* Self-hosted */}
@@ -605,6 +605,13 @@ export default function LandingPage() {
                 </p>
                 <p className="mt-4 font-heading text-5xl font-900 text-phosphor">$3</p>
                 <p className="mt-1 text-xs text-muted-foreground">per project / month</p>
+                <p className="mt-2 text-sm text-foreground">
+                  or <strong className="text-phosphor">$30 / project / year</strong>
+                  <span className="text-muted-foreground">
+                    {' '}
+                    · $2.50/mo effective · save ~17% vs $36
+                  </span>
+                </p>
                 <ul className="mt-6 flex-1 space-y-2 text-left text-sm text-muted-foreground">
                   {[
                     "Managed control plane · auto updates",

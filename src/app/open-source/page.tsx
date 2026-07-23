@@ -32,7 +32,7 @@ const COMMITMENTS = [
   },
   {
     title: 'Cloud is optional, not a cage',
-    body: 'Peon Cloud hosts the control plane for $3/project so you do not have to operate the dashboard. Apps still run on your servers. Self-host remains free forever.',
+    body: 'Peon Cloud hosts the control plane for $3/project/month or $30/year so you do not have to operate the dashboard. Apps still run on your servers. Self-host remains free forever.',
   },
   {
     title: 'Forever free to self-host',
@@ -173,9 +173,9 @@ export default function OpenSourcePage() {
                   >
                     Peon Cloud
                   </a>{' '}
-                  is $3 per project per month with unlimited servers and seats. Same product
-                  features; we run the dashboard and updates. Revenue funds continued open-source
-                  development.
+                  is $3 per project per month or $30 per year with unlimited servers and seats.
+                  Same product features; we run the dashboard and updates. Revenue funds
+                  continued open-source development.
                 </p>
               </div>
             </div>
