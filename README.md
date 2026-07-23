@@ -4,6 +4,8 @@ Marketing site for [Peon](https://peon.sh) — the open-source, self-hostable de
 
 Auth and “Deploy” CTAs link to the Peon app ([app.peon.sh](https://app.peon.sh) / [Peon-sh/Peon](https://github.com/Peon-sh/Peon)).
 
+Security reports: see [SECURITY.md](./SECURITY.md).
+
 ## Author
 
 **[Hiren Kavad (hironate)](https://github.com/hironate)**
