@@ -134,11 +134,14 @@
   }
 }
 
-@utility bg-grid {
-  background-image:
-    linear-gradient(to right, var(--border) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
-  background-size: 48px 48px;
+@utility bg-hero {
+  background-color: var(--background);
+  background-image: radial-gradient(
+    ellipse 70% 50% at 50% 0%,
+    color-mix(in oklab, var(--phosphor) 12%, transparent),
+    transparent 70%
+  );
+  background-repeat: no-repeat;
 }
 
 @utility font-800 {
@@ -146,4 +149,29 @@
 }
 @utility font-700 {
   font-weight: 700;
+}
+
+/* CMS blog body HTML (classes also embedded from peon-analytics polish) */
+.prose-blog > :first-child {
+  margin-top: 0 !important;
+}
+.prose-blog > section + section {
+  margin-top: 2.5rem;
+}
+.prose-blog h2 {
+  margin-top: 2.5rem !important;
+}
+.prose-blog ul {
+  list-style: none;
+  padding-left: 0;
+}
+.prose-blog ul > li::before {
+  content: "›";
+  color: var(--phosphor);
+  margin-top: 0.1rem;
+  flex-shrink: 0;
+  line-height: 1.55;
+}
+.prose-blog a:hover {
+  text-decoration: underline;
 }

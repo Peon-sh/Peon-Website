@@ -1,12 +1,28 @@
 import type { Metadata } from "next"
+import type { LucideIcon } from "lucide-react"
+import {
+  GitBranch,
+  Server,
+  Container,
+  Database,
+  ShieldCheck,
+  Activity,
+  Users,
+  Globe,
+  Bot,
+} from "lucide-react"
 import Link from "next/link"
 import { SiteHeader } from "@/components/marketing/site-header"
+import { SiteFooter } from "@/components/marketing/site-footer"
 import { appHref } from "@/lib/env"
 
+/** Fully static HTML for crawlers (incl. Google OAuth brand verification). */
+export const dynamic = "force-static"
+
 export const metadata: Metadata = {
-  title: "Peon - Open-source deployment platform. Your servers, $2/project",
+  title: "Peon - Open-source deployment platform. Your servers, $3/project",
   description:
-    "Open-source, self-hostable deployment platform. Deploy Git apps, Docker Compose stacks, databases and static sites to your own Hetzner, DigitalOcean or bare-metal servers. $2 per project, unlimited team members. The open alternative to Vercel, Heroku and managed PaaS.",
+    "Open-source, self-hostable deployment platform. Deploy Git apps, Docker Compose stacks, databases and static sites to your own Hetzner, DigitalOcean or bare-metal servers. $3 per project, unlimited team members. The open alternative to Vercel, Heroku and managed PaaS.",
   keywords: [
     "open source PaaS",
     "open source Vercel alternative",
@@ -25,74 +41,172 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    title: "Peon - Your servers. Our pipelines. $2 a project.",
+    title: "Peon - Your servers. Our pipelines. $3 a project.",
     description:
-      "Deploy anything to any server you own. Git push to deploy, databases, compose stacks, TLS, backups and logs - $2/project with unlimited members.",
+      "Deploy anything to any server you own. Git push to deploy, databases, compose stacks, TLS, backups and logs - $3/project with unlimited members.",
     url: "/",
     siteName: "Peon",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Peon - Deploy on your own servers for $2/project",
+    title: "Peon - Deploy on your own servers for $3/project",
     description:
-      "The self-hostable deployment platform. Unlimited team members, flat $2 per project.",
+      "The self-hostable deployment platform. Unlimited team members, flat $3 per project.",
   },
 }
 
-const FEATURES = [
+const FEATURES: { title: string; body: string; icon: LucideIcon; highlight?: boolean }[] = [
+  {
+    title: "MCP & AI assistant",
+    body: "Hosted MCP for Cursor and Claude, plus an in-app Chat assistant — same RBAC, audit trail, and Approve before mutating production.",
+    icon: Bot,
+    highlight: true,
+  },
   {
     title: "Git push to deploy",
     body: "Connect GitHub, GitLab or any Git source. Every push builds and ships automatically with zero-downtime rollouts and instant rollbacks.",
+    icon: GitBranch,
   },
   {
     title: "Any server, anywhere",
     body: "Bring your own Hetzner, DigitalOcean, AWS, OVH or bare-metal box. Peon connects over SSH and manages Docker for you - no vendor lock-in.",
+    icon: Server,
   },
   {
     title: "Docker Compose & images",
     body: "Deploy prebuilt images, full Compose stacks or one-click templates like Plausible, Postgres and Redis straight from the marketplace.",
+    icon: Container,
   },
   {
     title: "Managed databases",
     body: "Provision Postgres, MySQL, MongoDB and Redis on your own hardware with automated backups to S3-compatible storage.",
+    icon: Database,
   },
   {
     title: "Free automatic HTTPS",
     body: "Custom domains with auto-renewed Let's Encrypt certificates, HTTP→HTTPS redirects and per-service routing out of the box.",
+    icon: ShieldCheck,
   },
   {
     title: "Logs, metrics & alerts",
     body: "Live container logs, resource meters, health checks and notifications so you know the moment something goes sideways.",
-  },
-  {
-    title: "Shared environment variables",
-    body: "Team-wide shared variables and per-service secrets, encrypted at rest and injected at build and runtime.",
+    icon: Activity,
   },
   {
     title: "Unlimited team members",
-    body: "No per-seat pricing, ever. Invite your whole team to every project with role-based access - included in the $2.",
+    body: "No per-seat pricing, ever. Invite your whole team to every project with role-based access - included in the $3.",
+    icon: Users,
   },
   {
     title: "Static sites & previews",
     body: "Ship static sites and SPAs from the same pipeline, with per-branch environments when you need them.",
-  },
-  {
-    title: "Open source, no black box",
-    body: "The entire platform is open source. Audit the code, contribute features, self-host the control plane - nothing is hidden behind a proprietary cloud.",
+    icon: Globe,
   },
 ]
 
-const COMPARISON = [
-  { name: "Peon", price: "$2 / project", seats: "Unlimited, free", servers: "Your own (any provider)", openSource: "Yes - fully open", lockIn: "None - it's your Docker host" },
-  { name: "Vercel", price: "$20 / seat / mo", seats: "Paid per seat", servers: "Vercel's cloud only", openSource: "No", lockIn: "High" },
-  { name: "Heroku", price: "$5–$25+ / dyno", seats: "Team plans extra", servers: "Heroku's cloud only", openSource: "No", lockIn: "High" },
-  { name: "DigitalOcean App Platform", price: "$5+ / app / mo", seats: "Team plans", servers: "DigitalOcean only", openSource: "No", lockIn: "Medium" },
+const COMPARISON_PLATFORMS = [
+  "Peon",
+  "Coolify",
+  "Dokploy",
+  "Vercel",
+  "Heroku",
+  "DO App Platform",
+] as const
+
+/** Feature matrix — Peon column (index 0) is highlighted. */
+const COMPARISON_ROWS: { feature: string; cells: string[]; peonEdge?: boolean }[] = [
+  {
+    feature: "Cloud pricing",
+    peonEdge: true,
+    cells: [
+      "$3 / project · unlimited servers",
+      "From ~$5/mo · + per extra server",
+      "From $4.50 / server",
+      "$20 / seat / mo + usage",
+      "Per dyno · team plans extra",
+      "$5+ / app / mo",
+    ],
+  },
+  {
+    feature: "Self-host free",
+    cells: ["Yes", "Yes", "Yes", "No", "No", "No"],
+  },
+  {
+    feature: "Where apps run",
+    cells: [
+      "Your servers (any provider)",
+      "Your servers (any provider)",
+      "Your servers (any provider)",
+      "Vercel only",
+      "Heroku only",
+      "DigitalOcean only",
+    ],
+  },
+  {
+    feature: "Workspace + project RBAC",
+    peonEdge: true,
+    cells: [
+      "Workspace & project roles",
+      "Teams",
+      "Basic · fine-grained on Enterprise",
+      "Team seats",
+      "Team plans",
+      "Team plans",
+    ],
+  },
+  {
+    feature: "Unlimited team members",
+    peonEdge: true,
+    cells: ["Yes · included", "Yes (self-host)", "Plan limits on Hobby", "Paid per seat", "Paid team plans", "Team plans"],
+  },
+  {
+    feature: "Audit logs",
+    peonEdge: true,
+    cells: [
+      "Included",
+      "Limited / DIY",
+      "Enterprise only",
+      "Enterprise features",
+      "Enterprise",
+      "Limited",
+    ],
+  },
+  {
+    feature: "MCP for AI agents",
+    peonEdge: true,
+    cells: ["Included", "No", "Yes", "No", "No", "No"],
+  },
+  {
+    feature: "In-app AI assistant",
+    peonEdge: true,
+    cells: ["Included", "No", "No", "No", "No", "No"],
+  },
+  {
+    feature: "PR preview deploys",
+    cells: ["Yes", "Yes", "Yes", "Yes", "Review apps", "Yes"],
+  },
+  {
+    feature: "Open source",
+    cells: ["Yes", "Yes", "Yes", "No", "No", "No"],
+  },
 ]
 
 const FAQ = [
   {
-    q: "How is Peon only $2 per project?",
-    a: "You bring the servers, so we don't resell compute at a markup. You pay a flat $2 per project for the deployment pipeline, dashboard, TLS, backups and team access. A $4 Hetzner VPS plus Peon can run several production apps for less than one Vercel seat.",
+    q: "How is Peon only $3 per project?",
+    a: "You bring the servers, so we don't resell compute at a markup. Cloud is $3 per project per month, or $30 per year (about 17% off vs paying monthly). That covers the deployment pipeline, dashboard, TLS, backups and team access. A $4 Hetzner VPS plus Peon can run several production apps for less than one Vercel seat.",
+  },
+  {
+    q: "Is pricing per project or per server?",
+    a: "Per project. Cloud is $3 per project per month or $30 per year, with unlimited servers and unlimited seats — so cost tracks how you organize apps, not headcount or connected-server count.",
+  },
+  {
+    q: "Do I need my own server for Peon Cloud?",
+    a: "Yes. Peon Cloud hosts the control plane (dashboard, deploys, teams). Your apps and databases still run on servers you own — Hetzner, DigitalOcean, AWS EC2, or anything with SSH and Docker.",
+  },
+  {
+    q: "How is Peon different from Coolify or Dokploy?",
+    a: "All three deploy to servers you own. Peon is the one that ships workspace and project RBAC, included audit logs, a hosted MCP server, and an in-app AI assistant together on standard plans — plus flat $3/project/month or $30/year Cloud with unlimited servers and seats. That combination is why teams choose Peon.",
   },
   {
     q: "Is Peon a Vercel or Heroku alternative?",
@@ -104,11 +218,27 @@ const FAQ = [
   },
   {
     q: "Are team members really unlimited?",
-    a: "Yes. Every plan includes unlimited members with role-based access. We never charge per seat.",
+    a: "Yes. Every plan includes unlimited members with workspace and project role-based access. We never charge per seat.",
+  },
+  {
+    q: "What are workspaces and project roles?",
+    a: "A workspace holds your servers, sources and members. Projects sit inside a workspace with their own ADMIN/MEMBER roles, so you can invite teammates to an app without giving them root on every server.",
+  },
+  {
+    q: "Does Peon include audit logs?",
+    a: "Yes. Workspace owners can review who did what across projects, services, servers, deploys and settings — included on Self Hosted and Cloud, not gated behind Enterprise.",
+  },
+  {
+    q: "What is Peon MCP?",
+    a: "Peon exposes a Model Context Protocol server so AI agents (Cursor, Claude, and similar tools) can manage projects, deploys, env and more with the same permissions as your account.",
+  },
+  {
+    q: "What is the in-app AI assistant?",
+    a: "Peon Chat uses your own OpenAI or Anthropic keys and the same MCP tool set as external agents. It can answer how-to questions from the user manual and propose actions you approve in the UI.",
   },
   {
     q: "What can I deploy?",
-    a: "Git repositories (Node, Next.js, Python, Go, Rails, PHP and anything with a Dockerfile), prebuilt Docker images, Docker Compose stacks, static sites, and databases like Postgres, MySQL, MongoDB and Redis.",
+    a: "Git repositories (Node, Next.js, Python, Go, Rails, PHP and anything with a Dockerfile), prebuilt Docker images, Docker Compose stacks, static sites, and databases like Postgres, MySQL, MongoDB and Redis — plus one-click marketplace templates.",
   },
   {
     q: "Is Peon open source?",
@@ -117,6 +247,10 @@ const FAQ = [
   {
     q: "Can I self-host Peon itself?",
     a: "Yes - because Peon is open source and self-hostable, you can run the entire control plane on your own infrastructure for free and only pay for your servers.",
+  },
+  {
+    q: "What's included in Enterprise?",
+    a: "Everything in Cloud, plus options for fine-grained RBAC, SSO/SAML, SCIM, white labeling, MSA/SLA, on-prem or private cloud, and priority support. Contact sales for a custom quote.",
   },
 ]
 
@@ -140,9 +274,9 @@ function JsonLd() {
         },
         {
           "@type": "Offer",
-          price: "2.00",
+          price: "3.00",
           priceCurrency: "USD",
-          description: "Cloud - $2 per project per month with unlimited team members",
+          description: "Cloud - $3 per project per month with unlimited team members",
         },
       ],
     },
@@ -172,42 +306,89 @@ export default function LandingPage() {
       <SiteHeader />
 
       <main className="flex-1">
-        {/* Hero */}
-        <section className="bg-grid relative overflow-hidden border-b border-border">
-          <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-4 py-24 text-center">
+        {/* Hero — full first viewport (header is h-14) */}
+        <section className="bg-hero relative flex min-h-[calc(100dvh-3.5rem)] flex-col justify-center overflow-hidden border-b border-border">
+          <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-4 py-16 text-center sm:py-20">
             <p className="panel-title-slashes mb-4 font-mono text-xs uppercase tracking-widest text-phosphor">
-              open-source, self-hostable deployment platform
+              Peon
             </p>
             <h1 className="max-w-3xl text-4xl font-800 leading-tight sm:text-6xl">
-              Your servers. Our pipelines.{" "}
-              <span className="text-phosphor">$2 a project.</span>
+              Deploy your apps
+              <br />
+              <span className="text-phosphor">on your server in clicks</span>
             </h1>
             <p className="mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
-              The <strong className="text-foreground">open-source</strong> platform for
-              deploying Git apps, Docker Compose stacks, databases and static sites to your
-              own Hetzner, DigitalOcean or bare-metal servers. Git push to deploy,
-              automatic HTTPS, backups and logs - with{" "}
-              <strong className="text-foreground">unlimited team members</strong> included.
+              <strong className="text-foreground">Peon</strong> is an open-source platform
+              you can run yourself — a practical stand-in for Vercel, Heroku, Netlify and
+              Railway when you want to push websites, databases, apps and one-click
+              templates onto hardware you control.
+            </p>
+            <p className="mt-4 font-mono text-xs uppercase tracking-widest text-phosphor">
+              Open source · self-host free · cloud from $3 / mo or $30 / yr
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <Link
                 href={appHref("/register")}
                 className="rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:opacity-90"
               >
-                Deploy your first project - $2
+                Deploy your first project - $3
               </Link>
               <a
                 href="#compare"
                 className="rounded-md border border-border-bright px-6 py-3 text-sm font-semibold hover:bg-accent"
               >
-                Compare with Vercel & Heroku
+                Compare with Coolify & Dokploy
               </a>
             </div>
-            <div className="mt-12 w-full max-w-2xl rounded-lg border border-border bg-card p-4 text-left font-mono text-xs text-muted-foreground shadow-sm">
-              <p><span className="text-phosphor">$</span> git push origin main</p>
-              <p className="mt-1">→ building image… <span className="text-phosphor">done (38s)</span></p>
-              <p>→ rolling out on hetzner-fsn1… <span className="text-phosphor">healthy</span></p>
-              <p>→ https://app.yourdomain.com <span className="text-phosphor">live ✓</span></p>
+
+            <div className="mt-12 w-full max-w-3xl">
+              <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground sm:text-sm">
+                Partners you can deploy on and many more
+              </p>
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-8 sm:gap-12">
+                <a
+                  href="https://www.digitalocean.com/?refcode=37201cd07b6d&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center transition-opacity hover:opacity-80"
+                  aria-label="Deploy on DigitalOcean"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/logos/providers/digitalocean-badge.svg"
+                    alt="DigitalOcean"
+                    className="h-10 w-auto sm:h-12"
+                  />
+                </a>
+                <a
+                  href="https://www.hetzner.com/cloud"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center transition-opacity hover:opacity-80"
+                  aria-label="Deploy on Hetzner"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/logos/providers/hetzner.png"
+                    alt="Hetzner"
+                    className="h-10 w-auto sm:h-12"
+                  />
+                </a>
+                <a
+                  href="https://aws.amazon.com/ec2/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center transition-opacity hover:opacity-80"
+                  aria-label="Deploy on AWS EC2"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/logos/providers/aws.png"
+                    alt="AWS EC2"
+                    className="h-11 w-auto sm:h-14"
+                  />
+                </a>
+              </div>
             </div>
           </div>
         </section>
@@ -216,7 +397,7 @@ export default function LandingPage() {
         <section className="border-b border-border">
           <div className="mx-auto grid w-full max-w-6xl grid-cols-2 gap-px sm:grid-cols-4">
             {[
-              ["$2", "flat per project"],
+              ["$3", "flat per project"],
               ["∞", "team members"],
               ["100%", "open source"],
               ["Any", "server or cloud"],
@@ -240,12 +421,44 @@ export default function LandingPage() {
               without the per-seat pricing or the walled garden.
             </p>
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {FEATURES.map((f) => (
-                <article key={f.title} className="rounded-lg border border-border bg-card p-6">
-                  <h3 className="font-heading text-base font-700 text-phosphor">{f.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
-                </article>
-              ))}
+              {FEATURES.map((f) => {
+                const Icon = f.icon
+                return (
+                  <article
+                    key={f.title}
+                    className={
+                      f.highlight
+                        ? "rounded-lg border border-phosphor/40 bg-accent/40 p-6 ring-1 ring-phosphor/20"
+                        : "rounded-lg border border-border bg-card p-6"
+                    }
+                  >
+                    {f.highlight ? (
+                      <p className="mb-3 font-mono text-[10px] uppercase tracking-widest text-phosphor">
+                        Featured
+                      </p>
+                    ) : null}
+                    <div className="mb-4 flex size-10 items-center justify-center rounded-md border border-border bg-secondary text-phosphor">
+                      <Icon className="size-5" aria-hidden />
+                    </div>
+                    <h3 className="font-heading text-base font-700 text-phosphor">{f.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
+                    {f.highlight ? (
+                      <p className="mt-3 text-xs">
+                        <a href="/docs/mcp" className="font-semibold text-phosphor underline-offset-4 hover:underline">
+                          MCP setup →
+                        </a>
+                        {" · "}
+                        <a
+                          href="/docs/chat-assistant"
+                          className="font-semibold text-phosphor underline-offset-4 hover:underline"
+                        >
+                          Chat assistant →
+                        </a>
+                      </p>
+                    ) : null}
+                  </article>
+                )
+              })}
             </div>
           </div>
         </section>
@@ -254,45 +467,78 @@ export default function LandingPage() {
         <section id="compare" className="border-b border-border">
           <div className="mx-auto w-full max-w-6xl px-4 py-20">
             <h2 className="panel-title-slashes text-2xl font-700 sm:text-3xl">
-              Peon vs Vercel, Heroku & DigitalOcean
+              Peon vs Coolify, Dokploy, Vercel, Heroku & DigitalOcean
             </h2>
             <p className="mt-3 max-w-2xl text-muted-foreground">
-              Pair Peon with a $4/mo Hetzner or DigitalOcean VPS and run multiple
-              production apps for less than a single seat on a managed platform.
+              Peon is built for teams: workspace and project roles, audit logs, MCP for
+              agents, and an in-app AI assistant — features most peers gate or skip — with{" "}
+              <strong className="text-foreground">$3 per project</strong> Cloud pricing,
+              unlimited servers and unlimited seats. Apps run on hardware you own, same
+              category as Coolify and{" "}
+              <a
+                href="https://dokploy.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-phosphor underline-offset-4 hover:underline"
+              >
+                Dokploy
+              </a>
+              ; the team and AI packaging is why you choose Peon.
             </p>
             <div className="mt-8 overflow-x-auto rounded-lg border border-border">
-              <table className="w-full min-w-[640px] text-left text-sm">
+              <table className="w-full min-w-[920px] text-left text-sm">
                 <thead className="bg-secondary font-mono text-xs uppercase tracking-wide text-muted-foreground">
                   <tr>
-                    <th className="px-4 py-3">Platform</th>
-                    <th className="px-4 py-3">Pricing</th>
-                    <th className="px-4 py-3">Team seats</th>
-                    <th className="px-4 py-3">Where it runs</th>
-                    <th className="px-4 py-3">Open source</th>
-                    <th className="px-4 py-3">Lock-in</th>
+                    <th className="sticky left-0 z-10 bg-secondary px-4 py-3">Feature</th>
+                    {COMPARISON_PLATFORMS.map((name, i) => (
+                      <th
+                        key={name}
+                        className={`px-4 py-3 ${i === 0 ? "bg-accent text-phosphor" : ""}`}
+                      >
+                        {name}
+                      </th>
+                    ))}
                   </tr>
                 </thead>
                 <tbody>
-                  {COMPARISON.map((row, i) => (
-                    <tr
-                      key={row.name}
-                      className={i === 0 ? "bg-accent font-medium" : "border-t border-border"}
-                    >
-                      <td className="px-4 py-3">
-                        {i === 0 ? <span className="text-phosphor">{row.name}</span> : row.name}
-                      </td>
-                      <td className="px-4 py-3">{row.price}</td>
-                      <td className="px-4 py-3">{row.seats}</td>
-                      <td className="px-4 py-3">{row.servers}</td>
-                      <td className="px-4 py-3">{row.openSource}</td>
-                      <td className="px-4 py-3">{row.lockIn}</td>
+                  {COMPARISON_ROWS.map((row) => (
+                    <tr key={row.feature} className="border-t border-border">
+                      <th
+                        scope="row"
+                        className={`sticky left-0 z-10 bg-card px-4 py-3 text-left font-medium ${
+                          row.peonEdge ? "text-foreground" : "text-muted-foreground"
+                        }`}
+                      >
+                        {row.feature}
+                        {row.peonEdge ? (
+                          <span className="ml-2 font-mono text-[10px] uppercase tracking-wide text-phosphor">
+                            peon
+                          </span>
+                        ) : null}
+                      </th>
+                      {row.cells.map((cell, i) => (
+                        <td
+                          key={`${row.feature}-${COMPARISON_PLATFORMS[i]}`}
+                          className={`px-4 py-3 ${
+                            i === 0
+                              ? "bg-accent/60 font-medium text-foreground"
+                              : "text-muted-foreground"
+                          }`}
+                        >
+                          {cell}
+                        </td>
+                      ))}
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
             <p className="mt-3 text-xs text-muted-foreground">
-              Competitor pricing is indicative of published entry-level plans and may change.
+              Competitor pricing and plan limits are indicative of published entry-level /
+              documented plans and may change. Peon’s edges — project RBAC, included audit
+              logs, MCP and in-app AI on standard plans, plus $3/project Cloud — are why we
+              recommend Peon. Dokploy audit logs and fine-grained RBAC are Enterprise-tier on
+              their published plans.
             </p>
           </div>
         </section>
@@ -301,21 +547,39 @@ export default function LandingPage() {
         <section id="pricing" className="border-b border-border">
           <div className="mx-auto w-full max-w-6xl px-4 py-20">
             <h2 className="panel-title-slashes text-2xl font-700 sm:text-3xl">
-              One price. No asterisks.
+              Simple, affordable pricing
             </h2>
-            <div className="mx-auto mt-10 grid max-w-3xl gap-6 sm:grid-cols-2">
+            <p className="mt-3 max-w-2xl text-muted-foreground">
+              Self-host free, run the control plane with us for $3 per project / month or $30 /
+              year (save ~17%), or go Enterprise for SSO, white-label, and managed options.
+            </p>
+            <div className="mt-10 grid gap-6 lg:grid-cols-3">
               {/* Self-hosted */}
-              <div className="rounded-xl border border-border bg-card p-8 text-center shadow-sm">
-                <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">self-hosted</p>
-                <p className="mt-2 font-heading text-6xl font-900">$0</p>
-                <p className="mt-1 text-xs text-muted-foreground">forever · MIT-style open source</p>
-                <ul className="mt-6 space-y-2 text-left text-sm text-muted-foreground">
+              <div className="flex flex-col rounded-xl border border-border bg-card p-8 shadow-sm">
+                <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                  Self Hosted
+                </p>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Install on-prem or in your own cloud
+                </p>
+                <p className="mt-4 font-heading text-5xl font-900">$0</p>
+                <p className="mt-1 text-xs text-muted-foreground">forever · open source</p>
+                <ul className="mt-6 flex-1 space-y-2 text-left text-sm text-muted-foreground">
                   {[
-                    "Every feature, no limits",
-                    "Unlimited projects & team members",
-                    "Run it on your own infrastructure",
-                    "Community support",
+                    "Unlimited projects, servers & members",
+                    "Workspace + project RBAC",
+                    "Audit logs",
+                    "MCP for AI agents",
+                    "In-app AI assistant",
+                    "Git push, Docker images & Compose",
+                    "Managed databases with backups",
+                    "PR preview deployments",
+                    "Custom domains + automatic HTTPS",
+                    "Live logs, metrics & notifications",
+                    "SSH terminal & scheduled tasks",
+                    "One-click marketplace templates",
                     "You manage updates & hosting",
+                    "Community support",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2">
                       <span className="mt-0.5 text-phosphor">✓</span>
@@ -325,28 +589,44 @@ export default function LandingPage() {
                 </ul>
                 <a
                   href="https://github.com"
-                  className="mt-8 block rounded-md border border-border-bright px-6 py-3 text-sm font-semibold hover:bg-accent"
+                  className="mt-8 block rounded-md border border-border-bright px-6 py-3 text-center text-sm font-semibold hover:bg-accent"
                 >
                   Self-host from source
                 </a>
-                <p className="mt-3 text-xs text-muted-foreground">
-                  Clone the repo, point it at your servers, done.
-                </p>
               </div>
 
               {/* Cloud */}
-              <div className="rounded-xl border border-phosphor/40 bg-card p-8 text-center shadow-sm">
-                <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">cloud · per project / month</p>
-                <p className="mt-2 font-heading text-6xl font-900 text-phosphor">$2</p>
-                <p className="mt-1 text-xs text-muted-foreground">we run the control plane for you</p>
-                <ul className="mt-6 space-y-2 text-left text-sm text-muted-foreground">
+              <div className="flex flex-col rounded-xl border border-phosphor/40 bg-card p-8 shadow-sm">
+                <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                  Cloud
+                </p>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  We host and manage everything for you
+                </p>
+                <p className="mt-4 font-heading text-5xl font-900 text-phosphor">$3</p>
+                <p className="mt-1 text-xs text-muted-foreground">per project / month</p>
+                <p className="mt-2 text-sm text-foreground">
+                  or <strong className="text-phosphor">$30 / project / year</strong>
+                  <span className="text-muted-foreground">
+                    {' '}
+                    · $2.50/mo effective · save ~17% vs $36
+                  </span>
+                </p>
+                <ul className="mt-6 flex-1 space-y-2 text-left text-sm text-muted-foreground">
                   {[
-                    "Unlimited team members",
-                    "Unlimited services per project",
-                    "Git, image, Compose & static deployments",
+                    "Managed control plane · auto updates",
+                    "Unlimited servers & team members",
+                    "Workspace + project RBAC",
+                    "Audit logs",
+                    "MCP for AI agents",
+                    "In-app AI assistant",
+                    "Git push, Docker images & Compose",
                     "Managed databases with S3 backups",
-                    "Custom domains + free automatic HTTPS",
+                    "PR preview deployments",
+                    "Custom domains + automatic HTTPS",
                     "Live logs, metrics & notifications",
+                    "SSH terminal & scheduled tasks",
+                    "One-click marketplace templates",
                     "Deploy to any server you own",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2">
@@ -357,13 +637,54 @@ export default function LandingPage() {
                 </ul>
                 <Link
                   href={appHref("/register")}
-                  className="mt-8 block rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:opacity-90"
+                  className="mt-8 block rounded-md bg-primary px-6 py-3 text-center text-sm font-semibold text-primary-foreground hover:opacity-90"
                 >
                   Create your first project
                 </Link>
-                <p className="mt-3 text-xs text-muted-foreground">
-                  Server costs are yours - a $4 VPS from Hetzner or DigitalOcean is plenty.
+              </div>
+
+              {/* Enterprise */}
+              <div className="flex flex-col rounded-xl border border-border bg-card p-8 shadow-sm">
+                <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                  Enterprise
                 </p>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  For large organizations who want more control
+                </p>
+                <p className="mt-4 font-heading text-5xl font-900">Custom</p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Cloud or self-hosted · contact sales
+                </p>
+                <div className="mt-4 rounded-md border border-border bg-secondary/50 px-3 py-2 text-left text-xs text-muted-foreground">
+                  <p className="font-semibold text-foreground">Cloud</p>
+                  <p className="mt-0.5">We host and manage everything for you</p>
+                </div>
+                <ul className="mt-6 flex-1 space-y-2 text-left text-sm text-muted-foreground">
+                  {[
+                    "Everything in Cloud, plus…",
+                    "Up to unlimited servers & workspaces",
+                    "Fine-grained RBAC",
+                    "Complete hosting flexibility",
+                    "SSO / SAML (Azure, Okta, etc.)",
+                    "SCIM user provisioning",
+                    "White labeling",
+                    "Dedicated audit & compliance support",
+                    "On-prem / private cloud option",
+                    "MSA / SLA",
+                    "Priority support & services",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <span className="mt-0.5 text-phosphor">✓</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href="mailto:support@peon.sh?subject=Enterprise%20inquiry"
+                  className="mt-8 block rounded-md border border-border-bright px-6 py-3 text-center text-sm font-semibold hover:bg-accent"
+                >
+                  Contact sales
+                </a>
               </div>
             </div>
           </div>
@@ -390,7 +711,7 @@ export default function LandingPage() {
         </section>
 
         {/* Final CTA */}
-        <section className="bg-grid border-t border-border">
+        <section className="bg-hero border-t border-border">
           <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-4 py-20 text-center">
             <h2 className="max-w-2xl text-3xl font-800 sm:text-4xl">
               Stop renting a platform. <span className="text-phosphor">Own one.</span>
@@ -402,26 +723,13 @@ export default function LandingPage() {
               href={appHref("/register")}
               className="mt-8 rounded-md bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground hover:opacity-90"
             >
-              Start deploying for $2
+              Start deploying for $3
             </Link>
           </div>
         </section>
       </main>
 
-      <footer className="border-t border-border">
-        <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-4 px-4 py-8 text-xs text-muted-foreground sm:flex-row">
-          <p>© {new Date().getFullYear()} Peon - open-source, self-hostable deployment platform.</p>
-          <div className="flex gap-4">
-            <a href="#features" className="hover:text-foreground">Features</a>
-            <a href="#compare" className="hover:text-foreground">Vercel alternative</a>
-            <a href="#pricing" className="hover:text-foreground">Pricing</a>
-            <Link href="/marketplace" className="hover:text-foreground">Marketplace</Link>
-            <Link href="/docs" className="hover:text-foreground">Docs</Link>
-            <Link href="/blogs" className="hover:text-foreground">Blog</Link>
-            <Link href={appHref("/login")} className="hover:text-foreground">Log in</Link>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }
