@@ -31,6 +31,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.8,
     },
+    {
+      url: `${BASE_URL}/open-source`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
     ...ALL_DOC_PAGES.map((page) => ({
       url: `${BASE_URL}/docs/${page.slug}`,
       lastModified: new Date(),
