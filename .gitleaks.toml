@@ -1,0 +1,10 @@
+# Gitleaks config — allow known template false positives only.
+# https://github.com/gitleaks/gitleaks
+
+title = "peon-website"
+
+[allowlist]
+description = "Marketplace template noise (not production secrets)"
+paths = [
+  '''(^|/)src/lib/templates/service-templates\.json$''',
+]

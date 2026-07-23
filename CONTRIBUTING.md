@@ -39,6 +39,10 @@ Point `NEXT_PUBLIC_APP_URL` at a running Peon app (default `http://localhost:300
 3. Verify the page on desktop and mobile when changing UI.
 4. Do not commit `.env`, `.env.local`, or secrets.
 
+## Security
+
+Report vulnerabilities privately — see [SECURITY.md](./SECURITY.md). Open PRs against **`staging`** only; `main` is maintainer-managed.
+
 ## Commit messages
 
 Use Conventional Commits:
