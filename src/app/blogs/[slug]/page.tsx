@@ -1,121 +1,146 @@
-import type { Metadata } from "next"
-import Link from "next/link"
-import { notFound } from "next/navigation"
-import { SiteHeader } from "@/components/marketing/site-header"
-import { ALL_POSTS, CATEGORY_LABELS, getPost, relatedPosts } from "@/lib/blog"
-import { appHref } from "@/lib/env"
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { SiteHeader } from '@/components/marketing/site-header';
+import { SiteFooter } from '@/components/marketing/site-footer';
+import {
+  buildBlogJsonLd,
+  getPublishedPost,
+  relatedPublishedPosts,
+} from '@/lib/blog';
+import { appHref, publicEnv } from '@/lib/env';
 
-type Props = { params: Promise<{ slug: string }> }
+export const dynamic = 'force-dynamic';
 
-export function generateStaticParams() {
-  return ALL_POSTS.map((post) => ({ slug: post.slug }))
-}
+type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params
-  const post = getPost(slug)
-  if (!post) return {}
+  const { slug } = await params;
+  const post = await getPublishedPost(slug);
+  if (!post) return {};
+
+  const title = post.seoTitle?.trim() || post.title;
+  const description =
+    post.seoDescription?.trim() || post.excerpt?.trim() || undefined;
+  const keywords = post.seoKeywords
+    ?.split(',')
+    .map((k) => k.trim())
+    .filter(Boolean);
+  const canonical = post.canonicalUrl?.trim() || `/blogs/${post.slug}`;
+  const ogImage = post.ogImage ?? post.featuredImage;
+  const robots = post.robotsMeta?.trim();
+
   return {
-    title: post.title,
-    description: post.description,
-    keywords: post.keywords,
-    alternates: { canonical: `/blogs/${post.slug}` },
+    title,
+    description,
+    keywords: keywords?.length ? keywords : undefined,
+    alternates: { canonical },
+    robots: robots || undefined,
     openGraph: {
-      type: "article",
-      title: post.title,
-      description: post.description,
-      url: `/blogs/${post.slug}`,
-      publishedTime: post.date,
-      siteName: "Peon",
+      type: 'article',
+      title: post.ogTitle?.trim() || title,
+      description: post.ogDescription?.trim() || description,
+      url: canonical,
+      publishedTime: post.publishedAt ?? undefined,
+      modifiedTime: post.updatedAt,
+      siteName: 'Peon',
+      images: ogImage?.url
+        ? [{ url: ogImage.url, alt: ogImage.alt || title }]
+        : undefined,
     },
-    twitter: { card: "summary_large_image", title: post.title, description: post.description },
-  }
+    twitter: {
+      card:
+        (post.twitterCard?.trim() as 'summary' | 'summary_large_image' | undefined) ||
+        'summary_large_image',
+      title: post.twitterTitle?.trim() || title,
+      description: post.twitterDescription?.trim() || description,
+      images: ogImage?.url ? [ogImage.url] : undefined,
+    },
+  };
 }
 
 export default async function BlogPostPage({ params }: Props) {
-  const { slug } = await params
-  const post = getPost(slug)
-  if (!post) notFound()
-  const related = relatedPosts(post)
+  const { slug } = await params;
+  const post = await getPublishedPost(slug);
+  if (!post) notFound();
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "TechArticle",
-    headline: post.title,
-    description: post.description,
-    datePublished: post.date,
-    author: { "@type": "Organization", name: "Peon" },
-    publisher: { "@type": "Organization", name: "Peon" },
-    mainEntityOfPage: `https://peonpipelines.com/blogs/${post.slug}`,
-  }
+  const related = await relatedPublishedPosts(post);
+  const jsonLd = buildBlogJsonLd(post, publicEnv.siteUrl);
+  const primaryTag = post.tags[0];
 
   return (
     <div className="flex min-h-screen flex-col">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       <SiteHeader active="blog" />
 
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-14">
         <nav className="font-mono text-[11px] uppercase tracking-wide text-faint">
-          <Link href="/blogs" className="hover:text-foreground">blog</Link>
-          {" / "}
-          <span className="text-phosphor">{CATEGORY_LABELS[post.category]}</span>
+          <Link href="/blogs" className="hover:text-foreground">
+            blog
+          </Link>
+          {primaryTag ? (
+            <>
+              {' / '}
+              <span className="text-phosphor">{primaryTag.name}</span>
+            </>
+          ) : null}
         </nav>
 
         <h1 className="mt-4 text-3xl font-800 leading-tight sm:text-4xl">{post.title}</h1>
-        <p className="mt-4 text-base leading-relaxed text-muted-foreground">{post.description}</p>
+        {post.excerpt ? (
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+            {post.excerpt}
+          </p>
+        ) : null}
         <p className="mt-4 font-mono text-[11px] uppercase tracking-wide text-faint">
-          {new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
-          {" · "}
+          {post.publishedAt
+            ? new Date(post.publishedAt).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })
+            : null}
+          {post.publishedAt ? ' · ' : ''}
           {post.readingMinutes} min read
         </p>
 
-        <article className="mt-10 space-y-10">
-          {post.sections.map((section) => (
-            <section key={section.h}>
-              <h2 className="panel-title-slashes text-xl font-700">{section.h}</h2>
-              {section.p.map((para, i) => (
-                <p key={i} className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  {para}
-                </p>
-              ))}
-              {section.list && (
-                <ul className="mt-3 space-y-2 text-sm leading-relaxed text-muted-foreground">
-                  {section.list.map((item) => (
-                    <li key={item} className="flex items-start gap-2">
-                      <span className="mt-0.5 text-phosphor">›</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              )}
-              {section.code && (
-                <pre className="mt-4 overflow-x-auto rounded-lg border border-border bg-card p-4 font-mono text-xs leading-relaxed text-foreground">
-                  <code>{section.code}</code>
-                </pre>
-              )}
-            </section>
-          ))}
-        </article>
+        {post.featuredImage?.url ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={post.featuredImage.url}
+            alt={post.featuredImage.alt || post.title}
+            className="mt-8 max-h-80 w-full rounded-lg border border-border object-cover"
+          />
+        ) : null}
 
-        {/* CTA */}
-        <aside className="bg-grid mt-14 rounded-xl border border-phosphor/40 bg-card p-8 text-center">
+        <article
+          className="prose-blog mt-10"
+          dangerouslySetInnerHTML={{ __html: post.bodyHtml }}
+        />
+
+        <aside className="bg-hero mt-14 rounded-xl border border-phosphor/40 bg-card p-8 text-center">
           <h2 className="text-xl font-800">Deploy it on your own server</h2>
           <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
             Peon is the open-source deployment platform: git push to deploy, automatic HTTPS,
-            managed databases with backups - $2 per project, unlimited team members.
+            managed databases with backups - $3 per project, unlimited team members.
           </p>
           <Link
-            href={appHref("/register")}
+            href={appHref('/register')}
             className="mt-5 inline-block rounded-md bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90"
           >
-            Start deploying for $2
+            Start deploying for $3
           </Link>
         </aside>
 
-        {related.length > 0 && (
+        {related.length > 0 ? (
           <section className="mt-14">
-            <h2 className="font-mono text-xs uppercase tracking-widest text-phosphor">Related articles</h2>
+            <h2 className="font-mono text-xs uppercase tracking-widest text-phosphor">
+              Related articles
+            </h2>
             <div className="mt-4 grid gap-4 sm:grid-cols-3">
               {related.map((r) => (
                 <Link
@@ -130,18 +155,10 @@ export default async function BlogPostPage({ params }: Props) {
               ))}
             </div>
           </section>
-        )}
+        ) : null}
       </main>
 
-      <footer className="border-t border-border">
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-8 text-xs text-muted-foreground">
-          <p>© {new Date().getFullYear()} Peon - open-source, self-hostable deployment platform.</p>
-          <div className="flex gap-4">
-            <Link href="/blogs" className="hover:text-foreground">Blog</Link>
-            <Link href="/" className="hover:text-foreground">Home</Link>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
-  )
+  );
 }

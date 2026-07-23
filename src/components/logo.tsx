@@ -34,7 +34,7 @@ export function Logo({ className }: { className?: string }) {
     <span className={cn('inline-flex items-center gap-2', className)}>
       <LogoMark />
       <span className="font-heading text-base font-800 tracking-tight">
-        <span className="text-phosphor">peon</span>
+        <span className="text-phosphor">Peon</span>
       </span>
     </span>
   );

@@ -61,18 +61,37 @@ export function MarketplaceGrid({
             key={t.slug}
             className="border-border bg-card hover:border-border-bright flex flex-col rounded-lg border p-5 transition-colors"
           >
-            <div className="flex items-start justify-between gap-2">
-              <h3 className="font-heading font-700 text-sm">{t.name}</h3>
-              {t.category && (
-                <span className="border-border text-muted-foreground shrink-0 rounded border px-1.5 py-0.5 text-[10px]">
-                  {t.category}
-                </span>
+            <div className="flex items-start gap-3">
+              {t.logo ? (
+                // eslint-disable-next-line @next/next/no-img-element -- vendored local SVG/PNG assets
+                <img
+                  src={t.logo}
+                  alt=""
+                  width={36}
+                  height={36}
+                  className="size-9 shrink-0 rounded-md bg-white object-contain p-1"
+                  loading="lazy"
+                />
+              ) : (
+                <div className="bg-secondary text-muted-foreground flex size-9 shrink-0 items-center justify-center rounded-md text-xs font-semibold">
+                  {t.name.charAt(0)}
+                </div>
               )}
+              <div className="min-w-0 flex-1">
+                <div className="flex items-start justify-between gap-2">
+                  <h3 className="font-heading font-700 text-sm">{t.name}</h3>
+                  {t.category && (
+                    <span className="border-border text-muted-foreground shrink-0 rounded border px-1.5 py-0.5 text-[10px]">
+                      {t.category}
+                    </span>
+                  )}
+                </div>
+                <p className="text-muted-foreground mt-2 line-clamp-3 text-xs leading-relaxed">
+                  {t.slogan || 'Self-hostable service, deployable in one click.'}
+                </p>
+              </div>
             </div>
-            <p className="text-muted-foreground mt-2 line-clamp-3 flex-1 text-xs leading-relaxed">
-              {t.slogan || 'Self-hostable service, deployable in one click.'}
-            </p>
-            <div className="mt-4 flex items-center justify-between">
+            <div className="mt-4 flex flex-1 items-end justify-between">
               <a
                 href={appHref(`/deploy/${t.slug}`)}
                 className="bg-primary text-primary-foreground rounded-md px-3 py-1.5 text-xs font-semibold hover:opacity-90"

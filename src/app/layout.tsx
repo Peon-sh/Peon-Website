@@ -2,6 +2,10 @@ import type { Metadata } from 'next';
 import { Archivo, IBM_Plex_Mono, Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { MarketingTheme } from '@/components/marketing/marketing-theme';
+import {
+  GoogleTagManager,
+  GoogleTagManagerNoscript,
+} from '@/components/analytics/google-tag-manager';
 import { cn } from '@/lib/utils';
 import { publicEnv } from '@/lib/env';
 import './globals.css';
@@ -26,17 +30,19 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(publicEnv.siteUrl),
   title: {
-    default: 'Peon - Open-source deployment platform. Your servers, $2/project',
+    default: 'Peon - Open-source deployment platform. Your servers, $3/project',
     template: '%s | Peon',
   },
   description: 'Self-hostable application deployment platform',
   icons: {
     icon: [
-      { url: '/logo.svg', type: 'image/svg+xml' },
-      { url: '/logo.png', type: 'image/png', sizes: '512x512' },
+      { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-96x96.png', type: 'image/png', sizes: '96x96' },
     ],
-    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
   },
+  manifest: '/site.webmanifest',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -47,6 +53,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={cn('dark antialiased', archivo.variable, plexMono.variable, inter.variable)}
     >
       <body>
+        <GoogleTagManagerNoscript />
+        <GoogleTagManager />
         <ThemeProvider>
           <MarketingTheme>
             <div className="bg-background text-foreground min-h-screen">{children}</div>

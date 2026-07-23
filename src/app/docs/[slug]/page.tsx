@@ -65,9 +65,18 @@ export default async function DocPage({ params }: Props) {
               </ul>
             )}
             {section.code && (
-              <pre className="mt-4 overflow-x-auto rounded-lg border border-border bg-card p-4 font-mono text-xs leading-relaxed text-foreground">
-                <code>{section.code}</code>
-              </pre>
+              <div className="mt-4 overflow-hidden rounded-lg border border-border bg-card">
+                {section.codeLang ? (
+                  <div className="flex items-center justify-between border-b border-border bg-secondary px-4 py-2">
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-phosphor">
+                      {section.codeLang}
+                    </span>
+                  </div>
+                ) : null}
+                <pre className="overflow-x-auto p-4 font-mono text-xs leading-relaxed text-foreground">
+                  <code>{section.code}</code>
+                </pre>
+              </div>
             )}
           </section>
         ))}

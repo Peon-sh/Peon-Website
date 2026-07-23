@@ -32,7 +32,7 @@ export function SiteHeader({
           className="font-heading font-800 inline-flex items-center gap-2 text-base tracking-tight"
         >
           <LogoMark size={26} />
-          <span className="text-phosphor">peon</span>
+          <span className="text-phosphor">Peon</span>
         </Link>
 
         <div className="text-muted-foreground hidden items-center gap-5 text-sm lg:flex">
@@ -53,14 +53,17 @@ export function SiteHeader({
             const isActive =
               (active === 'docs' && item.href === '/docs') ||
               (active === 'blog' && item.href === '/blogs') ||
-              (active === 'marketplace' && item.href === '/marketplace') ||
-              (active === 'open-source' && item.href === '/open-source');
+              (active === 'marketplace' && item.href === '/marketplace');
 
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={isActive ? 'text-foreground' : 'hover:text-foreground'}
+                className={
+                  isActive
+                    ? 'font-semibold text-phosphor'
+                    : 'hover:text-foreground'
+                }
               >
                 {item.label}
               </Link>
@@ -68,20 +71,12 @@ export function SiteHeader({
           })}
         </div>
 
-        <div className="flex items-center gap-3">
-          <a
-            href={appHref('/login')}
-            className="text-muted-foreground hover:text-foreground text-sm"
-          >
-            Log in
-          </a>
-          <a
-            href={appHref('/register')}
-            className="bg-primary text-primary-foreground rounded-md px-3 py-1.5 text-sm font-semibold hover:opacity-90"
-          >
-            Start deploying
-          </a>
-        </div>
+        <a
+          href={appHref('/login')}
+          className="bg-primary text-primary-foreground rounded-md px-3 py-1.5 text-sm font-semibold hover:opacity-90"
+        >
+          Log in
+        </a>
       </nav>
     </header>
   );

@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 import { SiteHeader } from "@/components/marketing/site-header"
+import { SiteFooter } from "@/components/marketing/site-footer"
 import { MarketplaceGrid } from "@/components/marketing/marketplace-grid"
 import { listTemplateCategories, listTemplates } from "@/lib/templates"
 
@@ -25,7 +25,7 @@ export default function MarketplacePage() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <SiteHeader />
+      <SiteHeader active="marketplace" />
       <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-12">
         <p className="font-mono text-xs uppercase tracking-widest text-phosphor">Marketplace</p>
         <h1 className="mt-2 text-3xl font-800 sm:text-4xl">
@@ -40,16 +40,7 @@ export default function MarketplacePage() {
           <MarketplaceGrid templates={templates} categories={categories} />
         </div>
       </main>
-      <footer className="border-t border-border">
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-8 text-xs text-muted-foreground">
-          <p>© {new Date().getFullYear()} Peon - open-source, self-hostable deployment platform.</p>
-          <div className="flex gap-4">
-            <Link href="/docs" className="hover:text-foreground">Docs</Link>
-            <Link href="/blogs" className="hover:text-foreground">Blog</Link>
-            <Link href="/" className="hover:text-foreground">Home</Link>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   )
 }
