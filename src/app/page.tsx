@@ -444,16 +444,16 @@ export default function LandingPage() {
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
                     {f.highlight ? (
                       <p className="mt-3 text-xs">
-                        <a href="/docs/mcp" className="font-semibold text-phosphor underline-offset-4 hover:underline">
+                        <Link href="/docs/mcp" className="font-semibold text-phosphor underline-offset-4 hover:underline">
                           MCP setup →
-                        </a>
+                        </Link>
                         {" · "}
-                        <a
+                        <Link
                           href="/docs/chat-assistant"
                           className="font-semibold text-phosphor underline-offset-4 hover:underline"
                         >
                           Chat assistant →
-                        </a>
+                        </Link>
                       </p>
                     ) : null}
                   </article>

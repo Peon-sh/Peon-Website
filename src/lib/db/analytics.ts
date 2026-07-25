@@ -1,7 +1,6 @@
 import { Pool, type QueryResultRow } from 'pg';
 
 declare global {
-  // eslint-disable-next-line no-var
   var peonAnalyticsPool: Pool | undefined;
 }
 
