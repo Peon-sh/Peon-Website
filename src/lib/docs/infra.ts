@@ -5,7 +5,7 @@ export const INFRA_PAGES: DocPage[] = [
     slug: 'servers',
     title: 'Managing Servers',
     description:
-      'Add servers over SSH, validate Docker, manage Traefik/Caddy gateway, destinations, cleanup, and danger zone — every field.',
+      'Add servers over SSH, validate Docker, manage Traefik/Caddy gateway, destinations, cleanup, and danger zone - every field.',
     sections: [
       {
         h: 'Who can manage servers',
@@ -22,15 +22,15 @@ export const INFRA_PAGES: DocPage[] = [
         ],
       },
       {
-        h: 'Add server dialog — fields',
+        h: 'Add server dialog - fields',
         p: ['Servers → Add Server.'],
         list: [
-          'Name — display name, required, 1–80 characters',
-          'IP / Hostname — IPv4, IPv6, or DNS (max 255); placeholder e.g. 203.0.113.10',
-          'Port — SSH port, default 22 (1–65535)',
-          'User — SSH login, default root (1–80)',
-          'Private key — workspace SSH key, required (create under Keys & Tokens first)',
-          'Gateway type — Traefik (default), Caddy, or None',
+          'Name - display name, required, 1–80 characters',
+          'IP / Hostname - IPv4, IPv6, or DNS (max 255); placeholder e.g. 203.0.113.10',
+          'Port - SSH port, default 22 (1–65535)',
+          'User - SSH login, default root (1–80)',
+          'Private key - workspace SSH key, required (create under Keys & Tokens first)',
+          'Gateway type - Traefik (default), Caddy, or None',
         ],
       },
       {
@@ -40,14 +40,14 @@ export const INFRA_PAGES: DocPage[] = [
         ],
       },
       {
-        h: 'General tab — fields',
+        h: 'General tab - fields',
         p: [],
         list: [
           'Name, Description (max 500; empty → null)',
           'User, IP / Hostname, Port, SSH key (required to Save/Connect)',
-          'Wildcard domain — base for preview FQDNs https://{sha}.{host}; max 255',
-          'SSH connection timeout (s) — 1–300; default 30',
-          'Gateway type — Traefik / Caddy / None',
+          'Wildcard domain - base for preview FQDNs https://{sha}.{host}; max 255',
+          'SSH connection timeout (s) - 1–300; default 30',
+          'Gateway type - Traefik / Caddy / None',
         ],
       },
       {
@@ -59,26 +59,26 @@ export const INFRA_PAGES: DocPage[] = [
       {
         h: 'Terminal tab',
         p: [
-          'Interactive host SSH shell in the UI. Not available via Chat or MCP — use this tab when you need a real shell.',
+          'Interactive host SSH shell in the UI. Not available via Chat or MCP. Use this tab when you need a real shell.',
         ],
       },
       {
-        h: 'Advanced tab — build limits',
+        h: 'Advanced tab - build limits',
         p: [],
         list: [
-          'Concurrent builds — max simultaneous builds/deploys on this server; default 2 (1–50)',
-          'Deployment queue limit — cap on queued deployments; default 25 (1–500)',
+          'Concurrent builds - max simultaneous builds/deploys on this server; default 2 (1–50)',
+          'Deployment queue limit - cap on queued deployments; default 25 (1–500)',
         ],
       },
       {
-        h: 'Advanced tab — Docker cleanup',
+        h: 'Advanced tab - Docker cleanup',
         p: ['Save with Save advanced settings.'],
         list: [
-          'Force Docker cleanup — when on, scheduled cleanups always prune unused images/builders/containers',
-          'Cleanup cron — default 0 0 * * *',
-          'Cleanup threshold (%) — when force is off; default 80 (1–100)',
-          'Delete unused volumes / Delete unused networks — also prune volumes/networks (can destroy data of stopped containers)',
-          'Trigger manual cleanup — run now (confirm); always prunes images/builders/stopped containers; volumes/networks follow saved toggles',
+          'Force Docker cleanup - when on, scheduled cleanups always prune unused images/builders/containers',
+          'Cleanup cron - default 0 0 * * *',
+          'Cleanup threshold (%) - when force is off; default 80 (1–100)',
+          'Delete unused volumes / Delete unused networks - also prune volumes/networks (can destroy data of stopped containers)',
+          'Trigger manual cleanup - run now (confirm); always prunes images/builders/stopped containers; volumes/networks follow saved toggles',
         ],
       },
       {
@@ -88,20 +88,20 @@ export const INFRA_PAGES: DocPage[] = [
         ],
       },
       {
-        h: 'Danger — delete server',
+        h: 'Danger - delete server',
         p: [],
         list: [
           'Type the exact server name to enable delete',
-          'Delete all resources (N total) — required when services still exist; stops containers and deletes those services from Peon',
-          'Delete server — removes the server from Peon (not the VM); cascades settings, destinations, logs',
+          'Delete all resources (N total) - required when services still exist; stops containers and deletes those services from Peon',
+          'Delete server - removes the server from Peon (not the VM); cascades settings, destinations, logs',
         ],
       },
       {
         h: 'Common errors',
         p: [],
         list: [
-          'Validate fails — wrong IP/key/user, SSH port blocked, or missing sudo for Docker install',
-          'Proxy / HTTPS issues — Gateway off, or ports 80/443 busy on the host',
+          'Validate fails - wrong IP/key/user, SSH port blocked, or missing sudo for Docker install',
+          'Proxy / HTTPS issues - Gateway off, or ports 80/443 busy on the host',
         ],
       },
     ],
@@ -119,16 +119,16 @@ export const INFRA_PAGES: DocPage[] = [
         h: 'Connect',
         p: [],
         list: [
-          'Connect GitHub — platform app install when the Peon instance has it configured',
-          'Create custom GitHub or GitLab App — Provider, Private key, Name, Organization, HTML URL, API URL, Git user, Git port, App ID, Installation ID / Client ID (GitHub), Client secret / App secret, Webhook secret / token',
+          'Connect GitHub - platform app install when the Peon instance has it configured',
+          'Create custom GitHub or GitLab App - Provider, Private key, Name, Organization, HTML URL, API URL, Git user, Git port, App ID, Installation ID / Client ID (GitHub), Client secret / App secret, Webhook secret / token',
         ],
       },
       {
         h: 'Source detail',
         p: [],
         list: [
-          'General — edit connection fields; connection status; copy webhook and setup URLs',
-          'Resources — services using this source',
+          'General - edit connection fields; connection status; copy webhook and setup URLs',
+          'Resources - services using this source',
           'Delete when unused (reassign services first if needed)',
         ],
       },
@@ -143,7 +143,7 @@ export const INFRA_PAGES: DocPage[] = [
   {
     slug: 'storages',
     title: 'Storages (S3)',
-    description: 'S3-compatible destinations for database backup uploads — fields and Test.',
+    description: 'S3-compatible destinations for database backup uploads - fields and Test.',
     sections: [
       {
         h: 'Where and who',
@@ -187,14 +187,14 @@ export const INFRA_PAGES: DocPage[] = [
       {
         h: 'API tokens',
         p: [
-          'Create a personal access token (prefix peon_…). Copy once when shown; revoke later. The token inherits your workspace role and project memberships — same permissions as you in the UI.',
+          'Create a personal access token (prefix peon_…). Copy once when shown; revoke later. The token inherits your workspace role and project memberships, with the same permissions as you in the UI.',
         ],
       },
       {
         h: 'MCP',
         p: [
           'Point MCP clients (Cursor, Claude Desktop, etc.) at {appOrigin}/mcp with Authorization: Bearer peon_…. Tools cover projects, services, deployments, env, backups, servers, sources, members, and more under RBAC.',
-          'Shell exec tools (exec_in_service, exec_on_server) are not registered on MCP or Chat — use the Terminal tabs in the UI.',
+          'Shell exec tools (exec_in_service, exec_on_server) are not registered on MCP or Chat. Use the Terminal tabs in the UI.',
         ],
       },
     ],
@@ -207,14 +207,14 @@ export const INFRA_PAGES: DocPage[] = [
       {
         h: 'Where and who',
         p: [
-          'Open /shared-variables (not in the main sidebar — use ⌘K command palette or direct URL). Workspace OWNER/ADMIN (scope-dependent).',
+          'Open /shared-variables (not in the main sidebar. Use ⌘K command palette or direct URL). Workspace OWNER/ADMIN (scope-dependent).',
         ],
       },
       {
         h: 'Fields',
         p: [],
         list: [
-          'Scope — WORKSPACE, PROJECT, or SERVER (provide projectId / serverId when required)',
+          'Scope - WORKSPACE, PROJECT, or SERVER (provide projectId / serverId when required)',
           'Key',
           'Value',
           'Comment (optional)',

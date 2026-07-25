@@ -7,7 +7,7 @@ declare global {
 
 /**
  * Read-only pool against peon-analytics (DATABASE_URL).
- * Website never writes — only SELECT published blog content.
+ * Website never writes. Only SELECT published blog content.
  */
 export function getAnalyticsPool(): Pool {
   const connectionString = process.env.DATABASE_URL;

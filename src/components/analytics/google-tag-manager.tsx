@@ -19,7 +19,7 @@ export function GoogleTagManager() {
   );
 }
 
-/** GTM noscript iframe — place immediately inside `<body>`. */
+/** GTM noscript iframe. Place immediately inside `<body>`. */
 export function GoogleTagManagerNoscript() {
   const gtmId = publicEnv.gtmId;
   if (!gtmId) return null;

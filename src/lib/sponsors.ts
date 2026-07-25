@@ -1,6 +1,6 @@
 import { appHref, publicEnv } from '@/lib/env';
 
-/** Sponsorship / donate destinations — override via env when accounts go live. */
+/** Sponsorship / donate destinations. Override via env when accounts go live. */
 export const SPONSOR_LINKS = {
   githubSponsors:
     process.env.NEXT_PUBLIC_GITHUB_SPONSORS_URL ?? 'https://github.com/sponsors/hironate',

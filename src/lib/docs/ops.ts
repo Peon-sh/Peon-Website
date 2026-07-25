@@ -11,12 +11,12 @@ export const OPS_PAGES: DocPage[] = [
         h: 'Deployments list and detail',
         p: ['Service → Deployments; detail at …/deployments/[deploymentId].'],
         list: [
-          'Deploy now — queue production deploy',
-          'Force rebuild — deploy with cache cleared',
-          'Cancel — stop queued/in-progress deploy',
-          'Rollback — re-point to a finished production deploy',
-          'Detail logs — live build logs; download',
-          'Preview list — active PR previews; delete preview env',
+          'Deploy now - queue production deploy',
+          'Force rebuild - deploy with cache cleared',
+          'Cancel - stop queued/in-progress deploy',
+          'Rollback - re-point to a finished production deploy',
+          'Detail logs - live build logs; download',
+          'Preview list - active PR previews; delete preview env',
         ],
       },
       {
@@ -33,8 +33,8 @@ export const OPS_PAGES: DocPage[] = [
         h: 'Common errors',
         p: [],
         list: [
-          '404 on preview — DNS/wildcard/gateway misconfigured',
-          'No auto preview — Auto deploy off or GitHub app permissions missing',
+          '404 on preview - DNS/wildcard/gateway misconfigured',
+          'No auto preview - Auto deploy off or GitHub app permissions missing',
         ],
       },
     ],
@@ -52,17 +52,17 @@ export const OPS_PAGES: DocPage[] = [
       },
       {
         h: 'New schedule',
-        p: ['Frequency (cron) — default 0 0 * * *.'],
+        p: ['Frequency (cron) - default 0 0 * * *.'],
       },
       {
         h: 'Edit schedule fields',
         p: [],
         list: [
-          'Frequency (cron) — when dumps run',
-          'Local backups to keep — retention 0–1000 (default 7)',
-          'Upload to S3 — pick a workspace Storage',
+          'Frequency (cron) - when dumps run',
+          'Local backups to keep - retention 0–1000 (default 7)',
+          'Upload to S3 - pick a workspace Storage',
           'Enable / Disable / Backup now / Delete',
-          'History + Restore — restore from a successful dump',
+          'History + Restore - restore from a successful dump',
         ],
       },
       {
@@ -94,20 +94,20 @@ export const OPS_PAGES: DocPage[] = [
         h: 'New task fields',
         p: [],
         list: [
-          'Name — e.g. cleanup-cache',
-          'Frequency (cron) — 5-field cron; default 0 0 * * *',
-          'Command — shell inside the container; e.g. pnpm run scheduler:clean',
+          'Name - e.g. cleanup-cache',
+          'Frequency (cron) - 5-field cron; default 0 0 * * *',
+          'Command - shell inside the container; e.g. pnpm run scheduler:clean',
         ],
       },
       {
         h: 'Edit task',
         p: [],
         list: [
-          'Timeout (seconds) — 1–86400; default 300',
-          'Container name — optional target container',
+          'Timeout (seconds) - 1–86400; default 300',
+          'Container name - optional target container',
           'Enable / Disable',
-          'Execute now — run immediately',
-          'History — past executions',
+          'Execute now - run immediately',
+          'History - past executions',
         ],
       },
     ],
@@ -121,9 +121,9 @@ export const OPS_PAGES: DocPage[] = [
         h: 'Logs',
         p: ['Service → Logs.'],
         list: [
-          'Last N lines — 100 / 200 / 500 / 1000 / 2000',
-          'Auto-refresh / follow — stream new lines',
-          'Download / refetch — export or reload',
+          'Last N lines - 100 / 200 / 500 / 1000 / 2000',
+          'Auto-refresh / follow - stream new lines',
+          'Download / refetch - export or reload',
         ],
       },
       {
@@ -143,9 +143,9 @@ export const OPS_PAGES: DocPage[] = [
         h: 'Service → Webhooks',
         p: [],
         list: [
-          'Provider — Generic, GitHub, or GitLab',
-          'New webhook — creates /api/webhooks/{token}; copy and register with your git host',
-          'Delete — remove unused hooks',
+          'Provider - Generic, GitHub, or GitLab',
+          'New webhook - creates /api/webhooks/{token}; copy and register with your git host',
+          'Delete - remove unused hooks',
         ],
       },
       {
@@ -175,11 +175,11 @@ export const OPS_PAGES: DocPage[] = [
         h: 'Channels and fields',
         p: ['Tabs: Email, Discord, Slack, Telegram, Pushover, Webhook.'],
         list: [
-          'Email — Recipient email(s)',
-          'Discord / Slack — Webhook URL',
-          'Telegram — Bot token, Chat ID',
-          'Pushover — App token, User key',
-          'Webhook — URL, Signing secret',
+          'Email - Recipient email(s)',
+          'Discord / Slack - Webhook URL',
+          'Telegram - Bot token, Chat ID',
+          'Pushover - App token, User key',
+          'Webhook - URL, Signing secret',
         ],
       },
       {
@@ -300,7 +300,7 @@ export const REFERENCE_PAGES: DocPage[] = [
       {
         h: 'Permission denied / masked env',
         p: [
-          'Project MEMBER cannot reveal secrets or deploy — ask a project ADMIN or workspace OWNER/ADMIN. Empty infra pages → need workspace OWNER/ADMIN.',
+          'Project MEMBER cannot reveal secrets or deploy - ask a project ADMIN or workspace OWNER/ADMIN. Empty infra pages → need workspace OWNER/ADMIN.',
         ],
       },
       {
@@ -333,7 +333,7 @@ export const REFERENCE_PAGES: DocPage[] = [
   {
     slug: 'danger-zones',
     title: 'Danger Zones',
-    description: 'Delete service, server, project, and workspace — confirmations and preflight rules.',
+    description: 'Delete service, server, project, and workspace - confirmations and preflight rules.',
     sections: [
       {
         h: 'Service → Danger Zone',
@@ -354,7 +354,7 @@ export const REFERENCE_PAGES: DocPage[] = [
       {
         h: 'Workspace delete',
         p: [
-          'OWNER only under Settings → Danger. Requires zero projects/services. Does not SSH-teardown remote containers left behind — clean servers first if needed.',
+          'OWNER only under Settings → Danger. Requires zero projects/services. Does not SSH-teardown remote containers left behind - clean servers first if needed.',
         ],
       },
     ],

@@ -41,7 +41,7 @@ Point `NEXT_PUBLIC_APP_URL` at a running Peon app (default `http://localhost:300
 
 ## Security
 
-Report vulnerabilities privately — see [SECURITY.md](./SECURITY.md). Open PRs against **`staging`** only; `main` is maintainer-managed.
+Report vulnerabilities privately. See [SECURITY.md](./SECURITY.md). Open PRs against **`staging`** only; `main` is maintainer-managed.
 
 ## Commit messages
 

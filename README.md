@@ -1,6 +1,6 @@
 # Peon Website
 
-Marketing site for [Peon](https://peon.sh) — the open-source, self-hostable deployment platform. This repository powers the landing page, documentation, blog, and marketplace at **peon.sh**.
+Marketing site for [Peon](https://peon.sh), the open-source, self-hostable deployment platform. This repository powers the landing page, documentation, blog, and marketplace at **peon.sh**.
 
 Auth and “Deploy” CTAs link to the Peon app ([app.peon.sh](https://app.peon.sh) / [Peon-sh/Peon](https://github.com/Peon-sh/Peon)).
 
