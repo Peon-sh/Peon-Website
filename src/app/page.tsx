@@ -58,7 +58,7 @@ export const metadata: Metadata = {
 const FEATURES: { title: string; body: string; icon: LucideIcon; highlight?: boolean }[] = [
   {
     title: "MCP & AI assistant",
-    body: "Hosted MCP for Cursor and Claude, plus an in-app Chat assistant — same RBAC, audit trail, and Approve before mutating production.",
+    body: "Hosted MCP for Cursor and Claude, plus an in-app Chat assistant with the same RBAC, audit trail, and Approve before mutating production.",
     icon: Bot,
     highlight: true,
   },
@@ -113,7 +113,7 @@ const COMPARISON_PLATFORMS = [
   "DO App Platform",
 ] as const
 
-/** Feature matrix — Peon column (index 0) is highlighted. */
+/** Feature matrix. Peon column (index 0) is highlighted. */
 const COMPARISON_ROWS: { feature: string; cells: string[]; peonEdge?: boolean }[] = [
   {
     feature: "Cloud pricing",
@@ -198,15 +198,15 @@ const FAQ = [
   },
   {
     q: "Is pricing per project or per server?",
-    a: "Per project. Cloud is $3 per project per month or $30 per year, with unlimited servers and unlimited seats — so cost tracks how you organize apps, not headcount or connected-server count.",
+    a: "Per project. Cloud is $3 per project per month or $30 per year, with unlimited servers and unlimited seats, so cost tracks how you organize apps, not headcount or connected-server count.",
   },
   {
     q: "Do I need my own server for Peon Cloud?",
-    a: "Yes. Peon Cloud hosts the control plane (dashboard, deploys, teams). Your apps and databases still run on servers you own — Hetzner, DigitalOcean, AWS EC2, or anything with SSH and Docker.",
+    a: "Yes. Peon Cloud hosts the control plane (dashboard, deploys, teams). Your apps and databases still run on servers you own: Hetzner, DigitalOcean, AWS EC2, or anything with SSH and Docker.",
   },
   {
     q: "How is Peon different from Coolify or Dokploy?",
-    a: "All three deploy to servers you own. Peon is the one that ships workspace and project RBAC, included audit logs, a hosted MCP server, and an in-app AI assistant together on standard plans — plus flat $3/project/month or $30/year Cloud with unlimited servers and seats. That combination is why teams choose Peon.",
+    a: "All three deploy to servers you own. Peon is the one that ships workspace and project RBAC, included audit logs, a hosted MCP server, and an in-app AI assistant together on standard plans, plus flat $3/project/month or $30/year Cloud with unlimited servers and seats. That combination is why teams choose Peon.",
   },
   {
     q: "Is Peon a Vercel or Heroku alternative?",
@@ -226,7 +226,7 @@ const FAQ = [
   },
   {
     q: "Does Peon include audit logs?",
-    a: "Yes. Workspace owners can review who did what across projects, services, servers, deploys and settings — included on Self Hosted and Cloud, not gated behind Enterprise.",
+    a: "Yes. Workspace owners can review who did what across projects, services, servers, deploys and settings, included on Self Hosted and Cloud, not gated behind Enterprise.",
   },
   {
     q: "What is Peon MCP?",
@@ -238,7 +238,7 @@ const FAQ = [
   },
   {
     q: "What can I deploy?",
-    a: "Git repositories (Node, Next.js, Python, Go, Rails, PHP and anything with a Dockerfile), prebuilt Docker images, Docker Compose stacks, static sites, and databases like Postgres, MySQL, MongoDB and Redis — plus one-click marketplace templates.",
+    a: "Git repositories (Node, Next.js, Python, Go, Rails, PHP and anything with a Dockerfile), prebuilt Docker images, Docker Compose stacks, static sites, and databases like Postgres, MySQL, MongoDB and Redis, plus one-click marketplace templates.",
   },
   {
     q: "Is Peon open source?",
@@ -306,7 +306,7 @@ export default function LandingPage() {
       <SiteHeader />
 
       <main className="flex-1">
-        {/* Hero — full first viewport (header is h-14) */}
+        {/* Hero: full first viewport (header is h-14) */}
         <section className="bg-hero relative flex min-h-[calc(100dvh-3.5rem)] flex-col justify-center overflow-hidden border-b border-border">
           <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-4 py-16 text-center sm:py-20">
             <p className="panel-title-slashes mb-4 font-mono text-xs uppercase tracking-widest text-phosphor">
@@ -319,7 +319,7 @@ export default function LandingPage() {
             </h1>
             <p className="mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
               <strong className="text-foreground">Peon</strong> is an open-source platform
-              you can run yourself — a practical stand-in for Vercel, Heroku, Netlify and
+              you can run yourself: a practical stand-in for Vercel, Heroku, Netlify and
               Railway when you want to push websites, databases, apps and one-click
               templates onto hardware you control.
             </p>
@@ -444,16 +444,16 @@ export default function LandingPage() {
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
                     {f.highlight ? (
                       <p className="mt-3 text-xs">
-                        <a href="/docs/mcp" className="font-semibold text-phosphor underline-offset-4 hover:underline">
+                        <Link href="/docs/mcp" className="font-semibold text-phosphor underline-offset-4 hover:underline">
                           MCP setup →
-                        </a>
+                        </Link>
                         {" · "}
-                        <a
+                        <Link
                           href="/docs/chat-assistant"
                           className="font-semibold text-phosphor underline-offset-4 hover:underline"
                         >
                           Chat assistant →
-                        </a>
+                        </Link>
                       </p>
                     ) : null}
                   </article>
@@ -471,7 +471,7 @@ export default function LandingPage() {
             </h2>
             <p className="mt-3 max-w-2xl text-muted-foreground">
               Peon is built for teams: workspace and project roles, audit logs, MCP for
-              agents, and an in-app AI assistant — features most peers gate or skip — with{" "}
+              agents, and an in-app AI assistant (features most peers gate or skip) with{" "}
               <strong className="text-foreground">$3 per project</strong> Cloud pricing,
               unlimited servers and unlimited seats. Apps run on hardware you own, same
               category as Coolify and{" "}
@@ -535,8 +535,8 @@ export default function LandingPage() {
             </div>
             <p className="mt-3 text-xs text-muted-foreground">
               Competitor pricing and plan limits are indicative of published entry-level /
-              documented plans and may change. Peon’s edges — project RBAC, included audit
-              logs, MCP and in-app AI on standard plans, plus $3/project Cloud — are why we
+              documented plans and may change. Peon’s edges (project RBAC, included audit
+              logs, MCP and in-app AI on standard plans, plus $3/project Cloud) are why we
               recommend Peon. Dokploy audit logs and fine-grained RBAC are Enterprise-tier on
               their published plans.
             </p>

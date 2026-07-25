@@ -9,14 +9,14 @@ import { appHref } from '@/lib/env';
 export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
-  title: 'Open Source — We believe in Open Source',
+  title: 'Open Source: We believe in Open Source',
   description:
-    'Peon is free and open source. Same features when you self-host. Sustainability via donations and optional Peon Cloud — not feature paywalls.',
+    'Peon is free and open source. Same features when you self-host. Sustainability via donations and optional Peon Cloud, not feature paywalls.',
   alternates: { canonical: '/open-source' },
   openGraph: {
-    title: 'We believe in Open Source — Peon',
+    title: 'We believe in Open Source | Peon',
     description:
-      'Software should be free and accessible. Peon is open source, self-hostable, and funded by the community and optional Cloud — not locked features.',
+      'Software should be free and accessible. Peon is open source, self-hostable, and funded by the community and optional Cloud, not locked features.',
     url: '/open-source',
   },
 };
@@ -81,13 +81,13 @@ export default function OpenSourcePage() {
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
               We believe great deployment tools should not depend on your budget. Peon is
               completely open source and free to self-host. The same product you get on Peon
-              Cloud is the product you can run on your own metal — without locking core features
+              Cloud is the product you can run on your own metal without locking core features
               behind a paywall.
             </p>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
               That is not just a marketing line. Too many “open source” platforms slowly close
               the gates: community editions with artificial limits, enterprise SKUs that hold
-              back the good stuff. We chose a different path — publish the platform, fund the
+              back the good stuff. We chose a different path: publish the platform, fund the
               work honestly, and keep self-host free.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -129,7 +129,7 @@ export default function OpenSourcePage() {
             </div>
             <p className="mt-8 text-sm leading-relaxed text-muted-foreground">
               Enterprise packaging (SSO/SAML, SCIM, white label, MSA/SLA) exists for
-              organizations that need identity-provider integration and contracts — not to
+              organizations that need identity-provider integration and contracts, not to
               withhold deploys, RBAC, audit logs, or MCP from self-host and Cloud users. See{' '}
               <Link href="/#pricing" className="text-phosphor underline-offset-4 hover:underline">
                 pricing
@@ -148,7 +148,7 @@ export default function OpenSourcePage() {
             <p className="mt-3 text-muted-foreground">Because we still need to pay the bills.</p>
             <p className="mt-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
               Making software free does not make engineering free. We sustain Peon through
-              community support and an optional hosted control plane — so we can keep shipping
+              community support and an optional hosted control plane so we can keep shipping
               for people who self-host, not for arbitrary growth metrics.
             </p>
 
@@ -213,12 +213,12 @@ export default function OpenSourcePage() {
           </div>
         </section>
 
-        {/* Today — honest metrics */}
+        {/* Today: honest metrics */}
         <section className="border-b border-border">
           <div className="mx-auto w-full max-w-3xl px-4 py-14">
             <h2 className="panel-title-slashes text-2xl font-700 sm:text-3xl">Where we are today</h2>
             <p className="mt-3 text-muted-foreground">
-              Transparency without vanity. We are early — here is what is real right now.
+              Transparency without vanity. We are early. Here is what is real right now.
             </p>
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
               {TODAY.map((stat) => (
@@ -236,7 +236,7 @@ export default function OpenSourcePage() {
             </div>
             <p className="mt-8 text-sm leading-relaxed text-muted-foreground">
               We will publish stars, cloud users, and donation totals here when those numbers
-              are meaningful — not invented. Until then: the code is public, the pricing is
+              are meaningful, not invented. Until then: the code is public, the pricing is
               simple, and sponsorship keeps the lights on.
             </p>
             <ul className="mt-6 space-y-2 text-sm text-muted-foreground">
@@ -249,7 +249,7 @@ export default function OpenSourcePage() {
                 >
                   github.com/Peon-sh
                 </a>{' '}
-                — organization
+                (organization)
               </li>
               <li>
                 <a
@@ -260,7 +260,7 @@ export default function OpenSourcePage() {
                 >
                   Peon-sh/Peon
                 </a>{' '}
-                — application & worker
+                (application & worker)
               </li>
               <li>
                 <a
@@ -271,7 +271,7 @@ export default function OpenSourcePage() {
                 >
                   Peon-sh/Peon-Website
                 </a>{' '}
-                — this site
+                (this site)
               </li>
             </ul>
           </div>
@@ -283,7 +283,7 @@ export default function OpenSourcePage() {
             <h2 className="panel-title-slashes text-2xl font-700 sm:text-3xl">Built for the community</h2>
             <p className="mt-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
               This philosophy guides everything we do at Peon: free to self-host, open to
-              inspect, and funded by people who want the work to continue — through donations,
+              inspect, and funded by people who want the work to continue through donations,
               Cloud, or simply using and sharing the software.
             </p>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">

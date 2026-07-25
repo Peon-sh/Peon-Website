@@ -2,7 +2,7 @@ import { listPublishedPostSitemapEntries } from '@/lib/blog';
 import { publicEnv } from '@/lib/env';
 import { renderUrlSet, xmlResponse } from '@/lib/sitemap/xml';
 
-/** Published blog posts from analytics DB — always fresh (SSR). */
+/** Published blog posts from analytics DB. Always fresh (SSR). */
 export const dynamic = 'force-dynamic';
 
 export async function GET() {

@@ -14,7 +14,7 @@ export default function DocsIndexPage() {
     <div>
       <h1 className="panel-title-slashes text-3xl font-800">Documentation</h1>
       <p className="mt-3 max-w-2xl text-muted-foreground">
-        Start with MCP and the Chat assistant — then servers, services, and day-2 ops.
+        Start with MCP and the Chat assistant, then servers, services, and day-2 ops.
         Field-level guides match the Peon dashboard.
       </p>
 

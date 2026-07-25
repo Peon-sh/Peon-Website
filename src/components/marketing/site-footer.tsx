@@ -66,7 +66,7 @@ export function SiteFooter() {
           <div>
             <p className="font-heading text-base font-800 text-phosphor">Peon</p>
             <p className="mt-3 max-w-xs text-xs leading-relaxed text-muted-foreground">
-              Open-source deployment platform. Your servers, our pipelines — $3 per project
+              Open-source deployment platform. Your servers, our pipelines. $3 per project
               or free self-host.
             </p>
           </div>

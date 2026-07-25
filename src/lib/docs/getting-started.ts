@@ -10,7 +10,7 @@ export const GETTING_STARTED_PAGES: DocPage[] = [
       {
         h: 'What is Peon?',
         p: [
-          'Peon is an open-source, self-hostable deployment platform. You connect Linux servers over SSH; Peon installs Docker and a reverse proxy, then deploys your apps and databases onto those servers. Your workloads run on hardware you own — Hetzner, DigitalOcean, AWS EC2, OVH, Contabo, bare metal, or a machine under your desk.',
+          'Peon is an open-source, self-hostable deployment platform. You connect Linux servers over SSH; Peon installs Docker and a reverse proxy, then deploys your apps and databases onto those servers. Your workloads run on hardware you own - Hetzner, DigitalOcean, AWS EC2, OVH, Contabo, bare metal, or a machine under your desk.',
           'Peon Cloud hosts the control plane (dashboard, orchestration, updates) for $3 per project per month or $30 per year with unlimited team members and unlimited servers. Self-hosting the control plane is free; you still bring your own application servers either way.',
         ],
       },
@@ -18,10 +18,10 @@ export const GETTING_STARTED_PAGES: DocPage[] = [
         h: 'Hierarchy',
         p: ['Everything in Peon nests in four layers:'],
         list: [
-          'Workspace — top-level tenant: members, servers, Git sources, storages, SSH keys, API tokens, notifications, LLM keys, billing context, audit logs',
-          'Project — a group of services (one product or client) with its own members and settings',
-          'Service — a deployable unit: Git app, Dockerfile, Docker image, Nixpacks, static site, Compose stack, or database',
-          'Server — a Linux host managed over SSH; services deploy onto servers you choose',
+          'Workspace - top-level tenant: members, servers, Git sources, storages, SSH keys, API tokens, notifications, LLM keys, billing context, audit logs',
+          'Project - a group of services (one product or client) with its own members and settings',
+          'Service - a deployable unit: Git app, Dockerfile, Docker image, Nixpacks, static site, Compose stack, or database',
+          'Server - a Linux host managed over SSH; services deploy onto servers you choose',
         ],
       },
       {
@@ -37,17 +37,17 @@ export const GETTING_STARTED_PAGES: DocPage[] = [
         h: 'How a deployment works',
         p: [
           'When you click Deploy (or a git webhook fires), Peon queues a job on the target server: clone or pull the exact commit / image, build if needed (with layer cache unless you force rebuild), inject encrypted environment variables, and start containers on the Docker network shared with the gateway.',
-          'For apps with rolling update enabled, a new container starts beside the old one; the reverse proxy switches traffic after the health check passes; the previous image is retained for rollback. Compose and some database paths update more bluntly — see Advanced configuration.',
+          'For apps with rolling update enabled, a new container starts beside the old one; the reverse proxy switches traffic after the health check passes; the previous image is retained for rollback. Compose and some database paths update more bluntly. See Advanced configuration.',
         ],
       },
       {
         h: 'What you can deploy',
         p: [],
         list: [
-          'Git applications — GitHub App, public repo, or deploy key; build packs Nixpacks, Railpack, Dockerfile, or Static',
+          'Git applications - GitHub App, public repo, or deploy key; build packs Nixpacks, Railpack, Dockerfile, or Static',
           'Dockerfile / Docker Image / Nixpacks / Static Site service kinds',
           'Docker Compose stacks (blank YAML or marketplace templates)',
-          'Databases — PostgreSQL, MySQL, MariaDB, MongoDB, Redis, KeyDB, Dragonfly, ClickHouse',
+          'Databases - PostgreSQL, MySQL, MariaDB, MongoDB, Redis, KeyDB, Dragonfly, ClickHouse',
           'One-click marketplace templates (~300+ COMPOSE stacks with magic credentials)',
         ],
       },
@@ -78,7 +78,7 @@ export const GETTING_STARTED_PAGES: DocPage[] = [
           'Node.js 20+ and pnpm',
           'PostgreSQL for the control plane',
           'Docker on every application server you will connect (Peon can install Docker on first validate if the SSH user can sudo)',
-          'Optional: AWS SQS for the worker queue, SES for email, S3 for assets — see .env.example in the Peon repo',
+          'Optional: AWS SQS for the worker queue, SES for email, S3 for assets. See .env.example in the Peon repo',
           'A domain for the dashboard with HTTPS in production',
         ],
       },
@@ -104,7 +104,7 @@ pnpm worker                # deployments, backups, async jobs`,
       {
         h: 'Peon Cloud',
         p: [
-          'Cloud is $3 per project per month or $30 per year with unlimited servers and unlimited seats. Only the control plane is hosted; application data stays on your VPS. Enterprise adds SSO/SAML, SCIM, white label and commercial terms — contact support@peon.sh.',
+          'Cloud is $3 per project per month or $30 per year with unlimited servers and unlimited seats. Only the control plane is hosted; application data stays on your VPS. Enterprise adds SSO/SAML, SCIM, white label and commercial terms - contact support@peon.sh.',
         ],
       },
     ],
@@ -138,7 +138,7 @@ pnpm worker                # deployments, backups, async jobs`,
         h: '4. Create a project and service',
         p: [
           'Projects → create (Name, optional Description). Open the project → Services → New service. Type Application (Git) or pick Dockerfile / Image / Static / Nixpacks / Database / Compose. Required: Name, Server. For Git: Git source type, Connection/Repository/Branch or Git repository URL, optional Port and Base directory, Build pack for Application (Git).',
-          'Create does not ask for DB passwords or description — edit those later under Configuration.',
+          'Create does not ask for DB passwords or description - edit those later under Configuration.',
         ],
       },
       {
@@ -197,27 +197,27 @@ git push origin main
         h: 'Settings → Danger',
         p: [],
         list: [
-          'Leave workspace — non-OWNER members (not on personal workspaces)',
-          'Transfer ownership — OWNER picks a member; disposition Stay ADMIN / Stay MEMBER / Leave',
-          'Delete workspace — OWNER; type name to confirm; requires zero projects/services (no SSH teardown of remote containers)',
+          'Leave workspace - non-OWNER members (not on personal workspaces)',
+          'Transfer ownership - OWNER picks a member; disposition Stay ADMIN / Stay MEMBER / Leave',
+          'Delete workspace - OWNER; type name to confirm; requires zero projects/services (no SSH teardown of remote containers)',
         ],
       },
       {
         h: 'Workspace roles',
         p: [],
         list: [
-          'OWNER — full control; only role that deletes the workspace, sees Audit, transfers ownership',
-          'ADMIN — manage infra + members + all projects; cannot delete workspace',
-          'BILLING_ADMIN — like MEMBER for infra today (billing placeholder); needs project membership for projects',
-          'MEMBER — workspace access; projects only via explicit project membership',
+          'OWNER - full control; only role that deletes the workspace, sees Audit, transfers ownership',
+          'ADMIN - manage infra + members + all projects; cannot delete workspace',
+          'BILLING_ADMIN - like MEMBER for infra today (billing placeholder); needs project membership for projects',
+          'MEMBER - workspace access; projects only via explicit project membership',
         ],
       },
       {
         h: 'Project roles',
         p: [],
         list: [
-          'ADMIN — manage services, reveal/edit env, deploy, terminal, marketplace',
-          'MEMBER — read-only; env values masked; no deploy, terminal, or secret reveal',
+          'ADMIN - manage services, reveal/edit env, deploy, terminal, marketplace',
+          'MEMBER - read-only; env values masked; no deploy, terminal, or secret reveal',
         ],
       },
       {
@@ -254,13 +254,13 @@ git push origin main
       {
         h: 'Tab: Members',
         p: [
-          'Add a workspace user as project ADMIN or MEMBER; change role; remove. Workspace OWNER/ADMIN users are not added here — they already have full project access. Who: project manage (workspace OWNER/ADMIN or project ADMIN).',
+          'Add a workspace user as project ADMIN or MEMBER; change role; remove. Workspace OWNER/ADMIN users are not added here - they already have full project access. Who: project manage (workspace OWNER/ADMIN or project ADMIN).',
         ],
       },
       {
         h: 'Tab: Settings',
         p: [
-          'Edit Name and Description → Save. Delete project is blocked while any services still exist — delete services first, then delete the project with name confirmation.',
+          'Edit Name and Description → Save. Delete project is blocked while any services still exist - delete services first, then delete the project with name confirmation.',
         ],
       },
     ],
@@ -290,10 +290,10 @@ git push origin main
         h: 'Auth entry points',
         p: [],
         list: [
-          '/login, /register — email/password; Google when configured on the instance',
+          '/login, /register - email/password; Google when configured on the instance',
           '/forgot-password → /reset-password',
-          '/invitations/[token] — accept workspace (and optional project) invite',
-          '/onboarding — name workspace, optional first project',
+          '/invitations/[token] - accept workspace (and optional project) invite',
+          '/onboarding - name workspace, optional first project',
         ],
       },
     ],

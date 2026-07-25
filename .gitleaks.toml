@@ -1,4 +1,4 @@
-# Gitleaks config — allow known template false positives only.
+# Gitleaks config: allow known template false positives only.
 # https://github.com/gitleaks/gitleaks
 
 title = "peon-website"

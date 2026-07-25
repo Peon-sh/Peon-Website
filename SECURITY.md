@@ -28,7 +28,7 @@ If GitHub private vulnerability reporting is enabled on this repository, you may
 
 - Never commit `.env`, `.env.local`, API keys, or tokens.
 - Use `.env.example` as the template for local configuration.
-- Optional maintainer tooling (for example release scripts) may need `OPENAI_API_KEY` in your local environment only — never commit it.
+- Optional maintainer tooling (for example release scripts) may need `OPENAI_API_KEY` in your local environment only. Never commit it.
 - Rotate any credential that may have been exposed.
 
 ## Safe contribution defaults

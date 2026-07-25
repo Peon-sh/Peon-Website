@@ -40,7 +40,7 @@ export default function PrivacyPolicyPage() {
         {
           title: 'Google Sign-In and Google user data',
           paragraphs: [
-            'Peon offers optional Google Sign-In so you can create an account or log in with your Google account. When you use Google Sign-In, Peon receives basic profile information from Google — typically your name and email address — solely to create, identify, and authenticate your Peon account.',
+            'Peon offers optional Google Sign-In so you can create an account or log in with your Google account. When you use Google Sign-In, Peon receives basic profile information from Google (typically your name and email address) solely to create, identify, and authenticate your Peon account.',
             'Peon does not request access to Gmail, Google Drive, Calendar, Contacts, or other Google services. We do not use Google user data for advertising, and we do not sell it. You can also register with email and password instead of Google.',
           ],
         },
