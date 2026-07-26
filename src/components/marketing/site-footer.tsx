@@ -69,6 +69,20 @@ export function SiteFooter() {
               Open-source deployment platform. Your servers, our pipelines. $3 per project
               or free self-host.
             </p>
+            <a
+              href="https://www.producthunt.com/products/peon?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-peon"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-block transition-opacity hover:opacity-80"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                alt="Peon - Open source alternative to Vercel, Heroku, Netlify. | Product Hunt"
+                width={250}
+                height={54}
+                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1206439&theme=light&t=1785051322486"
+              />
+            </a>
           </div>
           <FooterColumn title="Product" links={PRODUCT} />
           <FooterColumn title="Compare" links={COMPARE} />
