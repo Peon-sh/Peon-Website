@@ -1,5 +1,7 @@
 # Peon
 
+Sitemap: https://peon.sh/sitemap.xml
+
 > Peon is an open-source, self-hostable deployment platform. Connect Linux servers over SSH; Peon manages Docker and a reverse proxy, then deploys apps, databases, Docker Compose stacks, and one-click marketplace templates onto hardware you control. Cloud is $3 per project per month (or $30 per year); self-hosting the control plane is free.
 
 Peon is a practical alternative to managed PaaS products such as Vercel, Heroku, Netlify, and Railway, and a peer to self-hosted PaaS tools such as Coolify and Dokploy. Apps always run on your servers (Hetzner, DigitalOcean, AWS EC2, OVH, Contabo, bare metal, or similar). Peon Cloud hosts only the control plane (dashboard, orchestration, updates).
@@ -90,10 +92,10 @@ Important keywords: open source PaaS, self-hosted PaaS, Vercel alternative, Hero
 - [Danger Zones](https://peon.sh/docs/danger-zones): Delete service/server/project/workspace
 - [Contributing](https://peon.sh/docs/contributing): Dev setup for Peon-sh/Peon
 
-## Optional
+## Important Pages
 
 - [Blog](https://peon.sh/blogs): Guides, comparisons, and troubleshooting for self-hosting
 - [Privacy Policy](https://peon.sh/privacy-policy): Privacy terms
 - [Terms of Service](https://peon.sh/terms-of-services): Terms of use
-- [Sitemap](https://peon.sh/sitemap.xml): Indexable pages
+- [Sitemap](https://peon.sh/sitemap.xml): XML sitemap containing all indexable pages
 - [Product Hunt](https://www.producthunt.com/products/peon): Product Hunt listing
