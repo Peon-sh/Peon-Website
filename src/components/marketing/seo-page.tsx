@@ -1,13 +1,17 @@
 import Link from 'next/link';
 import { SiteHeader } from '@/components/marketing/site-header';
 import { SiteFooter } from '@/components/marketing/site-footer';
+import { AppCtaLink } from '@/components/marketing/app-cta-link';
 import type { SeoPage as SeoPageData } from '@/lib/seo-pages';
-import { appHref } from '@/lib/env';
+import { appHref, publicEnv } from '@/lib/env';
 
 export function SeoMarketingPage({ page }: { page: SeoPageData }) {
   const ctaHref = page.ctaHref ?? appHref('/register');
   const ctaLabel = page.ctaLabel ?? 'Start deploying';
-  const isExternal = ctaHref.startsWith('http') || ctaHref.startsWith('mailto:');
+  const isMailto = ctaHref.startsWith('mailto:');
+  const isAppCta = ctaHref.startsWith(publicEnv.appUrl);
+  const appPath = isAppCta ? ctaHref.slice(publicEnv.appUrl.length) || '/' : null;
+  const isExternal = !isAppCta && (ctaHref.startsWith('http') || isMailto);
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -40,7 +44,14 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
               {page.intro}
             </p>
             <div className="mt-8">
-              {isExternal ? (
+              {appPath ? (
+                <AppCtaLink
+                  path={appPath}
+                  className="inline-flex rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90"
+                >
+                  {ctaLabel}
+                </AppCtaLink>
+              ) : isExternal ? (
                 <a
                   href={ctaHref}
                   className="inline-flex rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90"

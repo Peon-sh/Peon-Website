@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { appHref } from '@/lib/env';
+import { AppCtaLink } from '@/components/marketing/app-cta-link';
 
 const PRODUCT = [
   { label: 'Features', href: '/#features' },
@@ -26,7 +26,7 @@ const RESOURCES = [
   { label: 'Blog', href: '/blogs' },
   { label: 'Privacy', href: '/privacy-policy' },
   { label: 'Terms', href: '/terms-of-services' },
-  { label: 'Log in', href: appHref('/login'), external: true },
+  { label: 'Log in', href: '/login', app: true },
 ];
 
 function FooterColumn({
@@ -34,7 +34,7 @@ function FooterColumn({
   links,
 }: {
   title: string;
-  links: { label: string; href: string; external?: boolean }[];
+  links: { label: string; href: string; app?: boolean }[];
 }) {
   return (
     <div>
@@ -42,10 +42,10 @@ function FooterColumn({
       <ul className="mt-3 space-y-2">
         {links.map((link) => (
           <li key={`${link.href}-${link.label}`}>
-            {link.external ? (
-              <a href={link.href} className="hover:text-foreground">
+            {link.app ? (
+              <AppCtaLink path={link.href} className="hover:text-foreground">
                 {link.label}
-              </a>
+              </AppCtaLink>
             ) : (
               <Link href={link.href} className="hover:text-foreground">
                 {link.label}
