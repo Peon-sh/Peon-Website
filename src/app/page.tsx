@@ -20,7 +20,7 @@ import { AppCtaLink } from "@/components/marketing/app-cta-link"
 export const dynamic = "force-static"
 
 export const metadata: Metadata = {
-  title: "Peon - Open-source deployment platform. Your servers, $3/project",
+  title: "Peon - Deploy your apps on your server in clicks",
   description:
     "Open-source, self-hostable deployment platform. Deploy Git apps, Docker Compose stacks, databases and static sites to your own Hetzner, DigitalOcean or bare-metal servers. $3 per project, unlimited team members. The open alternative to Vercel, Heroku and managed PaaS.",
   keywords: [
@@ -41,17 +41,26 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    title: "Peon - Your servers. Our pipelines. $3 a project.",
+    title: "Peon - Deploy your apps on your server in clicks",
     description:
       "Deploy anything to any server you own. Git push to deploy, databases, compose stacks, TLS, backups and logs - $3/project with unlimited members.",
     url: "/",
     siteName: "Peon",
+    images: [
+      {
+        url: "/og.jpg",
+        width: 1024,
+        height: 599,
+        alt: "Peon — Deploy your apps on your server in clicks",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Peon - Deploy on your own servers for $3/project",
+    title: "Peon - Deploy your apps on your server in clicks",
     description:
       "The self-hostable deployment platform. Unlimited team members, flat $3 per project.",
+    images: ["/og.jpg"],
   },
 }
 

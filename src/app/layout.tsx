@@ -31,7 +31,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(publicEnv.siteUrl),
   title: {
-    default: 'Peon - Open-source deployment platform. Your servers, $3/project',
+    default: 'Peon - Deploy your apps on your server in clicks',
     template: '%s | Peon',
   },
   description: 'Self-hostable application deployment platform',
@@ -44,6 +44,24 @@ export const metadata: Metadata = {
     apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
   },
   manifest: '/site.webmanifest',
+  openGraph: {
+    type: 'website',
+    siteName: 'Peon',
+    title: 'Peon - Deploy your apps on your server in clicks',
+    images: [
+      {
+        url: '/og.jpg',
+        width: 1024,
+        height: 599,
+        alt: 'Peon — Deploy your apps on your server in clicks',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Peon - Deploy your apps on your server in clicks',
+    images: ['/og.jpg'],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
