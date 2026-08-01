@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, type ComponentPropsWithoutRef } from 'react';
+import { useSyncExternalStore, type ComponentPropsWithoutRef } from 'react';
 import { appHref } from '@/lib/env';
 import { withAttributionQuery } from '@/lib/attribution';
 
@@ -9,17 +9,21 @@ type Props = Omit<ComponentPropsWithoutRef<'a'>, 'href'> & {
   path: string;
 };
 
+function subscribeNoop() {
+  return () => {};
+}
+
 /**
  * Link to the Peon app that appends first-touch attribution query params
- * (from cookie or current page search) at render time.
+ * (from cookie or current page search) after mount.
  */
 export function AppCtaLink({ path, children, ...rest }: Props) {
   const bare = appHref(path);
-  const [href, setHref] = useState(bare);
-
-  useEffect(() => {
-    setHref(withAttributionQuery(bare));
-  }, [bare]);
+  const href = useSyncExternalStore(
+    subscribeNoop,
+    () => withAttributionQuery(bare),
+    () => bare,
+  );
 
   return (
     <a href={href} {...rest}>
