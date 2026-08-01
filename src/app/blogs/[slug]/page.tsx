@@ -8,7 +8,8 @@ import {
   getPublishedPost,
   relatedPublishedPosts,
 } from '@/lib/blog';
-import { appHref, publicEnv } from '@/lib/env';
+import { AppCtaLink } from '@/components/marketing/app-cta-link';
+import { publicEnv } from '@/lib/env';
 
 export const dynamic = 'force-dynamic';
 
@@ -128,12 +129,12 @@ export default async function BlogPostPage({ params }: Props) {
             Peon is the open-source deployment platform: git push to deploy, automatic HTTPS,
             managed databases with backups - $3 per project, unlimited team members.
           </p>
-          <Link
-            href={appHref('/register')}
+          <AppCtaLink
+            path="/register"
             className="mt-5 inline-block rounded-md bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90"
           >
             Start deploying for $3
-          </Link>
+          </AppCtaLink>
         </aside>
 
         {related.length > 0 ? (

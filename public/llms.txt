@@ -1,0 +1,101 @@
+# Peon
+
+Sitemap: https://peon.sh/sitemap.xml
+
+> Peon is an open-source, self-hostable deployment platform. Connect Linux servers over SSH; Peon manages Docker and a reverse proxy, then deploys apps, databases, Docker Compose stacks, and one-click marketplace templates onto hardware you control. Cloud is $3 per project per month (or $30 per year); self-hosting the control plane is free.
+
+Peon is a practical alternative to managed PaaS products such as Vercel, Heroku, Netlify, and Railway, and a peer to self-hosted PaaS tools such as Coolify and Dokploy. Apps always run on your servers (Hetzner, DigitalOcean, AWS EC2, OVH, Contabo, bare metal, or similar). Peon Cloud hosts only the control plane (dashboard, orchestration, updates).
+
+Key product facts:
+- Website: https://peon.sh
+- App (login / deploy): https://app.peon.sh
+- Open source org: https://github.com/Peon-sh
+- Application & worker: https://github.com/Peon-sh/Peon
+- Marketing site & docs: https://github.com/Peon-sh/Peon-Website
+- Enterprise / sales contact: support@peon.sh
+- Hierarchy: Workspace → Project → Service → Server
+- Deploy kinds: Git apps (Nixpacks, Railpack, Dockerfile, Static), Docker images, Docker Compose, static sites, databases, marketplace templates
+- Databases: PostgreSQL, MySQL, MariaDB, MongoDB, Redis, KeyDB, Dragonfly, ClickHouse
+- Included on Self Hosted and Cloud: workspace + project RBAC, audit logs, hosted MCP for AI agents, in-app AI assistant (BYO OpenAI/Anthropic keys), unlimited team members, unlimited servers
+- Marketplace: 333+ one-click Compose templates deployable to your own server with HTTPS
+- Reverse proxy: Traefik by default; Caddy available
+- Notifications: Email, Discord, Slack, Telegram, Pushover, Webhook
+
+Pricing (verified from https://peon.sh/#pricing):
+- Self Hosted: $0 forever (you manage updates & hosting; community support)
+- Cloud: $3 per project / month, or $30 per project / year (~17% savings vs monthly)
+- Enterprise: custom (SSO/SAML, SCIM, white labeling, MSA/SLA, on-prem/private cloud, priority support)
+
+Target audience: developers, product teams, agencies, and operators who want PaaS-style git-push deploys, team RBAC, auditability, and AI-agent ops on servers they own—without per-seat pricing or vendor lock-in of the runtime.
+
+Important keywords: open source PaaS, self-hosted PaaS, Vercel alternative, Heroku alternative, Coolify alternative, Dokploy alternative, deploy to Hetzner, deploy to DigitalOcean, Docker deployment platform, Docker Compose, git push deploy, MCP deployment, self-hosted CI/CD
+
+## Product
+
+- [Home](https://peon.sh/): Product overview, features, comparisons, pricing, and FAQ
+- [Features](https://peon.sh/#features): MCP & AI assistant, git push deploy, BYO servers, Compose, databases, HTTPS, logs, unlimited seats, static/previews
+- [Compare](https://peon.sh/#compare): Feature matrix vs Coolify, Dokploy, Vercel, Heroku, DigitalOcean App Platform
+- [Pricing](https://peon.sh/#pricing): Self Hosted, Cloud, and Enterprise plans
+- [FAQ](https://peon.sh/#faq): Pricing model, servers, Coolify/Dokploy differences, MCP, Chat, what you can deploy
+- [Marketplace](https://peon.sh/marketplace): 333+ one-click self-hosted service templates
+- [Open Source](https://peon.sh/open-source): Open-source commitments, sponsorship, and related repositories
+- [Peon app](https://app.peon.sh/): Hosted control plane login and project management
+
+## Solutions
+
+- [Self-hosted PaaS](https://peon.sh/solutions/self-hosted-paas): What a self-hosted PaaS is and how Peon fits
+- [Application deployment](https://peon.sh/solutions/application-deployment): Git push, Compose, rollbacks, HTTPS, PR previews, RBAC
+- [Databases](https://peon.sh/solutions/databases): Postgres, MySQL, MongoDB, Redis on your VPS with S3-compatible backups
+- [MCP & AI](https://peon.sh/solutions/mcp-ai): Hosted MCP and in-app assistant under the same RBAC and audit trail
+- [Enterprise](https://peon.sh/solutions/enterprise): SSO/SAML, SCIM, white label, MSA/SLA, hosting flexibility
+
+## Comparisons
+
+- [Peon vs Coolify](https://peon.sh/compare/peon-vs-coolify): Team RBAC, audit logs, MCP/Chat, $3/project Cloud
+- [Peon vs Dokploy](https://peon.sh/compare/peon-vs-dokploy): Per-project vs per-server Cloud and packaging differences
+- [Peon vs Vercel](https://peon.sh/compare/peon-vs-vercel): Edge/managed vs BYO VPS and seat pricing
+- [Peon vs Heroku](https://peon.sh/compare/peon-vs-heroku): Dynos/add-ons vs Docker-native self-hosted PaaS
+- [Peon vs DigitalOcean App Platform](https://peon.sh/compare/peon-vs-digitalocean): Managed DO components vs Droplet + Peon
+
+## Docs
+
+- [Documentation index](https://peon.sh/docs): Full field-level guides matching the Peon dashboard
+- [Introduction](https://peon.sh/docs/introduction): What Peon is, hierarchy, Cloud vs self-host, deploy model
+- [Self-Hosting Peon](https://peon.sh/docs/installation): Run the control plane yourself or use Peon Cloud
+- [Your First Deployment](https://peon.sh/docs/first-deployment): SSH key → server → Git → project → service → domain
+- [Workspaces & Roles](https://peon.sh/docs/workspaces-and-roles): Workspace and project RBAC
+- [Projects](https://peon.sh/docs/projects): Services, members, settings
+- [MCP Server](https://peon.sh/docs/mcp): Cursor/Claude MCP setup, API tokens, tools, RBAC
+- [Chat Assistant](https://peon.sh/docs/chat-assistant): BYO LLM keys, Approve cards, manual lookup
+- [Managing Servers](https://peon.sh/docs/servers): SSH, Docker, Traefik/Caddy gateway
+- [Git Sources](https://peon.sh/docs/git-sources): GitHub/GitLab apps, webhooks
+- [Storages (S3)](https://peon.sh/docs/storages): S3-compatible backup destinations
+- [Keys & Tokens](https://peon.sh/docs/keys-and-tokens): SSH keys and personal API tokens for REST/MCP
+- [Shared Variables](https://peon.sh/docs/shared-variables): Workspace/project/server-scoped variables
+- [Git Applications](https://peon.sh/docs/git-applications): Application, Dockerfile, Nixpacks, Static services
+- [Docker Images](https://peon.sh/docs/docker-images): Prebuilt registry image deploys
+- [Docker Compose](https://peon.sh/docs/docker-compose): Blank Compose and marketplace templates
+- [Static Sites](https://peon.sh/docs/static-sites): Static and SPA deploys
+- [One-Click Templates](https://peon.sh/docs/one-click-templates): Marketplace and /deploy/[slug] flow
+- [Databases](https://peon.sh/docs/databases): Engines, credentials, internal/public URLs
+- [Environment Variables](https://peon.sh/docs/environment-variables): Production/preview env, Build/Runtime flags
+- [Domains & SSL](https://peon.sh/docs/domains-and-ssl): Custom domains, Force HTTPS, certificates
+- [Volumes](https://peon.sh/docs/volumes): Named Docker volumes
+- [Deployments & Previews](https://peon.sh/docs/deployments-and-previews): Deploy, rollback, PR previews, wildcard DNS
+- [Database Backups](https://peon.sh/docs/database-backups): Schedules, S3 upload, restore
+- [Scheduled Tasks](https://peon.sh/docs/scheduled-tasks): Cron jobs inside containers
+- [Logs & Terminal](https://peon.sh/docs/logs-and-terminal): Container logs and UI terminals
+- [Webhooks & Automation](https://peon.sh/docs/webhooks-and-api): Service webhooks, auto-deploy, MCP/API tokens
+- [Notifications](https://peon.sh/docs/notifications): Channels and event types
+- [End-to-End Workflows](https://peon.sh/docs/workflows): Common recipes
+- [Troubleshooting](https://peon.sh/docs/troubleshooting): Server, deploy, SSL, permissions, Chat
+- [Danger Zones](https://peon.sh/docs/danger-zones): Delete service/server/project/workspace
+- [Contributing](https://peon.sh/docs/contributing): Dev setup for Peon-sh/Peon
+
+## Important Pages
+
+- [Blog](https://peon.sh/blogs): Guides, comparisons, and troubleshooting for self-hosting
+- [Privacy Policy](https://peon.sh/privacy-policy): Privacy terms
+- [Terms of Service](https://peon.sh/terms-of-services): Terms of use
+- [Sitemap](https://peon.sh/sitemap.xml): XML sitemap containing all indexable pages
+- [Product Hunt](https://www.producthunt.com/products/peon): Product Hunt listing

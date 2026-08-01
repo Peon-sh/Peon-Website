@@ -14,7 +14,7 @@ import {
 import Link from "next/link"
 import { SiteHeader } from "@/components/marketing/site-header"
 import { SiteFooter } from "@/components/marketing/site-footer"
-import { appHref } from "@/lib/env"
+import { AppCtaLink } from "@/components/marketing/app-cta-link"
 
 /** Fully static HTML for crawlers (incl. Google OAuth brand verification). */
 export const dynamic = "force-static"
@@ -327,12 +327,12 @@ export default function LandingPage() {
               Open source · self-host free · cloud from $3 / mo or $30 / yr
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-              <Link
-                href={appHref("/register")}
+              <AppCtaLink
+                path="/register"
                 className="rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:opacity-90"
               >
                 Deploy your first project - $3
-              </Link>
+              </AppCtaLink>
               <a
                 href="#compare"
                 className="rounded-md border border-border-bright px-6 py-3 text-sm font-semibold hover:bg-accent"
@@ -635,12 +635,12 @@ export default function LandingPage() {
                     </li>
                   ))}
                 </ul>
-                <Link
-                  href={appHref("/register")}
+                <AppCtaLink
+                  path="/register"
                   className="mt-8 block rounded-md bg-primary px-6 py-3 text-center text-sm font-semibold text-primary-foreground hover:opacity-90"
                 >
                   Create your first project
-                </Link>
+                </AppCtaLink>
               </div>
 
               {/* Enterprise */}
@@ -719,12 +719,12 @@ export default function LandingPage() {
             <p className="mt-4 max-w-xl text-muted-foreground">
               Connect a server, push your code, and go live in minutes - for the price of a coffee refill.
             </p>
-            <Link
-              href={appHref("/register")}
+            <AppCtaLink
+              path="/register"
               className="mt-8 rounded-md bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground hover:opacity-90"
             >
               Start deploying for $3
-            </Link>
+            </AppCtaLink>
           </div>
         </section>
       </main>

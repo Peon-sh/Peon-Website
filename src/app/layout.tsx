@@ -6,6 +6,7 @@ import {
   GoogleTagManager,
   GoogleTagManagerNoscript,
 } from '@/components/analytics/google-tag-manager';
+import { AttributionCapture } from '@/components/analytics/attribution-capture';
 import { cn } from '@/lib/utils';
 import { publicEnv } from '@/lib/env';
 import './globals.css';
@@ -55,6 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <GoogleTagManagerNoscript />
         <GoogleTagManager />
+        <AttributionCapture />
         <ThemeProvider>
           <MarketingTheme>
             <div className="bg-background text-foreground min-h-screen">{children}</div>
