@@ -8,7 +8,11 @@ export const publicEnv = {
   gtmId: (process.env.NEXT_PUBLIC_GTM_ID ?? '').trim(),
 };
 
-/** Absolute URL into the Peon app. */
+/**
+ * Absolute URL into the Peon app.
+ * For marketing CTAs that should carry first-touch UTMs, prefer `<AppCtaLink path=… />`
+ * (client) which merges the peon_attr cookie / page query onto this base URL.
+ */
 export function appHref(path: string): string {
   const p = path.startsWith('/') ? path : `/${path}`;
   return `${publicEnv.appUrl}${p}`;

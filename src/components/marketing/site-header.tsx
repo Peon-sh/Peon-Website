@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { LogoMark } from '@/components/logo';
 import { GithubIcon } from '@/components/icons/github';
-import { appHref } from '@/lib/env';
+import { AppCtaLink } from '@/components/marketing/app-cta-link';
 
 const NAV_ITEMS = [
   { label: 'Features', href: '/#features' },
@@ -71,12 +71,12 @@ export function SiteHeader({
           })}
         </div>
 
-        <a
-          href={appHref('/login')}
+        <AppCtaLink
+          path="/login"
           className="bg-primary text-primary-foreground rounded-md px-3 py-1.5 text-sm font-semibold hover:opacity-90"
         >
           Log in
-        </a>
+        </AppCtaLink>
       </nav>
     </header>
   );

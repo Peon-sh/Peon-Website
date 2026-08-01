@@ -67,6 +67,7 @@ export default function PrivacyPolicyPage() {
           title: 'Cookies and similar technologies',
           paragraphs: [
             'We use cookies and similar technologies that are necessary for authentication, session management, security, and remembering preferences. We do not use third-party advertising cookies on peon.sh or app.peon.sh.',
+            'We may set a first-party cookie (shared across peon.sh and app.peon.sh) to remember the marketing campaign or referral parameters from your first visit (for example utm_source or a product-hunt ref). We use this only to measure how people discover Peon and to attribute signups to a campaign. It is not used for third-party advertising or cross-site tracking.',
             'If we introduce optional analytics in the future, we will update this policy and, where required, provide choices consistent with applicable law.',
           ],
         },

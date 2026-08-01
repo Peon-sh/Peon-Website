@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import type { TemplateSummary } from '@/lib/templates';
-import { appHref } from '@/lib/env';
+import { AppCtaLink } from '@/components/marketing/app-cta-link';
 
 /**
  * Client-side searchable grid for the public marketplace. Deploy links go to
@@ -92,12 +92,12 @@ export function MarketplaceGrid({
               </div>
             </div>
             <div className="mt-4 flex flex-1 items-end justify-between">
-              <a
-                href={appHref(`/deploy/${t.slug}`)}
+              <AppCtaLink
+                path={`/deploy/${t.slug}`}
                 className="bg-primary text-primary-foreground rounded-md px-3 py-1.5 text-xs font-semibold hover:opacity-90"
               >
                 Deploy
-              </a>
+              </AppCtaLink>
               {t.documentation && (
                 <a
                   href={t.documentation}

@@ -4,7 +4,7 @@ import { SiteHeader } from '@/components/marketing/site-header';
 import { SiteFooter } from '@/components/marketing/site-footer';
 import { GithubIcon } from '@/components/icons/github';
 import { SPONSOR_LINKS, VISIBLE_SPONSOR_CHANNELS } from '@/lib/sponsors';
-import { appHref } from '@/lib/env';
+import { AppCtaLink } from '@/components/marketing/app-cta-link';
 
 export const dynamic = 'force-static';
 
@@ -167,12 +167,12 @@ export default function OpenSourcePage() {
                 <h3 className="font-heading text-base font-700 text-phosphor">Hosted services</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
                   Prefer not to operate the control plane?{' '}
-                  <a
-                    href={appHref('/register')}
+                  <AppCtaLink
+                    path="/register"
                     className="text-phosphor underline-offset-4 hover:underline"
                   >
                     Peon Cloud
-                  </a>{' '}
+                  </AppCtaLink>{' '}
                   is $3 per project per month or $30 per year with unlimited servers and seats.
                   Same product features; we run the dashboard and updates. Revenue funds
                   continued open-source development.
