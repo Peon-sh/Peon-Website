@@ -6,6 +6,7 @@ import {
   GoogleTagManager,
   GoogleTagManagerNoscript,
 } from '@/components/analytics/google-tag-manager';
+import { MetaPixel, MetaPixelNoscript } from '@/components/analytics/meta-pixel';
 import { AttributionCapture } from '@/components/analytics/attribution-capture';
 import { cn } from '@/lib/utils';
 import { publicEnv } from '@/lib/env';
@@ -73,7 +74,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body>
         <GoogleTagManagerNoscript />
+        <MetaPixelNoscript />
         <GoogleTagManager />
+        <MetaPixel />
         <AttributionCapture />
         <ThemeProvider>
           <MarketingTheme>
