@@ -561,7 +561,8 @@ export default function LandingPage() {
             </h2>
             <p className="mt-3 max-w-2xl text-muted-foreground">
               Self-host free, run the control plane with us for $3 per project / month or $30 /
-              year (save ~17%), or go Enterprise for SSO, white-label, and managed options.It's one of the cheapest ways to run a Docker host with a real deployment pipeline attached.
+              year (save ~17%), or go Enterprise for SSO, white-label, and managed options. It&apos;s
+              one of the cheapest ways to run a Docker host with a real deployment pipeline attached.
             </p>
             <div className="mt-10 grid gap-6 lg:grid-cols-3">
               {/* Self-hosted */}
