@@ -20,9 +20,9 @@ import { AppCtaLink } from "@/components/marketing/app-cta-link"
 export const dynamic = "force-static"
 
 export const metadata: Metadata = {
-  title: "Peon - Deploy your apps on your server in clicks",
+  title: "Open Source Docker Hosting & Deployment Platform | Peon",
   description:
-    "Open-source, self-hostable deployment platform. Deploy Git apps, Docker Compose stacks, databases and static sites to your own Hetzner, DigitalOcean or bare-metal servers. $3 per project, unlimited team members. The open alternative to Vercel, Heroku and managed PaaS.",
+    "Open source application deployment platform for your own servers. Docker hosting, Git push deploys, unlimited team members. A self-hosted Vercel alternative.",
   keywords: [
     "open source PaaS",
     "open source Vercel alternative",
@@ -73,12 +73,12 @@ const FEATURES: { title: string; body: string; icon: LucideIcon; highlight?: boo
   },
   {
     title: "Git push to deploy",
-    body: "Connect GitHub, GitLab or any Git source. Every push builds and ships automatically with zero-downtime rollouts and instant rollbacks.",
+    body: "Connect GitHub, GitLab, Bitbucket or any Git source. Every push builds and ships automatically with zero-downtime rollouts and instant rollbacks, continuous deployment without writing your own pipeline.",
     icon: GitBranch,
   },
   {
     title: "Any server, anywhere",
-    body: "Bring your own Hetzner, DigitalOcean, AWS, OVH or bare-metal box. Peon connects over SSH and manages Docker for you - no vendor lock-in.",
+    body: "Bring your own Hetzner, DigitalOcean, AWS, OVH or bare-metal box. Peon connects over SSH and manages Docker for you - no vendor lock-in, no fixed docker hosting provider.",
     icon: Server,
   },
   {
@@ -219,11 +219,15 @@ const FAQ = [
   },
   {
     q: "Is Peon a Vercel or Heroku alternative?",
-    a: "Yes. Like Vercel, you get git-push deploys, custom domains, HTTPS and preview-style environments - but on servers you own, at a fraction of the cost. Peon manages Docker on your own machines, with a flat, predictable price and unlimited team members.",
+    a: "Yes. Like Vercel, you get git-push deploys, custom domains, HTTPS and preview-style environments, but on servers you own, at a fraction of the cost. Peon manages Docker on your own machines, with a flat, predictable price and unlimited team members.",
+  },
+  {
+    q: "Is Peon free app hosting?",
+    a: "Self-hosting Peon's control plane is free forever, so the software itself never costs you a license fee. You still pay for the server your apps run on (often $4-12/month for a small VPS), so \"free\" here means no platform tax, not zero infrastructure cost. If you'd rather not run the control plane yourself, Peon Cloud is $3 per project per month.",
   },
   {
     q: "Which cloud providers work with Peon?",
-    a: "Any server with SSH and Docker: Hetzner, DigitalOcean, AWS EC2, Google Cloud, OVH, Contabo, a Raspberry Pi or a bare-metal machine in your office.",
+    a: "Any server with SSH and Docker: Hetzner, DigitalOcean, AWS EC2, Google Cloud, OVH, Contabo, a Raspberry Pi or a bare-metal machine in your office. That makes Peon a container hosting service you can point at whichever cloud app hosting provider already has your infrastructure.",
   },
   {
     q: "Are team members really unlimited?",
@@ -251,11 +255,11 @@ const FAQ = [
   },
   {
     q: "Is Peon open source?",
-    a: "Yes. Peon is open source - the deployment engine, dashboard and pipelines are all public code you can read, audit and contribute to. There's no proprietary agent running on your servers.",
+    a: "Yes. Peon is open source, the deployment engine, dashboard and pipelines are all public code you can read, audit and contribute to. There's no proprietary agent running on your servers.",
   },
   {
     q: "Can I self-host Peon itself?",
-    a: "Yes - because Peon is open source and self-hostable, you can run the entire control plane on your own infrastructure for free and only pay for your servers.",
+    a: "Yes, because Peon is open source and self-hostable, you can run the entire control plane on your own infrastructure for free and only pay for your servers.",
   },
   {
     q: "What's included in Enterprise?",
@@ -327,10 +331,7 @@ export default function LandingPage() {
               <span className="text-phosphor">on your server in clicks</span>
             </h1>
             <p className="mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
-              <strong className="text-foreground">Peon</strong> is an open-source platform
-              you can run yourself: a practical stand-in for Vercel, Heroku, Netlify and
-              Railway when you want to push websites, databases, apps and one-click
-              templates onto hardware you control.
+              <strong className="text-foreground">Peon</strong> is an open-source application deployment platform you can run yourself: a practical Vercel alternative, and a stand-in for Heroku, Netlify and Railway, when you want to push websites, databases, apps and one-click templates onto hardware you control.
             </p>
             <p className="mt-4 font-mono text-xs uppercase tracking-widest text-phosphor">
               Open source · self-host free · cloud from $3 / mo or $30 / yr
@@ -426,8 +427,7 @@ export default function LandingPage() {
               Everything a PaaS gives you, on hardware you control
             </h2>
             <p className="mt-3 max-w-2xl text-muted-foreground">
-              Peon turns any Linux server into your own Vercel-style platform -
-              without the per-seat pricing or the walled garden.
+            Peon turns any Linux server into your own Docker hosting provider: an application hosting platform with git push deploys, managed databases and team access, without the per-seat pricing or the walled garden of a managed PaaS.
             </p>
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {FEATURES.map((f) => {
@@ -492,7 +492,8 @@ export default function LandingPage() {
               >
                 Dokploy
               </a>
-              ; the team and AI packaging is why you choose Peon.
+              ; the team and AI packaging is why you choose Peon as your application deployment platform.
+              .
             </p>
             <div className="mt-8 overflow-x-auto rounded-lg border border-border">
               <table className="w-full min-w-[920px] text-left text-sm">
@@ -560,7 +561,7 @@ export default function LandingPage() {
             </h2>
             <p className="mt-3 max-w-2xl text-muted-foreground">
               Self-host free, run the control plane with us for $3 per project / month or $30 /
-              year (save ~17%), or go Enterprise for SSO, white-label, and managed options.
+              year (save ~17%), or go Enterprise for SSO, white-label, and managed options.It's one of the cheapest ways to run a Docker host with a real deployment pipeline attached.
             </p>
             <div className="mt-10 grid gap-6 lg:grid-cols-3">
               {/* Self-hosted */}
