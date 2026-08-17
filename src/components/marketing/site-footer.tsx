@@ -18,6 +18,11 @@ const COMPARE = [
   { label: 'Peon vs Vercel', href: '/compare/peon-vs-vercel' },
   { label: 'Peon vs Heroku', href: '/compare/peon-vs-heroku' },
   { label: 'Peon vs DigitalOcean', href: '/compare/peon-vs-digitalocean' },
+  { label: 'Peon vs Railway', href: '/compare/peon-vs-railway' },
+  { label: 'Peon vs Render', href: '/compare/peon-vs-render' },
+  { label: 'Peon vs Netlify', href: '/compare/peon-vs-netlify' },
+  { label: 'Peon vs Portainer', href: '/compare/peon-vs-portainer' },
+  { label: 'Peon vs Cloudflare', href: '/compare/peon-vs-cloudflare' },
 ];
 
 const RESOURCES = [
