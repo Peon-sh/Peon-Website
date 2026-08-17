@@ -28,15 +28,15 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^26.1.1",
+    "@types/node": "^26.2.0",
     "@types/pg": "^8.20.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9.39.5",
-    "eslint-config-next": "16.2.12",
-    "openai": "^6.49.0",
+    "eslint-config-next": "^16.3.0",
+    "openai": "^7.4.0",
     "tailwindcss": "^4",
-    "tsx": "^4.23.1",
+    "tsx": "^4.23.12",
     "typescript": "^5.9.3"
   },
   "pnpm": {
