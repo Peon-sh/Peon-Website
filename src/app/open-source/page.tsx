@@ -36,7 +36,7 @@ const COMMITMENTS = [
   },
   {
     title: 'Forever free to self-host',
-    body: 'This is not a temporary growth hack. Self-hosting Peon will stay free. That principle is how we believe infrastructure software should work.',
+    body: 'This is not a temporary growth hack. Self-hosting Peon, meaning the platform itself, not the server it runs on, will stay free. That principle is how we believe infrastructure software should work.',
   },
 ] as const;
 
