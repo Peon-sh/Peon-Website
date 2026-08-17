@@ -39,6 +39,42 @@ type TagRow = {
   slug: string;
 };
 
+/** CMS pretty-print leaves indent inside <pre>; left-align bash/code on the public blog. */
+export function normalizeBlogBodyHtml(html: string): string {
+  return html.replace(
+    /<pre\b([^>]*)>([\s\S]*?)<\/pre>/gi,
+    (_full, attrs: string, inner: string) =>
+      `<pre${attrs}>${dedentPreInner(inner)}</pre>`,
+  );
+}
+
+function dedentPreInner(inner: string): string {
+  const wrapped = inner.match(/<code\b([^>]*)>([\s\S]*?)<\/code>/i);
+  const codeAttrs = wrapped?.[1] ?? '';
+  const body = wrapped ? wrapped[2] : inner;
+  const lines = body.replace(/\r\n/g, '\n').split('\n');
+
+  while (lines.length && lines[0].trim() === '') lines.shift();
+  while (lines.length && lines[lines.length - 1].trim() === '') lines.pop();
+  if (!lines.length) {
+    return wrapped ? `<code${codeAttrs}></code>` : '';
+  }
+
+  const indentOf = (line: string) => line.match(/^[ \t]*/)?.[0].length ?? 0;
+  const nonempty = lines.filter((l) => l.trim().length > 0);
+  const min = Math.min(...nonempty.map(indentOf));
+  const dedented = lines.map((l) => l.slice(min));
+
+  if (dedented.length >= 2) {
+    const first = indentOf(dedented[0]);
+    const next = indentOf(dedented.slice(1).find((l) => l.trim()) ?? '');
+    if (first > next) dedented[0] = dedented[0].slice(first - next);
+  }
+
+  const text = dedented.join('\n');
+  return wrapped ? `<code${codeAttrs}>${text}</code>` : text;
+}
+
 function estimateReadingMinutes(html: string): number {
   const text = html
     .replace(/<[^>]+>/g, ' ')
@@ -187,7 +223,7 @@ export async function getPublishedPost(slug: string): Promise<BlogPostDetail | n
 
   return {
     ...list,
-    bodyHtml: row.body_html,
+    bodyHtml: normalizeBlogBodyHtml(row.body_html),
     seoTitle: row.seo_title,
     seoDescription: row.seo_description,
     seoKeywords: row.seo_keywords,
