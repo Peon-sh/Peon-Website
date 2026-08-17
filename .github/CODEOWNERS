@@ -1,10 +1,10 @@
 # Default owners for critical paths. Reviews are requested on matching PRs.
 # https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 
-*       @hironate
+*       @hironate @arpit-advant
 
-/.github/       @hironate
-/.env.example   @hironate
-/SECURITY.md    @hironate
-/deploy.sh      @hironate
-/release.mjs    @hironate
+/.github/       @hironate @arpit-advant
+/.env.example   @hironate @arpit-advant
+/SECURITY.md    @hironate @arpit-advant
+/deploy.sh      @hironate @arpit-advant
+/release.mjs    @hironate @arpit-advant
