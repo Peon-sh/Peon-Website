@@ -126,7 +126,6 @@ const COMPARISON_PLATFORMS = [
 const COMPARISON_ROWS: { feature: string; cells: string[]; peonEdge?: boolean }[] = [
   {
     feature: "Cloud pricing",
-    peonEdge: true,
     cells: [
       "$3 / project · unlimited servers",
       "From ~$5/mo · + per extra server",
@@ -153,7 +152,6 @@ const COMPARISON_ROWS: { feature: string; cells: string[]; peonEdge?: boolean }[
   },
   {
     feature: "Workspace + project RBAC",
-    peonEdge: true,
     cells: [
       "Workspace & project roles",
       "Teams",
@@ -165,12 +163,10 @@ const COMPARISON_ROWS: { feature: string; cells: string[]; peonEdge?: boolean }[
   },
   {
     feature: "Unlimited team members",
-    peonEdge: true,
     cells: ["Yes · included", "Yes (self-host)", "Plan limits on Hobby", "Paid per seat", "Paid team plans", "Team plans"],
   },
   {
     feature: "Audit logs",
-    peonEdge: true,
     cells: [
       "Included",
       "Limited / DIY",
@@ -182,12 +178,10 @@ const COMPARISON_ROWS: { feature: string; cells: string[]; peonEdge?: boolean }[
   },
   {
     feature: "MCP for AI agents",
-    peonEdge: true,
     cells: ["Included", "No", "Yes", "No", "No", "No"],
   },
   {
     feature: "In-app AI assistant",
-    peonEdge: true,
     cells: ["Included", "No", "No", "No", "No", "No"],
   },
   {
