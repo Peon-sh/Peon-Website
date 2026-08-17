@@ -68,6 +68,22 @@ export default async function BlogPostPage({ params }: Props) {
   const related = await relatedPublishedPosts(post);
   const jsonLd = buildBlogJsonLd(post, publicEnv.siteUrl);
   const primaryTag = post.tags[0];
+  const author =
+    post.jsonLdAuthorName?.trim() || post.authorName?.trim() || null;
+  const publishedLabel = post.publishedAt
+    ? new Date(post.publishedAt).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      })
+    : null;
+  const byline = [
+    author,
+    publishedLabel,
+    `${post.readingMinutes} min read`,
+  ]
+    .filter(Boolean)
+    .join(' · ');
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -97,17 +113,11 @@ export default async function BlogPostPage({ params }: Props) {
             {post.excerpt}
           </p>
         ) : null}
-        <p className="mt-4 font-mono text-[11px] uppercase tracking-wide text-faint">
-          {post.publishedAt
-            ? new Date(post.publishedAt).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })
-            : null}
-          {post.publishedAt ? ' · ' : ''}
-          {post.readingMinutes} min read
-        </p>
+        {byline ? (
+          <p className="mt-4 font-mono text-[11px] uppercase tracking-wide text-faint">
+            {byline}
+          </p>
+        ) : null}
 
         {post.featuredImage?.url ? (
           // eslint-disable-next-line @next/next/no-img-element
