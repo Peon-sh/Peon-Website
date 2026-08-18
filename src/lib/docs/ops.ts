@@ -205,7 +205,7 @@ export const REFERENCE_PAGES: DocPage[] = [
     slug: 'workflows',
     title: 'End-to-End Workflows',
     description:
-      'Recipes: first deploy, marketplace, auto-deploy, teammates, backups, previews, rollback, ownership.',
+      'End-to-end Peon recipes: first deployment, marketplace setup, auto-deploy from Git, adding teammates, database backups, preview environments, and rollback.',
     sections: [
       {
         h: 'First deploy',
@@ -266,7 +266,8 @@ export const REFERENCE_PAGES: DocPage[] = [
   {
     slug: 'troubleshooting',
     title: 'Troubleshooting',
-    description: 'Server connect, deploy/healthcheck, domain/SSL, permissions, Chat models, and where to look next.',
+    description:
+      'Fix common Peon issues: server connection failures, failed deploys, health check errors, SSL problems, permission errors, and Chat model setup.',
     sections: [
       {
         h: 'Server connect failures',

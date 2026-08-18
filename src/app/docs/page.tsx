@@ -5,7 +5,7 @@ import { DOC_GROUPS } from "@/lib/docs"
 export const metadata: Metadata = {
   title: "Documentation",
   description:
-    "Peon docs: MCP JSON setup for Cursor, Chat assistant, workspaces, servers, services, backups, and troubleshooting.",
+    "Peon documentation: set up MCP for Cursor and Claude, configure workspaces, deploy services, manage databases, and troubleshoot common issues.",
   alternates: { canonical: "/docs" },
 }
 

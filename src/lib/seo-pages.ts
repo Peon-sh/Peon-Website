@@ -244,7 +244,7 @@ export const SOLUTION_PAGES: SeoPage[] = [
     kind: 'solution',
     title: 'MCP & AI Assistant for Deployments | Peon',
     description:
-      'Peon’s hosted MCP server and in-app AI assistant let Cursor, Claude and other agents manage deploys with the same workspace RBAC and audit trail as your team.',
+      "Peon's hosted MCP server lets Cursor, Claude, and other AI agents deploy, rollback, and manage services under your workspace RBAC permissions.",
     eyebrow: 'Solutions',
     h1: 'Deploy with AI agents without giving up control',
     intro:

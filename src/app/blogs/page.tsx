@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic';
 export const metadata: Metadata = {
   title: 'Blog - Guides, Comparisons & Tech Help for Self-Hosting',
   description:
-    'Deployment guides, platform comparisons and troubleshooting help for self-hosting apps on your own servers with Docker.',
+    'Practical deployment guides, honest platform comparisons, and Docker troubleshooting for teams running self-hosted apps on their own servers.',
   alternates: { canonical: '/blogs' },
 };
 

@@ -130,7 +130,8 @@ export const SERVICE_PAGES: DocPage[] = [
   {
     slug: 'docker-compose',
     title: 'Docker Compose',
-    description: 'Blank Compose services vs marketplace templates, raw compose mode, and Service Specific Configuration.',
+    description:
+      'Deploy multi-container Compose stacks on Peon: create blank services or use marketplace templates, with volumes, domains, and env interpolation.',
     sections: [
       {
         h: 'New Service → Compose',
@@ -186,7 +187,7 @@ export const SERVICE_PAGES: DocPage[] = [
     slug: 'one-click-templates',
     title: 'One-Click Templates',
     description:
-      'Marketplace and /deploy/[slug]: browse, create fields, magic env, Domains vs FQDN seeds, common errors.',
+      "Browse Peon's marketplace or use a /deploy/[slug] link: covers create fields, auto-generated secrets, domain seeds, and how to fix common errors.",
     sections: [
       {
         h: 'What it is',
@@ -274,7 +275,7 @@ export const SERVICE_PAGES: DocPage[] = [
     slug: 'databases',
     title: 'Databases',
     description:
-      'Engines, create fields, credentials, internal/public URLs, public access, and which sidebar sections apply.',
+      'Deploy Postgres, MySQL, MongoDB, or Redis on Peon: create fields, access credentials, internal and public URLs, and backup wiring.',
     sections: [
       {
         h: 'Create',
@@ -328,7 +329,8 @@ REDIS_URL=redis://:<password>@<redis-container>:6379`,
   {
     slug: 'environment-variables',
     title: 'Environment Variables',
-    description: 'Production and preview env: KEY rules, Build/Runtime flags, developer mode, shared variables.',
+    description:
+      'Manage env vars in Peon: KEY naming rules, Build and Runtime flags, developer mode, shared variable overrides, and Compose ${VAR} interpolation.',
     sections: [
       {
         h: 'Where',
@@ -363,7 +365,8 @@ REDIS_URL=redis://:<password>@<redis-container>:6379`,
   {
     slug: 'domains-and-ssl',
     title: 'Domains & SSL',
-    description: 'Domains panel fields, Force HTTPS, Gzip, Strip prefix, DNS, and certificate troubleshooting.',
+    description:
+      "Add custom domains to Peon services: configure Force HTTPS, Gzip, and Strip Prefix, point your DNS records, and fix Let's Encrypt certificate issues.",
     sections: [
       {
         h: 'Where',

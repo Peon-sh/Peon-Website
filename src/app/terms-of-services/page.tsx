@@ -4,7 +4,7 @@ import { LegalPage } from '@/components/marketing/legal-page';
 export const metadata: Metadata = {
   title: 'Terms of Service',
   description:
-    'Terms governing your use of Peon, the open-source self-hostable deployment platform at peon.sh and app.peon.sh.',
+    "Peon's terms of service: rules for using the open-source deployment platform at peon.sh, including billing, acceptable use, and account rights.",
   alternates: { canonical: '/terms-of-services' },
 };
 

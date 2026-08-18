@@ -8,7 +8,7 @@ export const AI_PAGES: DocPage[] = [
     slug: 'mcp',
     title: 'MCP Server',
     description:
-      'Connect Cursor, Claude, and other agents to Peon’s hosted Model Context Protocol endpoint, same RBAC as the dashboard.',
+      'Connect Cursor, Claude, and other AI agents to Peon via MCP. The same RBAC as your dashboard controls what agents can deploy, restart, or change.',
     sections: [
       {
         h: 'What Peon MCP is',
@@ -91,7 +91,7 @@ export const AI_PAGES: DocPage[] = [
     slug: 'chat-assistant',
     title: 'Chat Assistant',
     description:
-      'Peon Chat: BYO LLM keys, streaming threads, user-manual lookup, visuals, and Approve cards for mutating tools.',
+      "Peon's in-app AI assistant: bring your own LLM keys, ask deployment questions, get visual responses, and approve actions before they run.",
     sections: [
       {
         h: 'Highlight: AI that operates Peon under your rules',

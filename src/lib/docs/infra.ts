@@ -109,7 +109,8 @@ export const INFRA_PAGES: DocPage[] = [
   {
     slug: 'git-sources',
     title: 'Git Sources',
-    description: 'Connect GitHub or GitLab apps, custom app fields, webhooks, and resources.',
+    description:
+      'Connect GitHub or GitLab to Peon as Git sources. Configure app fields, set up webhooks for auto-deploy on push, and manage source-level settings.',
     sections: [
       {
         h: 'Where and who',
@@ -172,7 +173,8 @@ export const INFRA_PAGES: DocPage[] = [
   {
     slug: 'keys-and-tokens',
     title: 'Keys & Tokens',
-    description: 'SSH keys for servers and deploy keys; personal API tokens for REST and MCP.',
+    description:
+      'Manage SSH keys for server access and repo deploy keys in Peon. Create personal API tokens to authenticate REST calls and MCP agent integrations.',
     sections: [
       {
         h: 'Where',
