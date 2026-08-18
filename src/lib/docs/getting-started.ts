@@ -242,27 +242,68 @@ git push origin main
       'Create and manage projects in Peon: browse the Services tab, invite members with roles, configure settings, use the marketplace, and safely delete.',
     sections: [
       {
+        h: 'What a project is',
+        p: [
+          'A project groups services that belong to one product, client, or environment boundary inside a workspace. Servers, Git sources, storages, and SSH keys stay at the workspace level; the project is where you list apps, databases, and Compose stacks, invite project-scoped members, and bill on Peon Cloud ($3 per project per month or $30 per year on Cloud).',
+          'Hierarchy reminder: Workspace → Project → Service, with each service deployed onto a Server you choose. Use separate projects when you want separate member lists, cleaner service inventories, or separate Cloud project billing—not when you only need another container (that is a new service).',
+        ],
+      },
+      {
         h: 'List and create',
         p: [
-          'Sidebar → Projects (/projects). Create with Name and optional Description. Who: workspace OWNER/ADMIN. Open a project card to enter the project shell.',
+          'Sidebar → Projects (/projects). Create with Name and optional Description. Who: workspace OWNER/ADMIN. The creator becomes project ADMIN. Open a project card to enter the project shell (Services / Members / Settings).',
+          'Workspace OWNER and ADMIN see and manage all projects without being added on the Members tab. Workspace MEMBER and BILLING_ADMIN only see projects where they have explicit project membership. See Workspaces & Roles for the full matrix.',
         ],
       },
       {
         h: 'Tab: Services',
         p: [
-          'Lists services in the project. Actions: New service, Marketplace (manage role only). Empty state offers both. Marketplace creates a COMPOSE service from a template; New service opens the typed create dialog.',
+          'Lists every service in the project. Actions: New service and Marketplace (manage role only—workspace OWNER/ADMIN or project ADMIN). Empty state offers both paths.',
+          'New service opens the typed create dialog (Application Git, Dockerfile, Docker Image, Static, Nixpacks, Database, Compose). Marketplace creates a COMPOSE service from a one-click template; you still open the service and click Deploy. Required on create: Name and Server (plus kind-specific fields). After create, configure Environment, Domains, and Deploy from the service sidebar.',
+          'From the service list, open any card to reach Overview, Configuration, Deployments, Logs, and the rest of the kind-aware sidebar. Stopping or deleting services happens on the service itself—not on this tab beyond navigation into those flows.',
         ],
       },
       {
         h: 'Tab: Members',
         p: [
-          'Add a workspace user as project ADMIN or MEMBER; change role; remove. Workspace OWNER/ADMIN users are not added here - they already have full project access. Who: project manage (workspace OWNER/ADMIN or project ADMIN).',
+          'Add a workspace user as project ADMIN or MEMBER, change role, or remove them. Who can manage members: workspace OWNER/ADMIN or project ADMIN. Invite people to the workspace first (Settings → Members) if they do not appear as addable users yet; project membership only applies to existing workspace members.',
+        ],
+        list: [
+          'Project ADMIN - manage services, reveal/edit env, deploy, terminal, marketplace',
+          'Project MEMBER - read-only; env values masked; no deploy, terminal, or secret reveal',
+          'Workspace OWNER/ADMIN - full project access automatically; do not add them here',
         ],
       },
       {
         h: 'Tab: Settings',
         p: [
-          'Edit Name and Description → Save. Delete project is blocked while any services still exist - delete services first, then delete the project with name confirmation.',
+          'Edit Name and Description → Save. Delete project is blocked while any services still exist—delete each service from its Danger Zone (type the exact service name) first, then delete the project with name confirmation.',
+          'Deleting a project removes project membership and project settings. It does not delete workspace servers, storages, Git sources, or SSH keys. It does not terminate cloud VMs. Back up databases before removing services that hold data you need. On Peon Cloud, removing a project also ends that project’s subscription seat—confirm billing impact before you delete.',
+        ],
+      },
+      {
+        h: 'Who can do what (project scope)',
+        p: [
+          'API and MCP enforce the same RBAC as the UI: a peon_ token inherits your workspace role and project memberships. Project MEMBERs cannot deploy or reveal secrets through agents either.',
+        ],
+        list: [
+          'Create projects - workspace OWNER/ADMIN only',
+          'Create and deploy services - workspace OWNER/ADMIN or project ADMIN',
+          'Marketplace - manage role only',
+          'Project MEMBER - view services; cannot deploy or reveal secrets',
+          'Infrastructure (servers, keys, sources, storages) - workspace OWNER/ADMIN, not project-only admins',
+        ],
+      },
+      {
+        h: 'Practical checklist',
+        p: [],
+        list: [
+          'Projects → create Name (+ Description) as workspace OWNER/ADMIN',
+          'Services → New service or Marketplace → configure → Deploy',
+          'Members → add workspace users as project ADMIN or MEMBER when they are not workspace OWNER/ADMIN',
+          'Settings → rename anytime; delete only after all services are gone',
+          'One product/client per project keeps roles and Cloud billing clearer',
+          'Need shared SMTP keys across projects? Use Shared Variables; keep app secrets on each service Environment',
         ],
       },
     ],
@@ -270,32 +311,78 @@ git push origin main
   {
     slug: 'profile',
     title: 'Profile & Account',
-    description: 'Display name, avatar, password, and session revocation.',
+    description:
+      'Manage your Peon account: display name, avatar, password, active sessions, sign-in entry points, and security tips for stolen devices.',
     sections: [
       {
-        h: 'Profile',
+        h: 'What Profile covers',
         p: [
-          'User menu → Profile (/profile). Edit display name and Save. Avatar: upload JPEG/PNG/WebP, max 2 MB; remove avatar if needed. Any signed-in user edits only their own profile.',
+          'Profile & Account is where each signed-in user manages their own identity settings—how you appear in the UI, how you authenticate, and which devices still have a valid session. It is not workspace Settings (members, billing context, Danger Zone) and not project Members. Every user edits only their own profile.',
+          'Open User menu → Profile (/profile) from any page while signed in. Changes here apply across workspaces you belong to on that Peon account.',
+        ],
+      },
+      {
+        h: 'Display name and avatar',
+        p: [
+          'Edit your display name and Save. The name is what teammates see in members lists, audit-friendly actor labels, and the user menu—choose something recognizable on a shared team.',
+          'Avatar: upload JPEG, PNG, or WebP, maximum 2 MB. Remove the avatar if you want to clear it. Very large or unsupported formats fail validation—compress or convert before uploading. Avatars are cosmetic; they do not affect RBAC.',
         ],
       },
       {
         h: 'Password',
-        p: ['Set or change password. Current password is required when changing an existing one.'],
+        p: [
+          'Set a password if your account does not have one yet, or change an existing password. When changing, the current password is required so a stolen browser session alone cannot silently rotate credentials without that secret.',
+          'Prefer a long, unique password (password manager). If you signed up with Google (when the instance enables it), you may still add or manage a password depending on instance policy—use Password + Sessions together if you need a non-OAuth fallback. After a suspected leak, change the password and revoke sessions immediately.',
+        ],
       },
       {
         h: 'Sessions',
         p: [
-          'List active devices/sessions with relative last-seen. Revoke one session, revoke others, or revoke all (sign out everywhere). Revoked sessions cannot use the cookie even if a JWT has not expired yet.',
+          'The Sessions list shows active devices/sessions with relative last-seen times. Use it when you left a session open on a shared computer, lost a laptop, or see an unfamiliar device.',
+        ],
+        list: [
+          'Revoke one session - sign out that device only',
+          'Revoke others - keep the current browser, drop every other session',
+          'Revoke all - sign out everywhere (including this browser); you will need to log in again',
+        ],
+      },
+      {
+        h: 'How revocation works',
+        p: [
+          'Revoked sessions cannot use the session cookie even if a JWT has not expired yet—Peon invalidates the server-side session record. If you revoke all, complete login again on devices you still trust.',
+          'Revoking sessions does not rotate API tokens (peon_… under Keys & Tokens). Those are separate secrets: if a token may be leaked, revoke it under Keys & Tokens in addition to clearing browser sessions. SSH keys are also separate workspace secrets.',
+          'On shared or public computers, prefer Revoke others when you leave, or use Revoke all from a trusted device later. Do not stay signed in on kiosks. If your email was phished, use forgot-password, then revoke sessions and tokens—password reset alone may not drop an attacker’s already-open session until you revoke.',
         ],
       },
       {
         h: 'Auth entry points',
-        p: [],
+        p: [
+          'Related routes outside /profile that matter for account lifecycle:',
+        ],
         list: [
           '/login, /register - email/password; Google when configured on the instance',
-          '/forgot-password → /reset-password',
+          '/forgot-password → /reset-password - recover access when you cannot sign in',
           '/invitations/[token] - accept workspace (and optional project) invite',
-          '/onboarding - name workspace, optional first project',
+          '/onboarding - name workspace, optional first project after first registration',
+        ],
+      },
+      {
+        h: 'Invites and onboarding vs profile',
+        p: [
+          'Accepting an invitation adds you to a workspace (and optionally a project); it does not change your display name or password. Finish /onboarding when prompted so you have a workspace context, then open Profile anytime to refine identity settings.',
+          'Workspace OWNER/ADMIN manage who else can join under Settings → Members; you cannot use Profile to invite teammates. To leave a workspace or transfer ownership, use workspace Settings → Danger—not Profile.',
+        ],
+      },
+      {
+        h: 'Practical checklist',
+        p: [],
+        list: [
+          'User menu → Profile → update display name / avatar → Save',
+          'Use a unique password; require current password when changing',
+          'Review Sessions after travel or shared-computer use',
+          'Lost device: change password → Revoke others or Revoke all → revoke peon_ tokens if needed',
+          'New teammate: they register/login, then accept /invitations/[token] if invited',
+          'Profile ≠ workspace Danger Zone—leaving or deleting a workspace is under Settings',
         ],
       },
     ],
