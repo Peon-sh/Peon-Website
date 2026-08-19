@@ -22,7 +22,7 @@ export const dynamic = "force-static"
 export const metadata: Metadata = {
   title: "Open Source Docker Hosting & Deployment Platform | Peon",
   description:
-    "Open source application deployment platform for your own servers. Docker hosting, Git push deploys, unlimited team members. A self-hosted Vercel alternative.",
+    "Open source deployment platform for your own servers. Git push deploys, Docker hosting, unlimited team members. Self-hosted Vercel alternative.",
   keywords: [
     "open source PaaS",
     "open source Vercel alternative",
