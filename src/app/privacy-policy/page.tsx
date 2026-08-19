@@ -6,7 +6,7 @@ export const dynamic = 'force-static';
 export const metadata: Metadata = {
   title: 'Privacy Policy',
   description:
-    'How Peon collects, uses, and protects your personal information when you use peon.sh and the Peon platform.',
+    "Read Peon's privacy policy: how we collect, use, store, and protect your personal data when you use peon.sh or the Peon Cloud platform.",
   alternates: { canonical: '/privacy-policy' },
 };
 
