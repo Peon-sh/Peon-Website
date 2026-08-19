@@ -5,7 +5,7 @@ export const GETTING_STARTED_PAGES: DocPage[] = [
     slug: 'introduction',
     title: 'Introduction',
     description:
-      'What Peon is, the workspace → project → service → server hierarchy, Cloud vs self-host, and how deployments work.',
+      'Learn what Peon is: the workspace, project, service, and server hierarchy explained, with Cloud vs self-host options and how deployments work.',
     sections: [
       {
         h: 'What is Peon?',
@@ -63,7 +63,8 @@ export const GETTING_STARTED_PAGES: DocPage[] = [
   {
     slug: 'installation',
     title: 'Self-Hosting Peon',
-    description: 'Run the Peon control plane yourself, or use Peon Cloud and only bring application servers.',
+    description:
+      'Self-host the Peon control plane on your own server, or use Peon Cloud and only bring your app servers. Covers prerequisites and setup steps.',
     sections: [
       {
         h: 'Choose a path',
@@ -113,7 +114,7 @@ pnpm worker                # deployments, backups, async jobs`,
     slug: 'first-deployment',
     title: 'Your First Deployment',
     description:
-      'End-to-end: SSH key → server → Git source → project → service → env → domain → Deploy.',
+      'Complete walkthrough of your first Peon deployment: add an SSH key, connect a server, link a Git source, create a service, and go live.',
     sections: [
       {
         h: '1. Create an SSH key',
@@ -163,7 +164,7 @@ git push origin main
     slug: 'workspaces-and-roles',
     title: 'Workspaces & Roles',
     description:
-      'Workspace settings (General, Members, LLMs, Audit, Danger), workspace roles, project roles, and inheritance rules.',
+      'Manage Peon workspaces: configure members, LLM keys, audit logs, and danger settings. Understand workspace roles, project roles, and how they inherit.',
     sections: [
       {
         h: 'Switch or create a workspace',
@@ -238,7 +239,7 @@ git push origin main
     slug: 'projects',
     title: 'Projects',
     description:
-      'Create and manage Peon projects: Services, Members, and Settings tabs, roles, marketplace, and safe delete rules.',
+      'Create and manage projects in Peon: browse the Services tab, invite members with roles, configure settings, use the marketplace, and safely delete.',
     sections: [
       {
         h: 'What a project is',

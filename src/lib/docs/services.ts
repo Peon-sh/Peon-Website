@@ -185,7 +185,7 @@ export const SERVICE_PAGES: DocPage[] = [
     slug: 'docker-compose',
     title: 'Docker Compose',
     description:
-      'Deploy multi-container Docker Compose stacks on Peon: blank COMPOSE services, marketplace templates, raw compose mode, volumes, domains, and environment interpolation.',
+      'Deploy multi-container Compose stacks on Peon: create blank services or use marketplace templates, with volumes, domains, and env interpolation.',
     sections: [
       {
         h: 'What Docker Compose is in Peon',
@@ -326,7 +326,7 @@ export const SERVICE_PAGES: DocPage[] = [
     slug: 'one-click-templates',
     title: 'One-Click Templates',
     description:
-      'Marketplace and /deploy/[slug]: browse, create fields, magic env, Domains vs FQDN seeds, common errors.',
+      "Browse Peon's marketplace or use a /deploy/[slug] link: covers create fields, auto-generated secrets, domain seeds, and how to fix common errors.",
     sections: [
       {
         h: 'What it is',
@@ -414,7 +414,7 @@ export const SERVICE_PAGES: DocPage[] = [
     slug: 'databases',
     title: 'Databases',
     description:
-      'Engines, create fields, credentials, internal/public URLs, public access, and which sidebar sections apply.',
+      'Deploy Postgres, MySQL, MongoDB, or Redis on Peon: create fields, access credentials, internal and public URLs, and backup wiring.',
     sections: [
       {
         h: 'Create',
@@ -469,7 +469,7 @@ REDIS_URL=redis://:<password>@<redis-container>:6379`,
     slug: 'environment-variables',
     title: 'Environment Variables',
     description:
-      'Manage production and preview environment variables in Peon: KEY rules, Build and Runtime flags, developer mode, shared variables, and Compose ${VAR} interpolation.',
+      'Manage env vars in Peon: KEY naming rules, Build and Runtime flags, developer mode, shared variable overrides, and Compose ${VAR} interpolation.',
     sections: [
       {
         h: 'What Environment is for',
@@ -549,7 +549,8 @@ REDIS_URL=redis://:<password>@<redis-container>:6379`,
   {
     slug: 'domains-and-ssl',
     title: 'Domains & SSL',
-    description: 'Domains panel fields, Force HTTPS, Gzip, Strip prefix, DNS, and certificate troubleshooting.',
+    description:
+      "Add custom domains to Peon services: configure Force HTTPS, Gzip, and Strip Prefix, point your DNS records, and fix Let's Encrypt certificate issues.",
     sections: [
       {
         h: 'Where',

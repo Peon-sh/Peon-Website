@@ -287,7 +287,7 @@ export const SOLUTION_PAGES: SeoPage[] = [
     kind: 'solution',
     title: 'MCP Server for Cursor & Claude Deployments | Peon',
     description:
-      'Peon’s hosted MCP server works with Cursor, Claude and other agents to manage deploys under your workspace RBAC.',
+      "Peon's hosted MCP server lets Cursor, Claude, and other AI agents deploy, rollback, and manage services under your workspace RBAC permissions.",
     eyebrow: 'Solutions',
     h1: 'Deploy with AI agents without giving up control',
     intro:
