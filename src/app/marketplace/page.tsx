@@ -7,7 +7,7 @@ import { listTemplateCategories, listTemplates } from "@/lib/templates"
 export const metadata: Metadata = {
   title: "Marketplace - One-click deploy 300+ self-hosted services",
   description:
-    "Deploy Plausible, n8n, Uptime Kuma, WordPress, Ghost, MinIO and 300+ other self-hostable services on your own servers in one click. Secrets, domains and HTTPS handled automatically.",
+    "One-click deploy 333+ self-hosted services to your own server. Plausible, n8n, WordPress, Ghost and more. Secrets and HTTPS set up automatically.",
   keywords: [
     "self-hosted services",
     "one-click deploy",

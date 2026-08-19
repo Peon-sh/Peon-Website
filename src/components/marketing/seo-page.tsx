@@ -203,13 +203,18 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
           ))}
 
           {page.faqs && page.faqs.length > 0 ? (
-            <section className="border-t border-border pt-10">
-              <h2 className="panel-title-slashes text-lg font-700">Frequently asked questions</h2>
-              <dl className="mt-6 space-y-8">
+            <section>
+              <h2 className="panel-title-slashes text-2xl font-700 sm:text-3xl">
+                Frequently asked questions
+              </h2>
+              <div className="mt-8 divide-y divide-border rounded-lg border border-border bg-card">
                 {page.faqs.map((faq) => (
-                  <div key={faq.question}>
-                    <dt className="font-700 text-foreground">{faq.question}</dt>
-                    <dd className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                  <details key={faq.question} className="group px-6 py-4">
+                    <summary className="cursor-pointer list-none font-medium marker:hidden">
+                      <span className="mr-2 font-mono text-phosphor">?</span>
+                      {faq.question}
+                    </summary>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                       {faq.answer}{' '}
                       {faq.relatedLink ? (
                         <Link
@@ -219,10 +224,10 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
                           {faq.relatedLink.label} →
                         </Link>
                       ) : null}
-                    </dd>
-                  </div>
+                    </p>
+                  </details>
                 ))}
-              </dl>
+              </div>
             </section>
           ) : null}
 
