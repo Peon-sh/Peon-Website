@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { SiteHeader } from '@/components/marketing/site-header';
 import { SiteFooter } from '@/components/marketing/site-footer';
@@ -96,9 +95,9 @@ export default async function BlogPostPage({ params }: Props) {
 
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-14">
         <nav className="font-mono text-[11px] uppercase tracking-wide text-faint">
-          <Link href="/blogs" className="hover:text-foreground">
+          <a href="/blogs" className="hover:text-foreground">
             blog
-          </Link>
+          </a>
           {primaryTag ? (
             <>
               {' / '}
@@ -154,7 +153,7 @@ export default async function BlogPostPage({ params }: Props) {
             </h2>
             <div className="mt-4 grid gap-4 sm:grid-cols-3">
               {related.map((r) => (
-                <Link
+                <a
                   key={r.slug}
                   href={`/blogs/${r.slug}`}
                   className="group rounded-lg border border-border bg-card p-4 transition-colors hover:border-border-bright"
@@ -162,7 +161,7 @@ export default async function BlogPostPage({ params }: Props) {
                   <h3 className="font-heading text-xs font-700 leading-snug group-hover:text-phosphor">
                     {r.title}
                   </h3>
-                </Link>
+                </a>
               ))}
             </div>
           </section>

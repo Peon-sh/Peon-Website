@@ -1,6 +1,3 @@
-'use client';
-
-import Link from 'next/link';
 import { LogoMark } from '@/components/logo';
 import { GithubIcon } from '@/components/icons/github';
 import { AppCtaLink } from '@/components/marketing/app-cta-link';
@@ -18,6 +15,7 @@ const NAV_ITEMS = [
 
 /**
  * Marketing header. Auth CTAs point at the Peon app origin (separate host).
+ * Native `<a>` so the App Router client is not pulled into every page.
  */
 export function SiteHeader({
   active,
@@ -25,28 +23,28 @@ export function SiteHeader({
   active?: 'docs' | 'blog' | 'open-source' | 'marketplace';
 }) {
   return (
-    <header className="border-border bg-background/80 sticky top-0 z-40 border-b backdrop-blur">
+    <header className="border-border bg-background sticky top-0 z-40 border-b">
       <nav className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-4">
-        <Link
+        <a
           href="/"
           className="font-heading font-800 inline-flex items-center gap-2 text-base tracking-tight"
         >
           <LogoMark size={26} />
           <span className="text-phosphor">Peon</span>
-        </Link>
+        </a>
 
         <div className="text-muted-foreground hidden items-center gap-5 text-sm lg:flex">
           {NAV_ITEMS.map((item) => {
             if ('differentiator' in item && item.differentiator) {
               return (
-                <Link
+                <a
                   key={item.href}
                   href={item.href}
                   className="inline-flex items-center gap-1.5 rounded-md border border-phosphor/40 bg-accent/50 px-2.5 py-1 font-semibold text-phosphor hover:border-phosphor hover:bg-accent"
                 >
                   <GithubIcon className="size-3.5 shrink-0" />
                   {item.label}
-                </Link>
+                </a>
               );
             }
 
@@ -56,7 +54,7 @@ export function SiteHeader({
               (active === 'marketplace' && item.href === '/marketplace');
 
             return (
-              <Link
+              <a
                 key={item.href}
                 href={item.href}
                 className={
@@ -66,7 +64,7 @@ export function SiteHeader({
                 }
               >
                 {item.label}
-              </Link>
+              </a>
             );
           })}
         </div>

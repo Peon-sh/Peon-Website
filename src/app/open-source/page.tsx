@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { SiteHeader } from '@/components/marketing/site-header';
 import { SiteFooter } from '@/components/marketing/site-footer';
 import { GithubIcon } from '@/components/icons/github';
@@ -131,9 +130,9 @@ export default function OpenSourcePage() {
               Enterprise packaging (SSO/SAML, SCIM, white label, MSA/SLA) exists for
               organizations that need identity-provider integration and contracts, not to
               withhold deploys, RBAC, audit logs, or MCP from self-host and Cloud users. See{' '}
-              <Link href="/#pricing" className="text-phosphor underline-offset-4 hover:underline">
+              <a href="/#pricing" className="text-phosphor underline-offset-4 hover:underline">
                 pricing
-              </Link>
+              </a>
               .
             </p>
           </div>
@@ -298,12 +297,12 @@ export default function OpenSourcePage() {
               >
                 Sponsor Peon
               </a>
-              <Link
+              <a
                 href="/docs/contributing"
                 className="inline-flex rounded-md border border-border-bright px-5 py-2.5 text-sm font-semibold hover:bg-accent"
               >
                 Contribute code
-              </Link>
+              </a>
             </div>
           </div>
         </section>

@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { SiteHeader } from '@/components/marketing/site-header';
 import { SiteFooter } from '@/components/marketing/site-footer';
 import { AppCtaLink } from '@/components/marketing/app-cta-link';
@@ -75,12 +74,12 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
                   {ctaLabel}
                 </a>
               ) : (
-                <Link
+                <a
                   href={ctaHref}
                   className="inline-flex rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90"
                 >
                   {ctaLabel}
-                </Link>
+                </a>
               )}
             </div>
           </div>
@@ -217,12 +216,12 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
                     <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                       {faq.answer}{' '}
                       {faq.relatedLink ? (
-                        <Link
+                        <a
                           href={faq.relatedLink.href}
                           className="text-phosphor underline-offset-4 hover:underline"
                         >
                           {faq.relatedLink.label} →
-                        </Link>
+                        </a>
                       ) : null}
                     </p>
                   </details>
@@ -237,9 +236,9 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
               <ul className="mt-4 space-y-2 text-sm">
                 {page.related.map((link) => (
                   <li key={link.href}>
-                    <Link href={link.href} className="text-phosphor underline-offset-4 hover:underline">
+                    <a href={link.href} className="text-phosphor underline-offset-4 hover:underline">
                       {link.label} →
-                    </Link>
+                    </a>
                   </li>
                 ))}
               </ul>

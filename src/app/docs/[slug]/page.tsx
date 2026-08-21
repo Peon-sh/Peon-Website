@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ALL_DOC_PAGES, docGroupFor, getDocPage } from "@/lib/docs"
 
@@ -33,7 +32,7 @@ export default async function DocPage({ params }: Props) {
   return (
     <article>
       <nav className="font-mono text-[11px] uppercase tracking-wide text-faint">
-        <Link href="/docs" className="hover:text-foreground">docs</Link>
+        <a href="/docs" className="hover:text-foreground">docs</a>
         {group && (
           <>
             {" / "}
@@ -84,16 +83,16 @@ export default async function DocPage({ params }: Props) {
 
       <div className="mt-12 flex items-center justify-between gap-4 border-t border-border pt-6 text-sm">
         {prev ? (
-          <Link href={`/docs/${prev.slug}`} className="text-muted-foreground hover:text-foreground">
+          <a href={`/docs/${prev.slug}`} className="text-muted-foreground hover:text-foreground">
             ← {prev.title}
-          </Link>
+          </a>
         ) : (
           <span />
         )}
         {next ? (
-          <Link href={`/docs/${next.slug}`} className="text-right text-muted-foreground hover:text-foreground">
+          <a href={`/docs/${next.slug}`} className="text-right text-muted-foreground hover:text-foreground">
             {next.title} →
-          </Link>
+          </a>
         ) : (
           <span />
         )}

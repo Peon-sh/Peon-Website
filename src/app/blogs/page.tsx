@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { SiteHeader } from '@/components/marketing/site-header';
 import { SiteFooter } from '@/components/marketing/site-footer';
 import { groupPostsByTag, listPublishedPosts } from '@/lib/blog';
@@ -47,7 +46,7 @@ export default async function BlogIndexPage() {
               </h2>
               <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {groupPosts.map((post) => (
-                  <Link
+                  <a
                     key={post.slug}
                     href={`/blogs/${post.slug}`}
                     className="group overflow-hidden rounded-lg border border-border bg-card transition-colors hover:border-border-bright"
@@ -81,7 +80,7 @@ export default async function BlogIndexPage() {
                         {post.readingMinutes} min read
                       </p>
                     </div>
-                  </Link>
+                  </a>
                 ))}
               </div>
             </section>

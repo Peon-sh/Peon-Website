@@ -179,6 +179,17 @@ export function withAttributionQuery(
   }
 }
 
+const CTA_SELECTOR = 'a[data-peon-cta]';
+
+/** Rewrite static app CTAs with first-touch query params after mount. */
+export function applyCtaAttribution(root?: ParentNode): void {
+  if (typeof document === 'undefined') return;
+  (root ?? document).querySelectorAll<HTMLAnchorElement>(CTA_SELECTOR).forEach((anchor) => {
+    const next = withAttributionQuery(anchor.href);
+    if (next !== anchor.href) anchor.href = next;
+  });
+}
+
 /** Drop unknown keys from a loose object (for tests / debugging). */
 export function pickAttributionKeys(input: Record<string, unknown>): AttributionPayload {
   const out: AttributionPayload = {};
