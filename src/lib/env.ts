@@ -11,7 +11,7 @@ export const publicEnv = {
 /**
  * Absolute URL into the Peon app.
  * For marketing CTAs that should carry first-touch UTMs, prefer `<AppCtaLink path=… />`
- * (client) which merges the peon_attr cookie / page query onto this base URL.
+ * which merges the peon_attr cookie / page query onto this base URL after mount.
  */
 export function appHref(path: string): string {
   const p = path.startsWith('/') ? path : `/${path}`;

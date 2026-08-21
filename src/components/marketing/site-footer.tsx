@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { AppCtaLink } from '@/components/marketing/app-cta-link';
 
 const PRODUCT = [
@@ -52,9 +51,9 @@ function FooterColumn({
                 {link.label}
               </AppCtaLink>
             ) : (
-              <Link href={link.href} className="hover:text-foreground">
+              <a href={link.href} className="hover:text-foreground">
                 {link.label}
-              </Link>
+              </a>
             )}
           </li>
         ))}
@@ -85,7 +84,7 @@ export function SiteFooter() {
                 alt="Peon - Open source alternative to Vercel, Heroku, Netlify. | Product Hunt"
                 width={250}
                 height={54}
-                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1206439&theme=light&t=1785051322486"
+                src="/badges/product-hunt-featured.svg"
               />
             </a>
           </div>

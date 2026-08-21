@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 import { DOC_GROUPS } from "@/lib/docs"
 
 export const metadata: Metadata = {
@@ -19,7 +18,7 @@ export default function DocsIndexPage() {
       </p>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
-        <Link
+        <a
           href="/docs/mcp"
           className="rounded-lg border border-phosphor/40 bg-accent/40 p-5 ring-1 ring-phosphor/20 transition-colors hover:border-phosphor"
         >
@@ -28,8 +27,8 @@ export default function DocsIndexPage() {
           <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
             JSON config for Cursor and Claude, API tokens, tool catalog, and RBAC.
           </p>
-        </Link>
-        <Link
+        </a>
+        <a
           href="/docs/chat-assistant"
           className="rounded-lg border border-phosphor/40 bg-accent/40 p-5 ring-1 ring-phosphor/20 transition-colors hover:border-phosphor"
         >
@@ -38,22 +37,22 @@ export default function DocsIndexPage() {
           <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
             BYO LLM keys, manual lookup, visuals, Approve cards, and example prompts.
           </p>
-        </Link>
+        </a>
       </div>
 
       <div className="mt-6 flex flex-wrap gap-3">
-        <Link
+        <a
           href="/docs/first-deployment"
           className="rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:opacity-90"
         >
           Deploy your first app
-        </Link>
-        <Link
+        </a>
+        <a
           href="/docs/introduction"
           className="rounded-md border border-border-bright px-4 py-2 text-sm font-semibold hover:bg-accent"
         >
           Introduction
-        </Link>
+        </a>
       </div>
 
       {DOC_GROUPS.map((group) => (
@@ -65,7 +64,7 @@ export default function DocsIndexPage() {
             {group.pages.map((page) => {
               const featured = page.slug === "mcp" || page.slug === "chat-assistant"
               return (
-                <Link
+                <a
                   key={page.slug}
                   href={`/docs/${page.slug}`}
                   className={
@@ -80,7 +79,7 @@ export default function DocsIndexPage() {
                   <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
                     {page.description}
                   </p>
-                </Link>
+                </a>
               )
             })}
           </div>

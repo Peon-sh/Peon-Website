@@ -1,12 +1,17 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import type { TemplateSummary } from '@/lib/templates';
 import { AppCtaLink } from '@/components/marketing/app-cta-link';
+import { MarketplaceLogo } from '@/components/marketing/marketplace-logo';
+import { applyCtaAttribution } from '@/lib/attribution';
+
+const PAGE_SIZE = 48;
 
 /**
  * Client-side searchable grid for the public marketplace. Deploy links go to
- * the Peon app (`/deploy/[slug]` on the app host).
+ * the Peon app (`/deploy/[slug]` on the app host). Cards paginate so the
+ * initial hydrate is ~48 nodes instead of the full catalog.
  */
 export function MarketplaceGrid({
   templates,
@@ -17,6 +22,7 @@ export function MarketplaceGrid({
 }) {
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('all');
+  const [visible, setVisible] = useState(PAGE_SIZE);
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase().trim();
@@ -27,6 +33,12 @@ export function MarketplaceGrid({
     });
   }, [templates, search, category]);
 
+  const shown = filtered.slice(0, visible);
+
+  useEffect(() => {
+    applyCtaAttribution();
+  }, [visible, search, category]);
+
   return (
     <div>
       <div className="flex flex-col gap-3 sm:flex-row">
@@ -34,12 +46,18 @@ export function MarketplaceGrid({
           type="search"
           placeholder="Search services (analytics, wordpress, n8n...)"
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            setVisible(PAGE_SIZE);
+          }}
           className="border-border bg-card placeholder:text-faint focus:border-border-bright h-10 flex-1 rounded-md border px-3 text-sm outline-none"
         />
         <select
           value={category}
-          onChange={(e) => setCategory(e.target.value)}
+          onChange={(e) => {
+            setCategory(e.target.value);
+            setVisible(PAGE_SIZE);
+          }}
           className="border-border bg-card focus:border-border-bright h-10 rounded-md border px-3 text-sm outline-none sm:w-56"
         >
           <option value="all">All categories</option>
@@ -56,27 +74,13 @@ export function MarketplaceGrid({
       </p>
 
       <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((t) => (
+        {shown.map((t, index) => (
           <div
             key={t.slug}
             className="border-border bg-card hover:border-border-bright flex flex-col rounded-lg border p-5 transition-colors"
           >
             <div className="flex items-start gap-3">
-              {t.logo ? (
-                // eslint-disable-next-line @next/next/no-img-element -- vendored local SVG/PNG assets
-                <img
-                  src={t.logo}
-                  alt=""
-                  width={36}
-                  height={36}
-                  className="size-9 shrink-0 rounded-md bg-white object-contain p-1"
-                  loading="lazy"
-                />
-              ) : (
-                <div className="bg-secondary text-muted-foreground flex size-9 shrink-0 items-center justify-center rounded-md text-xs font-semibold">
-                  {t.name.charAt(0)}
-                </div>
-              )}
+              <MarketplaceLogo src={t.logo} name={t.name} priority={index < 6} />
               <div className="min-w-0 flex-1">
                 <div className="flex items-start justify-between gap-2">
                   <h3 className="font-heading font-700 text-sm">{t.name}</h3>
@@ -117,6 +121,17 @@ export function MarketplaceGrid({
           </p>
         )}
       </div>
+      {shown.length < filtered.length && (
+        <div className="mt-8 flex justify-center">
+          <button
+            type="button"
+            onClick={() => setVisible((n) => n + PAGE_SIZE)}
+            className="border-border-bright hover:bg-accent rounded-md border px-5 py-2.5 text-sm font-semibold"
+          >
+            Show more services
+          </button>
+        </div>
+      )}
     </div>
   );
 }

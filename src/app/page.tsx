@@ -11,7 +11,6 @@ import {
   Globe,
   Bot,
 } from "lucide-react"
-import Link from "next/link"
 import { SiteHeader } from "@/components/marketing/site-header"
 import { SiteFooter } from "@/components/marketing/site-footer"
 import { AppCtaLink } from "@/components/marketing/app-cta-link"
@@ -319,7 +318,7 @@ export default function LandingPage() {
             <p className="panel-title-slashes mb-4 font-mono text-xs uppercase tracking-widest text-phosphor">
               Peon
             </p>
-            <h1 className="max-w-3xl text-4xl font-800 leading-tight sm:text-6xl">
+            <h1 className="max-w-3xl text-4xl font-800 leading-tight text-balance sm:text-6xl">
               Deploy your apps
               <br />
               <span className="text-phosphor">on your server in clicks</span>
@@ -415,7 +414,7 @@ export default function LandingPage() {
         </section>
 
         {/* Features */}
-        <section id="features" className="border-b border-border">
+        <section id="features" className="defer-layout border-b border-border">
           <div className="mx-auto w-full max-w-6xl px-4 py-20">
             <h2 className="panel-title-slashes text-2xl font-700 sm:text-3xl">
               Everything a PaaS gives you, on hardware you control
@@ -447,16 +446,16 @@ export default function LandingPage() {
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
                     {f.highlight ? (
                       <p className="mt-3 text-xs">
-                        <Link href="/docs/mcp" className="font-semibold text-phosphor underline-offset-4 hover:underline">
+                        <a href="/docs/mcp" className="font-semibold text-phosphor underline-offset-4 hover:underline">
                           MCP setup →
-                        </Link>
+                        </a>
                         {" · "}
-                        <Link
+                        <a
                           href="/docs/chat-assistant"
                           className="font-semibold text-phosphor underline-offset-4 hover:underline"
                         >
                           Chat assistant →
-                        </Link>
+                        </a>
                       </p>
                     ) : null}
                   </article>
@@ -467,7 +466,7 @@ export default function LandingPage() {
         </section>
 
         {/* Comparison */}
-        <section id="compare" className="border-b border-border">
+        <section id="compare" className="defer-layout border-b border-border">
           <div className="mx-auto w-full max-w-6xl px-4 py-20">
             <h2 className="panel-title-slashes text-2xl font-700 sm:text-3xl">
               Peon vs Coolify, Dokploy, Vercel, Heroku & DigitalOcean
@@ -548,7 +547,7 @@ export default function LandingPage() {
         </section>
 
         {/* Pricing */}
-        <section id="pricing" className="border-b border-border">
+        <section id="pricing" className="defer-layout border-b border-border">
           <div className="mx-auto w-full max-w-6xl px-4 py-20">
             <h2 className="panel-title-slashes text-2xl font-700 sm:text-3xl">
               Simple, affordable pricing
@@ -696,7 +695,7 @@ export default function LandingPage() {
         </section>
 
         {/* FAQ */}
-        <section id="faq">
+        <section id="faq" className="defer-layout">
           <div className="mx-auto w-full max-w-3xl px-4 py-20">
             <h2 className="panel-title-slashes text-2xl font-700 sm:text-3xl">
               Frequently asked questions

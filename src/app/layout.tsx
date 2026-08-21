@@ -1,25 +1,20 @@
 import type { Metadata } from 'next';
 import { Archivo, IBM_Plex_Mono, Inter } from 'next/font/google';
-import { ThemeProvider } from '@/components/theme-provider';
-import { MarketingTheme } from '@/components/marketing/marketing-theme';
-import {
-  GoogleTagManager,
-  GoogleTagManagerNoscript,
-} from '@/components/analytics/google-tag-manager';
-import { AttributionCapture } from '@/components/analytics/attribution-capture';
+import { GoogleTagManagerNoscript } from '@/components/analytics/google-tag-manager';
+import { MarketingBoot } from '@/components/analytics/marketing-boot';
 import { cn } from '@/lib/utils';
 import { publicEnv } from '@/lib/env';
 import './globals.css';
 
 const archivo = Archivo({
   subsets: ['latin'],
-  weight: ['600', '700', '800', '900'],
+  weight: ['700', '800', '900'],
   variable: '--font-archivo',
 });
 
 const plexMono = IBM_Plex_Mono({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '600'],
   variable: '--font-plex-mono',
 });
 
@@ -68,18 +63,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      suppressHydrationWarning
       className={cn('dark antialiased', archivo.variable, plexMono.variable, inter.variable)}
     >
       <body>
         <GoogleTagManagerNoscript />
-        <GoogleTagManager />
-        <AttributionCapture />
-        <ThemeProvider>
-          <MarketingTheme>
-            <div className="bg-background text-foreground min-h-screen">{children}</div>
-          </MarketingTheme>
-        </ThemeProvider>
+        <MarketingBoot />
+        <div className="bg-background text-foreground min-h-screen">{children}</div>
       </body>
     </html>
   );

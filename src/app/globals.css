@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -118,7 +117,6 @@
   }
   h1, h2, h3, h4 {
     @apply font-heading tracking-tight;
-    text-wrap: balance;
   }
   ::selection {
     background: var(--phosphor);
@@ -149,6 +147,11 @@
 }
 @utility font-700 {
   font-weight: 700;
+}
+
+@utility defer-layout {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 48rem;
 }
 
 /* CMS blog body HTML (classes also embedded from peon-analytics polish) */
