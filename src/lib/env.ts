@@ -6,8 +6,6 @@ export const publicEnv = {
   siteUrl: (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://peon.sh').replace(/\/$/, ''),
   /** Google Tag Manager container ID (e.g. GTM-XXXX). Empty disables GTM. */
   gtmId: (process.env.NEXT_PUBLIC_GTM_ID ?? '').trim(),
-  /** Meta (Facebook) Pixel ID. Empty disables the pixel. */
-  metaPixelId: (process.env.NEXT_PUBLIC_META_PIXEL_ID ?? '').trim(),
 };
 
 /**

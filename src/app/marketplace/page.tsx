@@ -36,6 +36,9 @@ export default function MarketplacePage() {
           volumes, a domain and automatic HTTPS. Click Deploy and Peon sets up a project and
           the service for you.
         </p>
+        <h2 className="mt-10 text-xl font-700 sm:text-2xl">
+          Browse the self-hosted app marketplace
+        </h2>
         <div className="mt-8">
           <MarketplaceGrid templates={templates} categories={categories} />
         </div>

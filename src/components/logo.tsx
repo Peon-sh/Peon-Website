@@ -11,7 +11,6 @@ export function LogoMark({ className, size = 28 }: { className?: string; size?: 
       height={size}
       viewBox="0 0 64 64"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
       className={cn('shrink-0', className)}
       aria-hidden="true"
     >
