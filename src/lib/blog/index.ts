@@ -39,13 +39,41 @@ type TagRow = {
   slug: string;
 };
 
+const LOCAL_HTTP_HOST = /^(localhost|127\.0\.0\.1)(?::|\/|$)/i;
+
+/**
+ * Upgrade http:// href/src/srcset to https:// so HTTPS pages do not load mixed content.
+ * Leaves URLs inside `<pre>` and localhost/127.0.0.1 unchanged.
+ */
+export function upgradeHttpResourceUrls(html: string): string {
+  const pres: string[] = [];
+  const withoutPre = html.replace(/<pre\b[\s\S]*?<\/pre>/gi, (block) => {
+    pres.push(block);
+    return `%%PEON_PRE_${pres.length - 1}%%`;
+  });
+
+  const upgraded = withoutPre.replace(
+    /\b(href|src|srcset)=(["'])([^"']*)\2/gi,
+    (_full, attr: string, quote: string, value: string) => {
+      const next = value.replace(/http:\/\//gi, (match, offset: number, str: string) => {
+        const after = str.slice(offset + 'http://'.length);
+        return LOCAL_HTTP_HOST.test(after) ? match : 'https://';
+      });
+      return `${attr}=${quote}${next}${quote}`;
+    },
+  );
+
+  return upgraded.replace(/%%PEON_PRE_(\d+)%%/g, (_, n: string) => pres[Number(n)] ?? '');
+}
+
 /** CMS pretty-print leaves indent inside <pre>; left-align bash/code on the public blog. */
 export function normalizeBlogBodyHtml(html: string): string {
-  return html.replace(
+  const repaired = html.replace(
     /<pre\b([^>]*)>([\s\S]*?)<\/pre>/gi,
     (_full, attrs: string, inner: string) =>
       `<pre${attrs}>${dedentPreInner(inner)}</pre>`,
   );
+  return upgradeHttpResourceUrls(repaired);
 }
 
 function dedentPreInner(inner: string): string {
