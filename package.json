@@ -29,15 +29,15 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^26.2.0",
-    "@types/pg": "^8.21.0",
+    "@types/pg": "^8.23.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9.39.5",
-    "eslint-config-next": "16.3.1",
-    "openai": "^7.4.0",
+    "eslint": "^10.9.0",
+    "eslint-config-next": "16.3.2",
+    "openai": "^7.5.0",
     "tailwindcss": "^4",
     "tsx": "^4.23.12",
-    "typescript": "^6.0.3"
+    "typescript": "^7.0.2"
   },
   "pnpm": {
     "overrides": {
