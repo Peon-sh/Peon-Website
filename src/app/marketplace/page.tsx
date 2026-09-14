@@ -5,7 +5,7 @@ import { MarketplaceGrid } from "@/components/marketing/marketplace-grid"
 import { listTemplateCategories, listTemplates } from "@/lib/templates"
 
 export const metadata: Metadata = {
-  title: "Marketplace - One-click deploy 300+ self-hosted services",
+  title: { absolute: '300+ Apps, One Click to Deploy | Peon Marketplace' },
   description:
     "One-click deploy 333+ self-hosted services to your own server. Plausible, n8n, WordPress, Ghost and more. Secrets and HTTPS set up automatically.",
   keywords: [

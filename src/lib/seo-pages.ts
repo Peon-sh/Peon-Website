@@ -134,7 +134,7 @@ export const SOLUTION_PAGES: SeoPage[] = [
   {
     slug: 'application-deployment',
     kind: 'solution',
-    title: 'Application Deployment Tools for Your Own Servers | Peon',
+    title: 'Deploy Apps to Your Own Server in Minutes',
     description:
       'Peon is a deployment platform with rolling deployments, Git push (GitHub, GitLab, Bitbucket), Docker Compose, on your own VPS from $3/project.',
     eyebrow: 'Solutions',
