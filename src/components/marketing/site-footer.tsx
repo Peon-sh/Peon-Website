@@ -1,4 +1,7 @@
+import { LogoMark } from '@/components/logo';
+import { GithubIcon } from '@/components/icons/github';
 import { AppCtaLink } from '@/components/marketing/app-cta-link';
+import { SPONSOR_LINKS } from '@/lib/sponsors';
 
 const PRODUCT = [
   { label: 'Features', href: '/#features' },
@@ -26,24 +29,21 @@ const COMPARE = [
 
 const RESOURCES = [
   { label: 'Docs', href: '/docs' },
-  { label: 'Open Source', href: '/open-source' },
+  { label: 'Open source', href: '/open-source' },
   { label: 'Blog', href: '/blogs' },
+  { label: 'GitHub', href: SPONSOR_LINKS.githubApp, external: true },
+  { label: 'Log in', href: '/login', app: true },
   { label: 'Privacy', href: '/privacy-policy' },
   { label: 'Terms', href: '/terms-of-services' },
-  { label: 'Log in', href: '/login', app: true },
 ];
 
-function FooterColumn({
-  title,
-  links,
-}: {
-  title: string;
-  links: { label: string; href: string; app?: boolean }[];
-}) {
+type FooterLink = { label: string; href: string; app?: boolean; external?: boolean };
+
+function FooterColumn({ title, links }: { title: string; links: FooterLink[] }) {
   return (
     <div>
-      <p className="font-mono text-[11px] uppercase tracking-widest text-phosphor">{title}</p>
-      <ul className="mt-3 space-y-2">
+      <p className="text-sm font-medium text-foreground">{title}</p>
+      <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">
         {links.map((link) => (
           <li key={`${link.href}-${link.label}`}>
             {link.app ? (
@@ -51,7 +51,11 @@ function FooterColumn({
                 {link.label}
               </AppCtaLink>
             ) : (
-              <a href={link.href} className="hover:text-foreground">
+              <a
+                href={link.href}
+                className="hover:text-foreground"
+                {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              >
                 {link.label}
               </a>
             )}
@@ -65,36 +69,51 @@ function FooterColumn({
 export function SiteFooter() {
   return (
     <footer className="border-t border-border">
-      <div className="mx-auto w-full max-w-6xl px-4 py-12">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto w-full max-w-6xl px-6 py-16">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <p className="font-heading text-base font-800 text-phosphor">Peon</p>
-            <p className="mt-3 max-w-xs text-xs leading-relaxed text-muted-foreground">
-              Open-source deployment platform. Your servers, our pipelines. $3 per project
-              or free self-host.
+            <a href="/" className="inline-flex items-center gap-2.5 text-[15px] font-semibold tracking-tight">
+              <LogoMark size={24} />
+              <span>Peon</span>
+            </a>
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
+              Open-source deployment platform for servers you already own. Free to self-host,
+              $3 per project on Cloud, unlimited team members.
             </p>
             <a
-              href="https://www.producthunt.com/products/peon?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-peon"
+              href={SPONSOR_LINKS.githubApp}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-block transition-opacity hover:opacity-80"
+              className="mt-5 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                alt="Peon - Open source alternative to Vercel, Heroku, Netlify. | Product Hunt"
-                width={250}
-                height={54}
-                src="/badges/product-hunt-featured.svg"
-              />
+              <GithubIcon className="size-4" />
+              Peon-sh/Peon
             </a>
           </div>
           <FooterColumn title="Product" links={PRODUCT} />
           <FooterColumn title="Compare" links={COMPARE} />
           <FooterColumn title="Resources" links={RESOURCES} />
         </div>
-        <p className="mt-10 border-t border-border pt-6 text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Peon. All rights reserved.
-        </p>
+
+        <div className="mt-14 flex flex-col gap-4 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} Peon. MIT licensed.</p>
+          <a
+            href="https://www.producthunt.com/products/peon?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-peon"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block opacity-70 transition-opacity hover:opacity-100"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element -- self-hosted badge route */}
+            <img
+              src="/badges/product-hunt-featured.svg"
+              alt="Peon - Featured on Product Hunt"
+              width={200}
+              height={43}
+              className="h-8 w-auto"
+              loading="lazy"
+            />
+          </a>
+        </div>
       </div>
     </footer>
   );

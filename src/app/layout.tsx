@@ -1,16 +1,10 @@
 import type { Metadata } from 'next';
-import { Archivo, IBM_Plex_Mono, Inter } from 'next/font/google';
+import { IBM_Plex_Mono, Inter } from 'next/font/google';
 import { GoogleTagManagerNoscript } from '@/components/analytics/google-tag-manager';
 import { MarketingBoot } from '@/components/analytics/marketing-boot';
 import { cn } from '@/lib/utils';
 import { publicEnv } from '@/lib/env';
 import './globals.css';
-
-const archivo = Archivo({
-  subsets: ['latin'],
-  weight: ['700', '800', '900'],
-  variable: '--font-archivo',
-});
 
 const plexMono = IBM_Plex_Mono({
   subsets: ['latin'],
@@ -20,6 +14,7 @@ const plexMono = IBM_Plex_Mono({
 
 const inter = Inter({
   subsets: ['latin'],
+  weight: ['400', '500', '600'],
   variable: '--font-inter',
 });
 
@@ -63,7 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={cn('dark antialiased', archivo.variable, plexMono.variable, inter.variable)}
+      className={cn('dark antialiased', plexMono.variable, inter.variable)}
     >
       <body>
         <GoogleTagManagerNoscript />
