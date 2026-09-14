@@ -6,7 +6,7 @@ import { groupPostsByTag, listPublishedPosts } from '@/lib/blog';
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: 'Blog - Guides, Comparisons & Tech Help for Self-Hosting',
+  title: { absolute: 'Self-Hosting Guides, Fixes & Comparisons | Peon Blog' },
   description:
     'Practical deployment guides, honest platform comparisons, and Docker troubleshooting for teams running self-hosted apps on their own servers.',
   alternates: { canonical: '/blogs' },

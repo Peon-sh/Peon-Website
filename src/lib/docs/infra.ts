@@ -111,33 +111,80 @@ export const INFRA_PAGES: DocPage[] = [
     title: 'Git Sources',
     seoTitle: 'Connect GitHub & GitLab as Git Sources | Peon Docs',
     description:
-      'Connect GitHub or GitLab to Peon as Git sources. Configure app fields, set up webhooks for auto-deploy on push, and manage source-level settings.',
+      'Connect GitHub or GitLab in Peon as workspace Git sources: platform vs custom apps, when to skip a source, how services pick Git App / public repo / deploy key, and how webhooks relate to auto-deploy.',
     sections: [
       {
-        h: 'Where and who',
-        p: ['Sidebar → Git Sources (/sources). Workspace OWNER/ADMIN.'],
+        h: 'What Git Sources are',
+        p: [
+          'Git Sources are workspace-level connections to GitHub or GitLab. Once connected, Peon can list repositories you have access to, clone private code for builds, and receive push events from the App installation so git-based services can auto-deploy without a per-service webhook URL.',
+          'They are not the same as the Git source type picker on a service (Git App, Public repository, or Deploy key). That picker lives on each git-based service under Configuration → Git source. A Git Source is the connection itself; the picker chooses whether this service uses that connection, a public clone URL, or a deploy key plus a workspace SSH key.',
+        ],
       },
       {
-        h: 'Connect',
-        p: [],
-        list: [
-          'Connect GitHub - platform app install when the Peon instance has it configured',
-          'Create custom GitHub or GitLab App - Provider, Private key, Name, Organization, HTML URL, API URL, Git user, Git port, App ID, Installation ID / Client ID (GitHub), Client secret / App secret, Webhook secret / token',
+        h: 'Where and who',
+        p: [
+          'Open Sidebar → Git Sources (/sources). Workspace OWNER or ADMIN create, edit, and delete sources. Project ADMIN can attach an existing Git App connection when creating or editing a git-based service; they cannot add a new GitHub or GitLab app at the workspace level. Project MEMBER is read-only.',
+        ],
+      },
+      {
+        h: 'When you need a source vs skip it',
+        p: [
+          'Use a Git Source (Git App) when the repo is private, you want a repository picker (owner/repo) in the create-service UI, and you want installation-level webhooks so pushes and pull-request events reach Peon without copying a per-service URL. This is the usual path for team GitHub or GitLab orgs.',
+          'Skip a workspace source for a public HTTPS repository: on the service, set Git source type to Public repository and paste the clone URL. No Git App install is required. Private repos that you cannot (or do not want to) connect via an App can use Deploy key mode: paste the Git repository URL and select a workspace Private key from Keys & Tokens. That flow often relies more on Service → Webhooks or a manual Deploy than on App installation webhooks.',
+        ],
+      },
+      {
+        h: 'Connect GitHub',
+        p: [
+          'If this Peon instance has a platform GitHub App configured, Git Sources → Connect GitHub walks through installing that app on your GitHub account or organization. After install, the source shows as connected and services can pick repositories the installation can see.',
+          'If you need a custom GitHub App (self-hosted Peon, a dedicated org app, or the platform install is not available), create a custom GitHub App and fill the connection fields. Provider is GitHub. Name is the label you will see in the service Connection dropdown. Organization scopes the install when the app belongs to a GitHub org. HTML URL and API URL are the GitHub web and API bases (github.com and api.github.com on GitHub.com; your GHE host and API path on GitHub Enterprise). Git user and Git port are the clone identity and SSH port the server uses when talking to the remote.',
+          'App ID, Installation ID or Client ID, Client secret or App secret, and the App private key identify the GitHub App to Peon. Webhook secret (or token) must match the secret you set on the GitHub App so Peon can verify inbound deliveries. Copy the webhook and setup URLs from the source detail after save and finish the GitHub App’s webhook / setup configuration if the install flow did not do it for you.',
+        ],
+      },
+      {
+        h: 'Connect GitLab',
+        p: [
+          'GitLab connections are custom apps: Provider GitLab, then Name, Organization (group) when relevant, HTML URL and API URL for gitlab.com or your self-managed GitLab, Git user and Git port, plus the App ID / client identifiers, App secret, and webhook secret or token GitLab expects. Point GitLab’s webhook at the URL Peon shows on the source so push events can reach this workspace.',
+          'Use GitLab HTML/API URLs from the instance you actually clone from. Mixing gitlab.com URLs with a self-managed API (or the reverse) is a common reason the connection stays unhealthy or the repository list is empty.',
         ],
       },
       {
         h: 'Source detail',
-        p: [],
-        list: [
-          'General - edit connection fields; connection status; copy webhook and setup URLs',
-          'Resources - services using this source',
-          'Delete when unused (reassign services first if needed)',
+        p: [
+          'Open a source for General: edit connection fields, check connection status, and copy webhook and setup URLs when you need to re-register them on GitHub or GitLab. Resources lists services that currently use this connection—use it before you delete or rotate credentials so you know which apps will stop cloning.',
+          'Delete a source only when no service still depends on it, or reassign those services first (another Git App connection, or switch them to Public repository / Deploy key). An unused source with a live webhook URL is still a credential surface; remove it when the install is retired.',
         ],
       },
       {
-        h: 'Using a source on a service',
+        h: 'Use on a service',
         p: [
-          'On a git-based service, set Git source type to Git App, pick Connection and Repository (owner/repo) and Branch. Public repository and Deploy key modes use a Git repository URL instead; Deploy key also needs a workspace Private key.',
+          'On a git-based service (Application, Dockerfile, Nixpacks, Static, and similar Git kinds), set Git source type to Git App, pick this Connection, then Repository (owner/repo) and Branch. Public repository and Deploy key modes do not pick a Connection: they use a Git repository URL instead; Deploy key also needs a workspace Private key from Keys & Tokens.',
+          'Name, server, port, base directory, and build pack are service fields—see Git Applications. After the source is attached, Overview → Deploy builds from the configured branch. Keep Auto deploy on if you want later pushes to queue builds (see Webhooks & Automation).',
+        ],
+      },
+      {
+        h: 'Auto-deploy and webhooks',
+        p: [
+          'A Git App source is the preferred inbound path for GitHub/GitLab App installs: the installation webhook covers the repos the app can see. Prefer that over creating a Service → Webhooks URL unless you need a per-service endpoint, a public-repo or deploy-key flow, or a host Peon does not connect as an App.',
+          'If auto-deploy never fires, confirm the source connection status, that the repo webhook or App installation still points at Peon, that the push hit the configured branch, and that Auto deploy is on. Watch paths, preview permissions, and per-service webhook URLs are documented on Webhooks & Automation and Deployments & Previews—not duplicated here.',
+        ],
+      },
+      {
+        h: 'Practical checklist',
+        p: [],
+        list: [
+          'Private GitHub/GitLab with repo picker: Git Sources → Connect GitHub or custom GitLab App → service Git source type Git App → Connection, repository, branch',
+          'Public HTTPS repo: skip this page; service Git source type Public repository + clone URL',
+          'Private clone URL without an App: Deploy key + workspace Private key (Keys & Tokens); register Service → Webhooks if you want push-to-deploy',
+          'After connect: copy webhook/setup URLs if GitHub/GitLab still needs them; confirm connection status is healthy',
+          'Before delete: Resources → reassign or change Git source type on every listed service',
+          'Pushes not building: source status + branch + Auto deploy; then Webhooks & Automation',
+        ],
+      },
+      {
+        h: 'Related',
+        p: [
+          'Git Applications (service Git fields, build pack, base directory). Webhooks & Automation (service webhook URLs, auto-deploy, watch paths). Deployments & Previews (PR previews and GitHub/GitLab permissions). Your First Deployment (first Git connect). Keys & Tokens (SSH keys for Deploy key mode).',
         ],
       },
     ],
@@ -216,29 +263,75 @@ export const INFRA_PAGES: DocPage[] = [
     title: 'Keys & Tokens',
     seoTitle: 'Manage SSH Keys and API Tokens in Peon | Peon Docs',
     description:
-      'Manage SSH keys for server access and repo deploy keys in Peon. Create personal API tokens to authenticate REST calls and MCP agent integrations.',
+      'Manage workspace SSH keys for servers and git deploy keys, plus personal API tokens (peon_…) for REST and MCP. Who can create them, how to rotate, and how they differ from Environment and Shared Variables.',
     sections: [
       {
-        h: 'Where',
-        p: ['Sidebar → Keys & Tokens (/keys-and-tokens). Legacy /security redirects here.'],
+        h: 'What Keys & Tokens are',
+        p: [
+          'Keys & Tokens is the workspace inventory for two kinds of secrets Peon uses to talk to the outside world. SSH keys let the control plane log into your VPS and (in Deploy key git mode) clone private repositories. Personal API tokens let you, your CI, or an AI agent call Peon over REST or MCP with the same permissions you have in the dashboard.',
+          'They are not service Environment variables and not Shared Variables. Environment lives on each service (Build/Runtime flags, preview overrides). Shared Variables are reusable KEY/value defaults scoped to a workspace, project, or server. Keys & Tokens are credentials for SSH and for authenticating as a Peon user—not values injected into a container.',
+        ],
+      },
+      {
+        h: 'Where and who',
+        p: [
+          'Open Sidebar → Keys & Tokens (/keys-and-tokens). Older bookmarks to /security redirect here. The page has two tabs: SSH Keys and API Tokens.',
+          'Workspace OWNER or ADMIN manage SSH keys: create, download PEM, attach them when adding servers, and delete unused keys. API tokens are personal to the account that creates them. The token inherits that person’s workspace role and project memberships—the same RBAC as the UI. OWNER/ADMIN tokens can reach infrastructure surfaces (servers, keys, sources). A project MEMBER token only reaches projects they belong to, and stays read-oriented where the UI is read-only.',
+        ],
       },
       {
         h: 'SSH keys',
         p: [
-          'Generate a keypair or paste private key (+ optional public). Fields: Name, Description, Private key, Public key (optional). Download PEM; delete when unused. Attach keys when adding servers or when a service uses Deploy key git mode. Who: workspace OWNER/ADMIN.',
+          'Create a key before you add a server. Peon can generate a keypair for you, or you can paste an existing private key and optionally the matching public key. Give it a name you will recognize later (for example peon-prod or hetzner-box-1) and a short description if several keys exist in the workspace.',
+          'Fields: Name, Description, Private key, Public key (optional). After create, download the PEM if you need a local copy for ssh from your laptop. The matching public key must be authorized on the VPS for the SSH user you will use (often root or a sudo user)—Peon cannot log in until that public key is in authorized_keys on the host.',
+          'When you add a server (Servers → Add Server), pick this private key in the SSH key field. The same workspace key can be attached to more than one server if they share the same authorized public key; prefer separate keys when hosts have different blast radius (prod vs staging). For git-based services, Deploy key mode uses a Git repository URL plus a workspace Private key instead of a Git App connection—see Git Sources for when to choose Git App vs Deploy key vs a public HTTPS repo.',
+          'Delete a key only when no server (and no Deploy key service) still depends on it, or reassign those resources first. Rotating: create a new key, authorize the new public key on the VPS, point the server at the new key, Connect/Reconnect, then remove the old public key from the host and delete the unused Peon key. SSH keys are not deleted when you remove a server; clean them up here separately (see Danger Zones).',
+        ],
+        list: [
+          'Generate a keypair in Peon, or paste a private key you already trust',
+          'Authorize the public key on the VPS before Connect / Reconnect',
+          'Attach the key on Servers → Add Server (required) and optionally for Deploy key git mode',
+          'Download PEM for local SSH; delete unused keys after reassignment',
         ],
       },
       {
         h: 'API tokens',
         p: [
-          'Create a personal access token (prefix peon_…). Copy once when shown; revoke later. The token inherits your workspace role and project memberships, with the same permissions as you in the UI.',
+          'Sidebar → Keys & Tokens → API Tokens. Create a personal access token. Peon shows the secret once with the prefix peon_…. Copy it immediately; you cannot view the full value later. If you lose it, revoke and create a new token.',
+          'Use the token as Authorization: Bearer peon_… against the Peon REST API for scripting deploys, reading status, managing env within your role, and similar ops. The token is scoped to the current workspace and follows your memberships: it cannot escalate beyond what you can click in the UI. Prefer a dedicated operator or project-scoped member account when an agent or CI job only needs one project—do not paste an OWNER token into a shared laptop or a public CI log.',
+          'Revoke tokens when they leak, when a teammate leaves, or when a script is retired. Revoking browser sessions on Profile does not rotate API tokens; those are separate secrets. Never commit peon_… values to Git, never put them in a client-side frontend, and never reuse one token across every environment if you can split prod automation from staging.',
         ],
       },
       {
-        h: 'MCP',
+        h: 'Use with MCP',
         p: [
-          'Point MCP clients (Cursor, Claude Desktop, etc.) at {appOrigin}/mcp with Authorization: Bearer peon_…. Tools cover projects, services, deployments, env, backups, servers, sources, members, and more under RBAC.',
-          'Shell exec tools (exec_in_service, exec_on_server) are not registered on MCP or Chat. Use the Terminal tabs in the UI.',
+          'MCP clients (Cursor, Claude Desktop, and similar) authenticate with the same personal API token. Point streamable HTTP at {appOrigin}/mcp (Peon Cloud app origin, or your self-hosted dashboard domain plus /mcp) and send Authorization: Bearer peon_….',
+          'This page is the place you create and revoke that token. Client JSON, placeholder replacement, and the tool catalog live on MCP Server—do not duplicate that config here. Interactive shells (exec in a service or on a server) are not registered on MCP or in-app Chat; use Terminal in the app. Chat uses a related tool catalog but still requires UI Approve before mutating actions.',
+        ],
+      },
+      {
+        h: 'Security',
+        p: [
+          'Treat SSH private keys and peon_ tokens like passwords. Anyone with the private key can SSH as the configured user; anyone with a token can perform API and MCP actions allowed by that user’s RBAC. The dashboard UI is not a second security boundary—API and MCP enforce the same roles.',
+          'Rotate by creating a new secret, switching dependents (servers, CI, MCP client config), then revoking or deleting the old one. Do not share one personal token across the whole team; each person (or each bot account) should create their own. Limit OWNER tokens to humans who must manage infrastructure. After offboarding, revoke that person’s tokens here in addition to removing them from the workspace.',
+        ],
+      },
+      {
+        h: 'Practical checklist',
+        p: [],
+        list: [
+          'First server: Keys & Tokens → SSH Keys → create → authorize public key on the VPS → Servers → Add Server',
+          'Private git without a Git App: service Git source type Deploy key + workspace Private key (see Git Sources)',
+          'Scripts and agents: Keys & Tokens → API Tokens → copy peon_… once → Authorization: Bearer',
+          'MCP: same token → {appOrigin}/mcp → see MCP Server for client JSON',
+          'Leak or offboarding: revoke the token; for SSH, replace authorized_keys and re-point the server',
+          'Do not confuse with Environment or Shared Variables—those are app config, not Peon login secrets',
+        ],
+      },
+      {
+        h: 'Related',
+        p: [
+          'Managing Servers (attach SSH keys, Connect / Reconnect). Git Sources (Deploy key vs Git App). Your First Deployment (first key then first server). MCP Server (client JSON and tools). Webhooks & Automation (when tokens sit next to git webhooks). Shared Variables and Environment Variables (app secrets, not this page). Profile & Account (sessions are not API tokens).',
         ],
       },
     ],

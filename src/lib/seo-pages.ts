@@ -134,7 +134,7 @@ export const SOLUTION_PAGES: SeoPage[] = [
   {
     slug: 'application-deployment',
     kind: 'solution',
-    title: 'Application Deployment Tools for Your Own Servers | Peon',
+    title: 'Deploy Apps to Your Own Server in Minutes',
     description:
       'Peon is a deployment platform with rolling deployments, Git push (GitHub, GitLab, Bitbucket), Docker Compose, on your own VPS from $3/project.',
     eyebrow: 'Solutions',
@@ -429,7 +429,7 @@ export const COMPARE_PAGES: SeoPage[] = [
   {
     slug: 'peon-vs-coolify',
     kind: 'compare',
-    title: 'Peon vs Coolify (2026): The Coolify Alternative Teams Pick',
+    title: 'Peon vs Coolify: Why Teams Switch to Peon',
     description:
       'Peon vs Coolify: both self-hosted PaaS on your VPS. Peon uniquely combines project RBAC, audit logs & MCP for $3/project Cloud with unlimited servers & seats.',
     eyebrow: 'Compare',
@@ -692,7 +692,7 @@ export const COMPARE_PAGES: SeoPage[] = [
   {
     slug: 'peon-vs-dokploy',
     kind: 'compare',
-    title: 'Peon vs Dokploy (2026): Dokploy Alternative, Per Project Cloud',
+    title: 'Peon vs Dokploy: Per-Project Clouds Without the Chaos',
     description:
       'Compare Peon and Dokploy: both self-hosted PaaS options. Peon is a Dokploy alternative with audit logs and MCP included.',
     eyebrow: 'Compare',
@@ -939,7 +939,7 @@ export const COMPARE_PAGES: SeoPage[] = [
   {
     slug: 'peon-vs-vercel',
     kind: 'compare',
-    title: 'Peon vs Vercel (2026): The Self-Hosted Vercel Alternative',
+    title: 'Peon vs Vercel: Self-Host and Stop Paying Per Build',
     description:
       'Peon is a Vercel alternative at $3/project on your own VPS with unlimited seats. Compare Peon vs Vercel in 2026 and learn when to dual-run.',
     eyebrow: 'Compare',
@@ -1563,7 +1563,7 @@ export const COMPARE_PAGES: SeoPage[] = [
   {
     slug: 'peon-vs-railway',
     kind: 'compare',
-    title: 'Peon vs Railway (2026): Railway Alternative on Your Own VPS',
+    title: 'Peon vs Railway: Run It on Your Own Server',
     description:
       'Peon is a Railway alternative that runs the same container-first workflow on servers you own, for $3/project.',
     eyebrow: 'Compare',
@@ -1657,7 +1657,7 @@ export const COMPARE_PAGES: SeoPage[] = [
   {
     slug: 'peon-vs-render',
     kind: 'compare',
-    title: 'Peon vs Render (2026): Render Alternative for Your Own VPS',
+    title: 'Peon vs Render: Deploy on Your VPS, Not Theirs',
     description:
       'Peon vs Render: open-source self-hosted alternative with flat $3/project pricing, unlimited seats, and no per-service charges. Full comparison.',
     eyebrow: 'Compare',
@@ -1747,7 +1747,7 @@ export const COMPARE_PAGES: SeoPage[] = [
   {
     slug: 'peon-vs-netlify',
     kind: 'compare',
-    title: 'Peon vs Netlify (2026): Netlify Alternatives for Backends',
+    title: 'Peon vs Netlify: Self-Host Your Backend Apps',
     description:
       'Peon is one of the practical Netlify alternatives for backends and databases: your own VPS, $3/project, unlimited seats.',
     eyebrow: 'Compare',
@@ -1833,7 +1833,7 @@ export const COMPARE_PAGES: SeoPage[] = [
   {
     slug: 'peon-vs-portainer',
     kind: 'compare',
-    title: 'Peon vs Portainer (2026): A Deployment Platform, Not Just a UI',
+    title: 'Peon vs Portainer: Deployments, Not Just a Docker UI',
     description:
       'Portainer manages existing containers. Peon builds from Git, issues TLS, and runs PR previews on the same server. Self-host free or $3/project.',
     eyebrow: 'Compare',
