@@ -550,38 +550,82 @@ REDIS_URL=redis://:<password>@<redis-container>:6379`,
     slug: 'domains-and-ssl',
     title: 'Domains & SSL',
     description:
-      "Add custom domains to Peon services: configure Force HTTPS, Gzip, and Strip Prefix, point your DNS records, and fix Let's Encrypt certificate issues.",
+      'Add custom domains to Peon services: DNS to your VPS, Traefik or Caddy gateway, Let’s Encrypt, Force HTTPS, Gzip, Strip prefix, Cloudflare, and how this differs from preview wildcard hosts.',
     sections: [
       {
-        h: 'Where',
-        p: ['Service → Domains (hidden for databases).'],
-      },
-      {
-        h: 'Fields',
-        p: [],
-        list: [
-          'Domains - public FQDNs (multi-row; Add New Domain). Example https://app.example.com',
-          'Force HTTPS - redirect HTTP→HTTPS via gateway (default on)',
-          'Gzip compression - default on',
-          'Strip prefix - strip path prefix / via proxy (default off)',
+        h: 'What Domains & SSL are',
+        p: [
+          'Service → Domains is where you attach public hostnames to an application, image, static, or Compose service. The server gateway (Traefik by default, or Caddy) routes those FQDNs to the container and Let’s Encrypt issues certificates once DNS points at the server and ports 80/443 are reachable.',
+          'This is not the server Wildcard domain (Servers → General), which is the base for preview URLs like https://{sha}.{wildcard}. It is also not the SERVICE_FQDN_* / SERVICE_URL_* values some marketplace templates seed into Environment—those placeholders are not Traefik/Caddy routes until you copy a real hostname into Domains. Databases have no Domains panel; they are reached on the private Docker network, not as public HTTPS sites.',
         ],
       },
       {
-        h: 'DNS and gateway',
+        h: 'Where and who',
         p: [
-          'Point A/AAAA or CNAME at the server IP. Server Wildcard domain (Servers → General) powers preview hostnames. Gateway must be on; ports 80/443 open. Let’s Encrypt issues after DNS is correct.',
+          'Open the service sidebar → Domains. Who can add or edit domains: workspace OWNER/ADMIN or project ADMIN (the same project manage role as other service config). After changing hostnames or toggles, Redeploy or wait for the gateway reload so routing and certificates pick up the new FQDN. Visit on Overview opens the primary domain once HTTPS is healthy.',
+        ],
+      },
+      {
+        h: 'Add a domain',
+        p: [
+          'Use Add New Domain and enter a public FQDN, for example https://app.example.com. You can attach more than one hostname to the same service (apex plus www, or a second brand domain). Keep names you actually control in DNS; a row that does not resolve to this server will never get a certificate.',
+          'The first healthy custom domain is what Visit uses. Path-only or internal hostnames do not belong here—this panel is for names the gateway should terminate on 80/443. For Git applications, add the domain after the service exists; create does not require it, but public traffic does.',
+        ],
+      },
+      {
+        h: 'Force HTTPS, Gzip, and Strip prefix',
+        p: [
+          'Force HTTPS (default on) tells the gateway to redirect HTTP to HTTPS once a certificate exists. Leave it on for public sites. Turn it off only while you are debugging issuance or an HTTP-only internal experiment—leaving it off on the public internet is rarely what you want.',
+          'Gzip compression (default on) compresses responses at the proxy. Keep it on unless a specific client or already-compressed payload misbehaves.',
+          'Strip prefix (default off) strips a path prefix at the proxy before the request reaches the container. Leave it off unless the app is mounted under a subpath and expects the prefix removed. Guessing this toggle on is a common cause of broken assets and redirects.',
+        ],
+      },
+      {
+        h: 'DNS and the gateway',
+        p: [
+          'Point an A or AAAA record (or a CNAME to a name that already resolves to this VPS) at the server IP you connected in Peon. Apex domains usually need A/AAAA; www can CNAME to the apex if your DNS host allows it. Wait until the name resolves from the public internet before expecting Let’s Encrypt to succeed.',
+          'On the server, Gateway must be on and ports 80 and 443 open in the host firewall and any cloud security group. Gateway type None means Peon will not terminate public HTTPS for you. Turn on / Reload / Traefik vs Caddy are documented on Managing Servers—this page assumes the proxy is already running.',
+          'Let’s Encrypt HTTP-01 needs to reach the gateway on port 80 for that hostname. Certificates issue after DNS is correct; they do not issue because you clicked Add New Domain alone. If you change DNS, give TTL time to expire before retrying issuance.',
         ],
       },
       {
         h: 'Cloudflare',
         p: [
-          'Use SSL mode Full (strict). Grey-cloud during first issuance if HTTP-01 fails through the proxy, then re-enable orange cloud.',
+          'When the hostname is on Cloudflare, set SSL/TLS mode to Full (strict) once the origin certificate works, so Cloudflare talks HTTPS to Traefik/Caddy with a valid cert. Flexible (HTTP to origin) fights Force HTTPS and produces redirect loops or mixed content.',
+          'If the first Let’s Encrypt HTTP-01 attempt fails through the orange cloud (proxied), grey-cloud the record briefly so validation hits the origin, wait for the certificate, then re-enable the proxy. After that, Full (strict) plus orange cloud is the usual production setup. See Static Sites if you also put a CDN in front of a static app.',
+        ],
+      },
+      {
+        h: 'Preview vs production hostnames',
+        p: [
+          'Production custom domains live only on this Domains panel. PR preview URLs use the server Wildcard domain: DNS for *.your-wildcard-host must point at the same server IP, Gateway on, ports 80/443 open. A 404 or NXDOMAIN on https://{sha}.{wildcard} is almost always wildcard DNS or gateway—not the Domains rows on the production service.',
+          'Enable Preview deployments and Git permissions on Deployments & Previews. Do not paste preview SHA hostnames into Domains as a substitute for wildcard DNS.',
         ],
       },
       {
         h: 'Common errors',
         p: [
-          'Certificate not issuing → DNS wrong, ports 80/443 blocked, or Gateway off. Let’s Encrypt rate-limits failed validations - fix the cause before retrying.',
+          'Certificate not issuing usually means the FQDN does not resolve to this server, ports 80/443 are blocked, or Gateway is off. Let’s Encrypt rate-limits repeated failed validations—fix DNS and reachability before retrying, or you will wait out the limit with the same error.',
+          'Visit 404 or connection refused: confirm the domain row matches DNS, the service is deployed and healthy, and the gateway is on. Redirect loops: check Force HTTPS together with Cloudflare Flexible vs Full (strict). Wrong site or no TLS on a second hostname: add it as its own Domains row and wait for a cert; sharing one certificate across names you never added does not work.',
+        ],
+      },
+      {
+        h: 'Practical checklist',
+        p: [],
+        list: [
+          'Service → Domains → Add New Domain (https://app.example.com)',
+          'DNS A/AAAA or CNAME → this server’s IP; wait until it resolves publicly',
+          'Servers → Gateway Turn on; open 80/443; Gateway type not None',
+          'Leave Force HTTPS and Gzip on unless you have a reason; Strip prefix off unless the app is on a subpath',
+          'Cloudflare: Full (strict); grey-cloud only for first HTTP-01 if issuance fails',
+          'Previews: Servers → Wildcard domain + *. DNS—not this panel (see Deployments & Previews)',
+          'Still no cert: fix DNS/ports/gateway before retrying (rate limits)',
+        ],
+      },
+      {
+        h: 'Related',
+        p: [
+          'Managing Servers (Gateway Turn on, Traefik/Caddy/None, ports). Deployments & Previews (wildcard DNS and PR hosts). Your First Deployment (first custom domain). Git Applications and Static Sites (Visit, Force HTTPS on public apps). Docker Compose and One-Click Templates (seeded SERVICE_FQDN_* vs this panel).',
         ],
       },
     ],
