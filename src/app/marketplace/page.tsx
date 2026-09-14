@@ -17,6 +17,14 @@ export const metadata: Metadata = {
     "open source marketplace",
   ],
   alternates: { canonical: "/marketplace" },
+  openGraph: {
+    title: '300+ Apps, One Click to Deploy | Peon Marketplace',
+    description:
+      "One-click deploy 333+ self-hosted services to your own server. Plausible, n8n, WordPress, Ghost and more. Secrets and HTTPS set up automatically.",
+    url: "/marketplace",
+    siteName: "Peon",
+    type: "website",
+  },
 }
 
 export default function MarketplacePage() {

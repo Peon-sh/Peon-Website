@@ -8,6 +8,14 @@ export const metadata: Metadata = {
   description:
     "Read Peon's privacy policy: how we collect, use, store, and protect your personal data when you use peon.sh or the Peon Cloud platform.",
   alternates: { canonical: '/privacy-policy' },
+  openGraph: {
+    title: 'Peon Privacy Policy: Data Collection & Your Rights',
+    description:
+      "Read Peon's privacy policy: how we collect, use, store, and protect your personal data when you use peon.sh or the Peon Cloud platform.",
+    url: '/privacy-policy',
+    siteName: 'Peon',
+    type: 'website',
+  },
 };
 
 export default function PrivacyPolicyPage() {
