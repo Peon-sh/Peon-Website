@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 
 export function MockChat({ className }: { className?: string }) {
   return (
-    <div className={cn('frame flex flex-col gap-3 p-4 text-[12px] leading-relaxed', className)} aria-hidden>
+    <div className={cn('frame flex min-w-0 flex-col gap-3 overflow-hidden p-4 text-[12px] leading-relaxed', className)} aria-hidden>
       <div className="self-end max-w-[85%] rounded-lg rounded-tr-sm bg-accent px-3 py-2 text-foreground">
         The api deployment failed. Why, and can you fix it?
       </div>
@@ -32,7 +32,7 @@ export function MockChat({ className }: { className?: string }) {
 
 export function MockTerminal({ lines, className }: { lines: readonly string[]; className?: string }) {
   return (
-    <div className={cn('frame bg-[#070708] p-3.5 font-mono text-[11.5px] leading-[1.8]', className)} aria-hidden>
+    <div className={cn('frame overflow-hidden bg-[#070708] p-3.5 font-mono text-[11.5px] leading-[1.8]', className)} aria-hidden>
       {lines.map((l, i) => (
         <div key={i} className={cn('whitespace-pre', l.startsWith('$') ? 'text-foreground' : 'text-muted-foreground')}>
           {l.startsWith('$') ? (

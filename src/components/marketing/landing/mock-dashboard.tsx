@@ -49,7 +49,7 @@ function StatusDot({ tone }: { tone: 'success' | 'warning' | 'muted' }) {
 
 export function MockDashboard({ className }: { className?: string }) {
   return (
-    <div className={cn('frame overflow-hidden text-[12px] leading-none', className)} aria-hidden>
+    <div className={cn('frame min-w-0 overflow-hidden text-[12px] leading-none', className)} aria-hidden>
       {/* Window chrome */}
       <div className="flex h-9 items-center gap-2 border-b border-border bg-secondary/60 px-3">
         <span className="size-2.5 rounded-full bg-border-bright" />
@@ -87,10 +87,10 @@ export function MockDashboard({ className }: { className?: string }) {
         </aside>
 
         {/* Main */}
-        <div className="min-w-0">
+        <div className="min-w-0 overflow-hidden">
           <div className="flex items-center justify-between border-b border-border px-4 py-3">
             <div className="flex items-center gap-2.5">
-              <span className="text-faint">Projects /</span>
+              <span className="hidden text-faint sm:inline">Projects /</span>
               <span className="font-medium text-foreground">acme-api</span>
               <span className="inline-flex items-center gap-1.5 rounded-full border border-phosphor/30 bg-phosphor/10 px-2 py-0.5 text-[10px] font-medium text-phosphor">
                 <StatusDot tone="success" /> Healthy
@@ -141,7 +141,7 @@ export function MockDashboard({ className }: { className?: string }) {
             </div>
           </div>
 
-          <div className="border-t border-border bg-[#070708] px-4 py-3 font-mono text-[11px] leading-[1.7]">
+          <div className="border-t border-border bg-[#070708] px-4 py-3 overflow-hidden font-mono text-[11px] leading-[1.7]">
             <div className="mb-1.5 flex items-center gap-2 text-faint">
               <span className="text-phosphor">●</span> build · a41f9c2 · streaming
             </div>

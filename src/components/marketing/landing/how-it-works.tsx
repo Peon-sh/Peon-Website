@@ -67,7 +67,7 @@ export function HowItWorks() {
         />
         <ol className="mt-14 grid gap-8 lg:grid-cols-3">
           {STEPS.map((s) => (
-            <li key={s.n} className="flex flex-col">
+            <li key={s.n} className="flex min-w-0 flex-col">
               <div className="flex items-center gap-3">
                 <span className="font-mono text-xs text-phosphor tabular">{s.n}</span>
                 <span className="h-px flex-1 bg-border" />

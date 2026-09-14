@@ -26,7 +26,7 @@ function Cell({
   links?: { label: string; href: string }[];
 }) {
   return (
-    <article className={cn('flex flex-col rounded-xl border border-border bg-card p-6', className)}>
+    <article className={cn('flex min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card p-6', className)}>
       <h3 className="text-base font-semibold">{title}</h3>
       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{body}</p>
       {links ? (
