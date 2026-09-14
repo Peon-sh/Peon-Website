@@ -12,6 +12,19 @@ import { publicEnv } from '@/lib/env';
 
 export const dynamic = 'force-dynamic';
 
+const ABSOLUTE_TITLE_SLUGS = new Set([
+  'docker-networking-explained',
+  'environment-variables-docker-compose',
+  'dns-propagation-explained',
+  'self-host-uptime-kuma',
+  'hetzner-vs-digitalocean',
+  'deploy-go-app',
+  'self-host-n8n-automation',
+  'self-host-minio-object-storage',
+  'digitalocean-app-platform-vs-peon',
+  'deploy-laravel-on-peon-with-git-ci-cd-a-queue-worker-and-a-scheduler',
+]);
+
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -31,7 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const robots = post.robotsMeta?.trim();
 
   return {
-    title,
+    title: ABSOLUTE_TITLE_SLUGS.has(slug) ? { absolute: title } : title,
     description,
     keywords: keywords?.length ? keywords : undefined,
     alternates: { canonical },

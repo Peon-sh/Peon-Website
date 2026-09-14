@@ -4,6 +4,7 @@ export const GETTING_STARTED_PAGES: DocPage[] = [
   {
     slug: 'introduction',
     title: 'Introduction',
+    seoTitle: 'What Is Peon? Intro to Workspaces, Projects & Servers',
     description:
       'Learn what Peon is: the workspace, project, service, and server hierarchy explained, with Cloud vs self-host options and how deployments work.',
     sections: [
@@ -238,6 +239,7 @@ git push origin main
   {
     slug: 'projects',
     title: 'Projects',
+    seoTitle: 'Create, Manage & Collaborate on Peon Projects | Docs',
     description:
       'Create and manage projects in Peon: browse the Services tab, invite members with roles, configure settings, use the marketplace, and safely delete.',
     sections: [

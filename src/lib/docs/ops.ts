@@ -174,6 +174,7 @@ export const OPS_PAGES: DocPage[] = [
   {
     slug: 'scheduled-tasks',
     title: 'Scheduled Tasks',
+    seoTitle: 'Run Cron Jobs Inside Peon Service Containers | Peon Docs',
     description:
       'Run cron jobs inside Peon service containers: create schedules, set timeouts, target containers, execute now, and review execution history.',
     sections: [
@@ -253,6 +254,7 @@ export const OPS_PAGES: DocPage[] = [
   {
     slug: 'logs-and-terminal',
     title: 'Logs & Terminal',
+    seoTitle: 'Container Logs & Terminal Access in Peon | Peon Docs',
     description:
       'Read Peon container logs (tail, follow, download) and use UI-only interactive terminals for services and servers—roles, limits vs Chat/MCP, and debugging tips.',
     sections: [
@@ -387,6 +389,7 @@ export const OPS_PAGES: DocPage[] = [
   {
     slug: 'notifications',
     title: 'Notifications',
+    seoTitle: 'Peon Notifications: Slack, Discord, Email & Webhooks',
     description:
       'Configure Peon workspace alerts: Email, Discord, Slack, Telegram, Pushover, and Webhook channels, event types, Test delivery, and setup tips.',
     sections: [
@@ -526,6 +529,7 @@ export const REFERENCE_PAGES: DocPage[] = [
   {
     slug: 'troubleshooting',
     title: 'Troubleshooting',
+    seoTitle: 'Peon Troubleshooting: Fix Server, Deploy & SSL Errors',
     description:
       'Fix common Peon issues: server connection failures, failed deploys, health check errors, SSL problems, permission errors, and Chat model setup.',
     sections: [
@@ -594,6 +598,7 @@ export const REFERENCE_PAGES: DocPage[] = [
   {
     slug: 'danger-zones',
     title: 'Danger Zones',
+    seoTitle: 'Safely Delete Services, Servers & Projects in Peon',
     description:
       'Safely delete Peon services, servers, projects, and workspaces: name confirmations, preflight rules, what gets torn down, and what stays on the VM.',
     sections: [
@@ -660,6 +665,7 @@ export const REFERENCE_PAGES: DocPage[] = [
   {
     slug: 'contributing',
     title: 'Contributing',
+    seoTitle: 'Contribute to Peon: Dev Setup, PRs & Templates | Docs',
     description:
       'Contribute to Peon-sh/Peon: ways to help, local dev setup with pnpm and worker, PR guidelines, docs, and one-click templates.',
     sections: [

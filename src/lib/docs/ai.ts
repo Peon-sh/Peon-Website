@@ -7,6 +7,7 @@ export const AI_PAGES: DocPage[] = [
   {
     slug: 'mcp',
     title: 'MCP Server',
+    seoTitle: 'Peon MCP Server: Connect AI Agents to Your Deployments',
     description:
       'Connect Cursor, Claude, and other AI agents to Peon via MCP. The same RBAC as your dashboard controls what agents can deploy, restart, or change.',
     sections: [
@@ -90,6 +91,7 @@ export const AI_PAGES: DocPage[] = [
   {
     slug: 'chat-assistant',
     title: 'Chat Assistant',
+    seoTitle: 'Peon Chat Assistant: AI Deployments with BYO LLM Keys',
     description:
       "Peon's in-app AI assistant: bring your own LLM keys, ask deployment questions, get visual responses, and approve actions before they run.",
     sections: [

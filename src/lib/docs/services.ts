@@ -105,6 +105,7 @@ export const SERVICE_PAGES: DocPage[] = [
   {
     slug: 'docker-images',
     title: 'Docker Images',
+    seoTitle: 'Docker Image Deployments in Peon: Ports & Health Checks',
     description:
       'Deploy prebuilt registry images on Peon: create a Docker Image service, configure ports, env, domains, health checks, resource limits, and roll back safely.',
     sections: [
@@ -184,6 +185,7 @@ export const SERVICE_PAGES: DocPage[] = [
   {
     slug: 'docker-compose',
     title: 'Docker Compose',
+    seoTitle: 'Docker Compose in Peon: Stacks, Volumes & Domains | Docs',
     description:
       'Deploy multi-container Compose stacks on Peon: create blank services or use marketplace templates, with volumes, domains, and env interpolation.',
     sections: [
@@ -263,6 +265,7 @@ export const SERVICE_PAGES: DocPage[] = [
   {
     slug: 'static-sites',
     title: 'Static Sites',
+    seoTitle: 'Deploy Static Sites and SPAs with Peon | Peon Docs',
     description:
       'Deploy static sites and SPAs on Peon: Static Site type or Static build pack, publish directory, nginx serve, SPA fallback, domains, and CDN tips.',
     sections: [
@@ -413,6 +416,7 @@ export const SERVICE_PAGES: DocPage[] = [
   {
     slug: 'databases',
     title: 'Databases',
+    seoTitle: 'Peon Databases: Postgres, MySQL, MongoDB & Redis Docs',
     description:
       'Deploy Postgres, MySQL, MongoDB, or Redis on Peon: create fields, access credentials, internal and public URLs, and backup wiring.',
     sections: [
@@ -549,6 +553,7 @@ REDIS_URL=redis://:<password>@<redis-container>:6379`,
   {
     slug: 'domains-and-ssl',
     title: 'Domains & SSL',
+    seoTitle: 'Custom Domains and Auto-SSL for Peon Services | Docs',
     description:
       'Add custom domains to Peon services: DNS to your VPS, Traefik or Caddy gateway, Let’s Encrypt, Force HTTPS, Gzip, Strip prefix, Cloudflare, and how this differs from preview wildcard hosts.',
     sections: [

@@ -10,6 +10,8 @@ export type DocSection = {
 export type DocPage = {
   slug: string;
   title: string;
+  /** Full <title> when set; bypasses the root "%s | Peon" template. */
+  seoTitle?: string;
   description: string;
   sections: DocSection[];
 };

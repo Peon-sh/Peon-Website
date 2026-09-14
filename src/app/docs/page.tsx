@@ -2,7 +2,9 @@ import type { Metadata } from "next"
 import { DOC_GROUPS } from "@/lib/docs"
 
 export const metadata: Metadata = {
-  title: "Documentation",
+  title: {
+    absolute: "Peon Docs: Deployments, MCP, Databases & Troubleshooting",
+  },
   description:
     "Peon documentation: set up MCP for Cursor and Claude, configure workspaces, deploy services, manage databases, and troubleshoot common issues.",
   alternates: { canonical: "/docs" },

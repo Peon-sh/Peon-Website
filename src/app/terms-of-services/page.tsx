@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { LegalPage } from '@/components/marketing/legal-page';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service',
+  title: { absolute: 'Peon Terms of Service: Billing, Usage & Account Rules' },
   description:
     "Peon's terms of service: rules for using the open-source deployment platform at peon.sh, including billing, acceptable use, and account rights.",
   alternates: { canonical: '/terms-of-services' },

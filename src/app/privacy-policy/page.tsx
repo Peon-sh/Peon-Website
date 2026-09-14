@@ -4,7 +4,7 @@ import { LegalPage } from '@/components/marketing/legal-page';
 export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy',
+  title: { absolute: 'Peon Privacy Policy: Data Collection & Your Rights' },
   description:
     "Read Peon's privacy policy: how we collect, use, store, and protect your personal data when you use peon.sh or the Peon Cloud platform.",
   alternates: { canonical: '/privacy-policy' },

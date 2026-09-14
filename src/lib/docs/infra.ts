@@ -109,6 +109,7 @@ export const INFRA_PAGES: DocPage[] = [
   {
     slug: 'git-sources',
     title: 'Git Sources',
+    seoTitle: 'Connect GitHub & GitLab as Git Sources | Peon Docs',
     description:
       'Connect GitHub or GitLab in Peon as workspace Git sources: platform vs custom apps, when to skip a source, how services pick Git App / public repo / deploy key, and how webhooks relate to auto-deploy.',
     sections: [
@@ -191,6 +192,7 @@ export const INFRA_PAGES: DocPage[] = [
   {
     slug: 'storages',
     title: 'Storages (S3)',
+    seoTitle: 'Connect S3 Storage for Database Backups | Peon Docs',
     description:
       'Connect S3-compatible buckets in Peon for database backup uploads: AWS, R2, B2, MinIO, Hetzner Object Storage, credentials, Test, and wiring to Backups.',
     sections: [
@@ -259,6 +261,7 @@ export const INFRA_PAGES: DocPage[] = [
   {
     slug: 'keys-and-tokens',
     title: 'Keys & Tokens',
+    seoTitle: 'Manage SSH Keys and API Tokens in Peon | Peon Docs',
     description:
       'Manage workspace SSH keys for servers and git deploy keys, plus personal API tokens (peon_…) for REST and MCP. Who can create them, how to rotate, and how they differ from Environment and Shared Variables.',
     sections: [

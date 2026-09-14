@@ -54,7 +54,7 @@ export const SOLUTION_PAGES: SeoPage[] = [
     kind: 'solution',
     title: 'Self-Hosted PaaS & Docker Hosting Provider | Peon',
     description:
-      'Compare self-hosted PaaS providers and see why Peon beats a bare Portainer setup for $3/project.',
+      'Run a self-hosted PaaS on your own servers with Git push deploys, TLS, RBAC, and databases. Free to self-host or $3/project on Peon Cloud.',
     eyebrow: 'Solutions',
     h1: 'Self-hosted PaaS without the lock-in',
     intro:
@@ -213,7 +213,7 @@ export const SOLUTION_PAGES: SeoPage[] = [
     kind: 'solution',
     title: 'PostgreSQL Web Hosting on Your Own Servers | Peon',
     description:
-      'Web hosting for PostgreSQL, MySQL, MongoDB & Redis on your VPS with Peon. Schedule backups to S3-compatible storage, and restore when needed for your next apps.',
+      'Deploy Postgres, MySQL, MongoDB, or Redis on Peon: create fields, access credentials, internal and public URLs, and backup wiring.',
     eyebrow: 'Solutions',
     h1: 'Databases that live next to your apps',
     intro:
@@ -355,7 +355,7 @@ export const SOLUTION_PAGES: SeoPage[] = [
     kind: 'solution',
     title: 'Peon Enterprise: SSO, White Label & Priority Support',
     description:
-      'Peon Enterprise for organizations that need SSO/SAML, SCIM, white labeling, MSA/SLA and flexible hosting, on top of $3/project cloud or free self-host for standard teams.',
+      'Peon Enterprise: SSO/SAML, SCIM, white labeling, MSA/SLA, and priority support. On top of $3/project Cloud or free self-host for larger teams.',
     eyebrow: 'Solutions',
     h1: 'Enterprise control for teams that ship on their own servers',
     intro:
@@ -1280,7 +1280,7 @@ export const COMPARE_PAGES: SeoPage[] = [
   {
     slug: 'peon-vs-digitalocean',
     kind: 'compare',
-    title: 'Peon vs DigitalOcean App Platform (2026): A Portable Alternative',
+    title: 'Peon vs DigitalOcean App Platform 2026: Comparison',
     description:
       'Peon is a DigitalOcean App Platform alternative and docker hosting provider for $3/project with unlimited seats and multi-cloud portability.',
     eyebrow: 'Compare',
@@ -1659,7 +1659,7 @@ export const COMPARE_PAGES: SeoPage[] = [
     kind: 'compare',
     title: 'Peon vs Render: Deploy on Your VPS, Not Theirs',
     description:
-      'Peon is an open-source Render alternative on your own server and cloud for $3/project with unlimited seats.',
+      'Peon vs Render: open-source self-hosted alternative with flat $3/project pricing, unlimited seats, and no per-service charges. Full comparison.',
     eyebrow: 'Compare',
     h1: 'Peon vs Render: a Render alternative that doesn\'t sleep',
     intro:
@@ -1835,7 +1835,7 @@ export const COMPARE_PAGES: SeoPage[] = [
     kind: 'compare',
     title: 'Peon vs Portainer: Deployments, Not Just a Docker UI',
     description:
-      'Portainer manages containers you already have. Peon is a Portainer alternative that also builds from Git, issues TLS and runs PR previews, self-host free or $3/project Cloud.',
+      'Portainer manages existing containers. Peon builds from Git, issues TLS, and runs PR previews on the same server. Self-host free or $3/project.',
     eyebrow: 'Compare',
     h1: 'Peon vs Portainer: a Portainer alternative with a deploy pipeline attached',
     intro:
@@ -1918,9 +1918,9 @@ export const COMPARE_PAGES: SeoPage[] = [
   {
     slug: 'peon-vs-cloudflare',
     kind: 'compare',
-    title: 'Peon vs Cloudflare Pages & Workers (2026): A Cloudflare Alternative for Backends',
+    title: 'Peon vs Cloudflare: Self-Hosted Alternative for Backends',
     description:
-      'Cloudflare Pages and Workers bill by request and CPU time on Cloudflare\'s edge. Peon is a Cloudflare alternative for always-on backends and databases: your VPS, $3/project.',
+      'Cloudflare Pages and Workers bill by request and CPU time. Peon runs always-on backends and databases on your own VPS for a flat $3/project. ',
     eyebrow: 'Compare',
     h1: 'Peon vs Cloudflare Pages & Workers',
     intro:

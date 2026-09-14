@@ -13,7 +13,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const page = getDocPage(slug)
   if (!page) return {}
   return {
-    title: `${page.title} | Docs`,
+    title: page.seoTitle
+      ? { absolute: page.seoTitle }
+      : `${page.title} | Docs`,
     description: page.description,
     alternates: { canonical: `/docs/${page.slug}` },
   }

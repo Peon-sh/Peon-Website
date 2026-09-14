@@ -11,12 +11,16 @@ export function generateStaticParams() {
   return COMPARE_PAGES.map((page) => ({ slug: page.slug }));
 }
 
+const ABSOLUTE_TITLE_SLUGS = new Set(['peon-vs-cloudflare', 'peon-vs-digitalocean']);
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const page = getComparePage(slug);
   if (!page) return {};
   return {
-    title: page.title,
+    title: ABSOLUTE_TITLE_SLUGS.has(slug)
+      ? { absolute: page.title }
+      : page.title,
     description: page.description,
     keywords: page.keywords,
     alternates: { canonical: `/compare/${page.slug}` },
