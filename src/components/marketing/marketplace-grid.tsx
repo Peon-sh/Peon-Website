@@ -69,7 +69,7 @@ export function MarketplaceGrid({
         </select>
       </div>
 
-      <p className="text-faint mt-3 font-mono text-[11px] uppercase tracking-wide">
+      <p className="text-faint mt-3 text-xs">
         {filtered.length} of {templates.length} services
       </p>
 
@@ -83,7 +83,7 @@ export function MarketplaceGrid({
               <MarketplaceLogo src={t.logo} name={t.name} priority={index < 6} />
               <div className="min-w-0 flex-1">
                 <div className="flex items-start justify-between gap-2">
-                  <h3 className="font-heading font-700 text-sm">{t.name}</h3>
+                  <h3 className="font-semibold text-sm">{t.name}</h3>
                   {t.category && (
                     <span className="border-border text-muted-foreground shrink-0 rounded border px-1.5 py-0.5 text-[10px]">
                       {t.category}
@@ -98,7 +98,7 @@ export function MarketplaceGrid({
             <div className="mt-4 flex flex-1 items-end justify-between">
               <AppCtaLink
                 path={`/deploy/${t.slug}`}
-                className="bg-primary text-primary-foreground rounded-md px-3 py-1.5 text-xs font-semibold hover:opacity-90"
+                className="bg-primary text-primary-foreground rounded-md px-3 py-1.5 text-xs font-semibold hover:bg-primary/90"
               >
                 Deploy
               </AppCtaLink>

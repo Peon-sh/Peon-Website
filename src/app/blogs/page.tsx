@@ -10,6 +10,14 @@ export const metadata: Metadata = {
   description:
     'Practical deployment guides, honest platform comparisons, and Docker troubleshooting for teams running self-hosted apps on their own servers.',
   alternates: { canonical: '/blogs' },
+  openGraph: {
+    title: 'Self-Hosting Guides, Fixes & Comparisons | Peon Blog',
+    description:
+      'Practical deployment guides, honest platform comparisons, and Docker troubleshooting for teams running self-hosted apps on their own servers.',
+    url: '/blogs',
+    siteName: 'Peon',
+    type: 'website',
+  },
 };
 
 function formatDate(iso: string | null): string {
@@ -29,8 +37,8 @@ export default async function BlogIndexPage() {
     <div className="flex min-h-screen flex-col">
       <SiteHeader active="blog" />
 
-      <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-16">
-        <h1 className="panel-title-slashes text-3xl font-800">The Peon Blog</h1>
+      <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-16">
+        <h1 className="text-3xl font-semibold">The Peon Blog</h1>
         <p className="mt-3 max-w-2xl text-muted-foreground">
           Practical guides, honest comparisons and troubleshooting help for teams deploying
           on their own servers.
@@ -41,7 +49,7 @@ export default async function BlogIndexPage() {
         ) : (
           groups.map(({ tag, posts: groupPosts }) => (
             <section key={tag?.slug ?? 'untagged'} className="mt-14">
-              <h2 className="font-mono text-xs uppercase tracking-widest text-phosphor">
+              <h2 className="text-sm font-medium text-phosphor">
                 {tag?.name ?? 'Articles'} · {groupPosts.length}
               </h2>
               <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -60,13 +68,13 @@ export default async function BlogIndexPage() {
                           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                         />
                       ) : (
-                        <div className="flex h-full items-center justify-center font-mono text-[10px] uppercase tracking-widest text-faint">
+                        <div className="flex h-full items-center justify-center text-xs text-faint">
                           peon
                         </div>
                       )}
                     </div>
                     <div className="p-5">
-                      <h3 className="font-heading text-sm font-700 leading-snug group-hover:text-phosphor">
+                      <h3 className="text-sm font-semibold leading-snug">
                         {post.title}
                       </h3>
                       {post.excerpt ? (
@@ -74,7 +82,7 @@ export default async function BlogIndexPage() {
                           {post.excerpt}
                         </p>
                       ) : null}
-                      <p className="mt-3 font-mono text-[10px] uppercase tracking-wide text-faint">
+                      <p className="mt-3 text-xs text-faint">
                         {formatDate(post.publishedAt)}
                         {post.publishedAt ? ' · ' : ''}
                         {post.readingMinutes} min read
