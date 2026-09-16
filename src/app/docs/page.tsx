@@ -8,6 +8,14 @@ export const metadata: Metadata = {
   description:
     "Peon documentation: set up MCP for Cursor and Claude, configure workspaces, deploy services, manage databases, and troubleshoot common issues.",
   alternates: { canonical: "/docs" },
+  openGraph: {
+    title: "Peon Docs: Deployments, MCP, Databases & Troubleshooting",
+    description:
+      "Peon documentation: set up MCP for Cursor and Claude, configure workspaces, deploy services, manage databases, and troubleshoot common issues.",
+    url: "/docs",
+    siteName: "Peon",
+    type: "website",
+  },
 }
 
 export default function DocsIndexPage() {
