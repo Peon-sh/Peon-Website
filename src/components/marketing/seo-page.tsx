@@ -1,4 +1,5 @@
 import { SiteHeader } from '@/components/marketing/site-header';
+import { Check } from "lucide-react";
 import { SiteFooter } from '@/components/marketing/site-footer';
 import { AppCtaLink } from '@/components/marketing/app-cta-link';
 import type { SeoPage as SeoPageData } from '@/lib/seo-pages';
@@ -34,11 +35,11 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
       <SiteHeader />
       <main className="flex-1">
         <section className="border-b border-border">
-          <div className="mx-auto w-full max-w-3xl px-4 py-16">
-            <p className="font-mono text-xs uppercase tracking-widest text-phosphor">
+          <div className="mx-auto w-full max-w-3xl px-6 py-16">
+            <p className="text-sm font-medium text-phosphor">
               {page.eyebrow}
             </p>
-            <h1 className="mt-3 text-3xl font-800 leading-tight sm:text-5xl">{page.h1}</h1>
+            <h1 className="mt-3 text-3xl font-semibold leading-tight sm:text-5xl">{page.h1}</h1>
             {page.introContent ? (
               <div className="mt-5 space-y-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
                 {page.introContent.map((block, index) =>
@@ -62,21 +63,21 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
               {appPath ? (
                 <AppCtaLink
                   path={appPath}
-                  className="inline-flex rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90"
+                  className="inline-flex rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90"
                 >
                   {ctaLabel}
                 </AppCtaLink>
               ) : isExternal ? (
                 <a
                   href={ctaHref}
-                  className="inline-flex rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90"
+                  className="inline-flex rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90"
                 >
                   {ctaLabel}
                 </a>
               ) : (
                 <a
                   href={ctaHref}
-                  className="inline-flex rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90"
+                  className="inline-flex rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90"
                 >
                   {ctaLabel}
                 </a>
@@ -88,7 +89,7 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
         <div className="mx-auto w-full max-w-3xl space-y-12 px-4 py-14">
           {page.sections.map((section) => (
             <section key={section.title}>
-              <h2 className="panel-title-slashes text-xl font-700 sm:text-2xl">{section.title}</h2>
+              <h2 className="text-xl font-semibold sm:text-2xl">{section.title}</h2>
               {section.list && section.paragraphs.length > 1 ? (
                 <>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
@@ -97,7 +98,7 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
                   <ul className="mt-4 space-y-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
                     {section.list.map((item) => (
                       <li key={item} className="flex items-start gap-2">
-                        <span className="mt-0.5 text-phosphor">✓</span>
+                        <Check className="mt-1 size-3.5 shrink-0 text-phosphor" strokeWidth={2.5} aria-hidden />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -125,7 +126,7 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
                     <ul className="mt-4 space-y-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
                       {section.list.map((item) => (
                         <li key={item} className="flex items-start gap-2">
-                          <span className="mt-0.5 text-phosphor">✓</span>
+                          <Check className="mt-1 size-3.5 shrink-0 text-phosphor" strokeWidth={2.5} aria-hidden />
                           <span>{item}</span>
                         </li>
                       ))}
@@ -135,7 +136,7 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
               )}
               {section.subsections?.map((subsection) => (
                 <div key={subsection.title} className="mt-6">
-                  <h3 className="text-lg font-700 text-foreground">{subsection.title}</h3>
+                  <h3 className="text-lg font-semibold text-foreground">{subsection.title}</h3>
                   {subsection.paragraphs?.map((para) => (
                     <p
                       key={para.slice(0, 48)}
@@ -148,7 +149,7 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
                     <ul className="mt-4 space-y-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
                       {subsection.list.map((item) => (
                         <li key={item} className="flex items-start gap-2">
-                          <span className="mt-0.5 text-phosphor">✓</span>
+                          <Check className="mt-1 size-3.5 shrink-0 text-phosphor" strokeWidth={2.5} aria-hidden />
                           <span>{item}</span>
                         </li>
                       ))}
@@ -159,12 +160,12 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
               {section.table ? (
                 <div className="mt-6 overflow-x-auto rounded-lg border border-border">
                   <table className="w-full min-w-[480px] text-left text-sm">
-                    <thead className="bg-secondary font-mono text-xs uppercase tracking-wide text-muted-foreground">
+                    <thead className="bg-secondary text-xs font-medium text-muted-foreground">
                       <tr>
                         {section.table.headers.map((header, index) => (
                           <th
                             key={header}
-                            className={`px-4 py-3 ${index === 1 ? 'bg-accent text-phosphor' : ''}`}
+                            className={`px-4 py-3 ${index === 1 ? 'text-foreground shadow-[inset_0_2px_0_0_var(--phosphor)]' : ''}`}
                           >
                             {header}
                           </th>
@@ -203,14 +204,14 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
 
           {page.faqs && page.faqs.length > 0 ? (
             <section>
-              <h2 className="panel-title-slashes text-2xl font-700 sm:text-3xl">
+              <h2 className="text-2xl font-semibold sm:text-3xl">
                 Frequently asked questions
               </h2>
               <div className="mt-8 divide-y divide-border rounded-lg border border-border bg-card">
                 {page.faqs.map((faq) => (
                   <details key={faq.question} className="group px-6 py-4">
                     <summary className="cursor-pointer list-none font-medium marker:hidden">
-                      <span className="mr-2 font-mono text-phosphor">?</span>
+                      
                       {faq.question}
                     </summary>
                     <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
@@ -232,7 +233,7 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
 
           {page.related && page.related.length > 0 ? (
             <section className="border-t border-border pt-10">
-              <h2 className="panel-title-slashes text-lg font-700">Related</h2>
+              <h2 className="text-lg font-semibold">Related</h2>
               <ul className="mt-4 space-y-2 text-sm">
                 {page.related.map((link) => (
                   <li key={link.href}>

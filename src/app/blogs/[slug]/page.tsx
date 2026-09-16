@@ -106,27 +106,27 @@ export default async function BlogPostPage({ params }: Props) {
 
       <SiteHeader active="blog" />
 
-      <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-14">
-        <nav className="font-mono text-[11px] uppercase tracking-wide text-faint">
+      <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-14">
+        <nav className="text-xs text-faint">
           <a href="/blogs" className="hover:text-foreground">
             blog
           </a>
           {primaryTag ? (
             <>
               {' / '}
-              <span className="text-phosphor">{primaryTag.name}</span>
+              <span className="text-foreground">{primaryTag.name}</span>
             </>
           ) : null}
         </nav>
 
-        <h1 className="mt-4 text-3xl font-800 leading-tight sm:text-4xl">{post.title}</h1>
+        <h1 className="mt-4 text-3xl font-semibold leading-tight sm:text-4xl">{post.title}</h1>
         {post.excerpt ? (
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
             {post.excerpt}
           </p>
         ) : null}
         {byline ? (
-          <p className="mt-4 font-mono text-[11px] uppercase tracking-wide text-faint">
+          <p className="mt-4 text-xs text-faint">
             {byline}
           </p>
         ) : null}
@@ -145,15 +145,15 @@ export default async function BlogPostPage({ params }: Props) {
           dangerouslySetInnerHTML={{ __html: post.bodyHtml }}
         />
 
-        <aside className="bg-hero mt-14 rounded-xl border border-phosphor/40 bg-card p-8 text-center">
-          <h2 className="text-xl font-800">Deploy it on your own server</h2>
+        <aside className="mt-14 rounded-xl border border-border bg-card p-8 text-center">
+          <h2 className="text-xl font-semibold">Deploy it on your own server</h2>
           <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
             Peon is the open-source deployment platform: git push to deploy, automatic HTTPS,
             managed databases with backups - $3 per project, unlimited team members.
           </p>
           <AppCtaLink
             path="/register"
-            className="mt-5 inline-block rounded-md bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90"
+            className="mt-5 inline-block rounded-md bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90"
           >
             Start deploying for $3
           </AppCtaLink>
@@ -161,7 +161,7 @@ export default async function BlogPostPage({ params }: Props) {
 
         {related.length > 0 ? (
           <section className="mt-14">
-            <h2 className="font-mono text-xs uppercase tracking-widest text-phosphor">
+            <h2 className="text-sm font-medium text-phosphor">
               Related articles
             </h2>
             <div className="mt-4 grid gap-4 sm:grid-cols-3">
@@ -171,7 +171,7 @@ export default async function BlogPostPage({ params }: Props) {
                   href={`/blogs/${r.slug}`}
                   className="group rounded-lg border border-border bg-card p-4 transition-colors hover:border-border-bright"
                 >
-                  <h3 className="font-heading text-xs font-700 leading-snug group-hover:text-phosphor">
+                  <h3 className="text-sm font-medium leading-snug">
                     {r.title}
                   </h3>
                 </a>

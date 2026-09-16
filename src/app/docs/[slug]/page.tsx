@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { Check } from "lucide-react";
 import { notFound } from "next/navigation"
 import { ALL_DOC_PAGES, docGroupFor, getDocPage } from "@/lib/docs"
 
@@ -41,23 +42,23 @@ export default async function DocPage({ params }: Props) {
 
   return (
     <article>
-      <nav className="font-mono text-[11px] uppercase tracking-wide text-faint">
+      <nav className="text-xs text-faint">
         <a href="/docs" className="hover:text-foreground">docs</a>
         {group && (
           <>
             {" / "}
-            <span className="text-phosphor">{group.label}</span>
+            <span className="text-foreground">{group.label}</span>
           </>
         )}
       </nav>
 
-      <h1 className="mt-3 text-3xl font-800">{page.title}</h1>
+      <h1 className="mt-3 text-3xl font-semibold">{page.title}</h1>
       <p className="mt-3 text-base leading-relaxed text-muted-foreground">{page.description}</p>
 
       <div className="mt-8 space-y-9">
         {page.sections.map((section) => (
           <section key={section.h}>
-            <h2 className="panel-title-slashes text-lg font-700">{section.h}</h2>
+            <h2 className="text-lg font-semibold">{section.h}</h2>
             {section.p.map((para, i) => (
               <p key={i} className="mt-3 text-sm leading-relaxed text-muted-foreground">
                 {para}
@@ -67,7 +68,7 @@ export default async function DocPage({ params }: Props) {
               <ul className="mt-3 space-y-2 text-sm leading-relaxed text-muted-foreground">
                 {section.list.map((item) => (
                   <li key={item} className="flex items-start gap-2">
-                    <span className="mt-0.5 text-phosphor">›</span>
+                    <Check className="mt-1 size-3.5 shrink-0 text-phosphor" strokeWidth={2.5} aria-hidden />
                     {item}
                   </li>
                 ))}
@@ -77,7 +78,7 @@ export default async function DocPage({ params }: Props) {
               <div className="mt-4 overflow-hidden rounded-lg border border-border bg-card">
                 {section.codeLang ? (
                   <div className="flex items-center justify-between border-b border-border bg-secondary px-4 py-2">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-phosphor">
+                    <span className="text-xs font-medium text-phosphor">
                       {section.codeLang}
                     </span>
                   </div>

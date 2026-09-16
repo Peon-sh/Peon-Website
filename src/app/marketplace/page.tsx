@@ -34,9 +34,9 @@ export default function MarketplacePage() {
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader active="marketplace" />
-      <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-12">
-        <p className="font-mono text-xs uppercase tracking-widest text-phosphor">Marketplace</p>
-        <h1 className="mt-2 text-3xl font-800 sm:text-4xl">
+      <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-12">
+        <p className="text-sm font-medium text-phosphor">Marketplace</p>
+        <h1 className="mt-2 text-3xl font-semibold sm:text-4xl">
           {templates.length}+ services, one click to deploy
         </h1>
         <p className="mt-3 max-w-2xl text-muted-foreground">
@@ -44,7 +44,7 @@ export default function MarketplacePage() {
           volumes, a domain and automatic HTTPS. Click Deploy and Peon sets up a project and
           the service for you.
         </p>
-        <h2 className="mt-10 text-xl font-700 sm:text-2xl">
+        <h2 className="mt-10 text-xl font-semibold sm:text-2xl">
           Browse the self-hosted app marketplace
         </h2>
         <div className="mt-8">
