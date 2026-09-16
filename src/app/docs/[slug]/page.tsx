@@ -12,12 +12,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const page = getDocPage(slug)
   if (!page) return {}
+  const title = page.seoTitle ?? `${page.title} | Docs`
   return {
     title: page.seoTitle
       ? { absolute: page.seoTitle }
       : `${page.title} | Docs`,
     description: page.description,
     alternates: { canonical: `/docs/${page.slug}` },
+    openGraph: {
+      title,
+      description: page.description,
+      url: `/docs/${page.slug}`,
+      siteName: "Peon",
+      type: "website",
+    },
   }
 }
 

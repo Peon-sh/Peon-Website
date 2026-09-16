@@ -10,6 +10,14 @@ export const metadata: Metadata = {
   description:
     'Practical deployment guides, honest platform comparisons, and Docker troubleshooting for teams running self-hosted apps on their own servers.',
   alternates: { canonical: '/blogs' },
+  openGraph: {
+    title: 'Self-Hosting Guides, Fixes & Comparisons | Peon Blog',
+    description:
+      'Practical deployment guides, honest platform comparisons, and Docker troubleshooting for teams running self-hosted apps on their own servers.',
+    url: '/blogs',
+    siteName: 'Peon',
+    type: 'website',
+  },
 };
 
 function formatDate(iso: string | null): string {
