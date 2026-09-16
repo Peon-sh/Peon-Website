@@ -14,8 +14,8 @@ importers:
   .:
     dependencies:
       '@teispace/next-themes':
-        specifier: ^2.0.4
-        version: 2.0.4(next@16.3.5(@babel/core@7.29.7)(@types/node@26.5.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+        specifier: ^3.0.2
+        version: 3.0.2(next@16.3.5(@babel/core@7.29.7)(@types/node@26.5.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -27,7 +27,7 @@ importers:
         version: 1.45.0(react@19.3.0)
       next:
         specifier: 16.3.5
-        version: 16.3.5(@babel/core@7.29.7)(@types/node@26.5.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+        version: 16.3.5(@babel/core@7.29.7)(@types/node@26.5.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       pg:
         specifier: ^8.23.0
         version: 8.23.0
@@ -2812,12 +2812,12 @@ snapshots:
       postcss: 8.5.23
       tailwindcss: 4.3.3
 
-  '@teispace/next-themes@2.0.4(next@16.3.5(@babel/core@7.29.7)(@types/node@26.5.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
+  '@teispace/next-themes@3.0.2(next@16.3.5(@babel/core@7.29.7)(@types/node@26.5.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
     optionalDependencies:
-      next: 16.3.5(@babel/core@7.29.7)(@types/node@26.5.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      next: 16.3.5(@babel/core@7.29.7)(@types/node@26.5.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
 
   '@tybys/wasm-util@0.10.3':
     dependencies:
@@ -4032,16 +4032,16 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  next@16.3.5(@babel/core@7.29.7)(@types/node@26.5.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8):
+  next@16.3.5(@babel/core@7.29.7)(@types/node@26.5.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
     dependencies:
       '@next/env': 16.3.5
       '@swc/helpers': 0.5.23
       baseline-browser-mapping: 2.11.17
       caniuse-lite: 1.0.30001809
       postcss: 8.5.23
-      react: 19.2.8
-      react-dom: 19.2.8(react@19.2.8)
-      styled-jsx: 5.1.6(@babel/core@7.29.7)(react@19.2.8)
+      react: 19.3.0
+      react-dom: 19.3.0(react@19.3.0)
+      styled-jsx: 5.1.6(@babel/core@7.29.7)(react@19.3.0)
     optionalDependencies:
       '@next/swc-darwin-arm64': 16.3.5
       '@next/swc-darwin-x64': 16.3.5
