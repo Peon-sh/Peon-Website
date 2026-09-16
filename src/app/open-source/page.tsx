@@ -69,9 +69,9 @@ export default function OpenSourcePage() {
       <main className="flex-1">
         {/* Hero */}
         <section className="border-b border-border">
-          <div className="mx-auto w-full max-w-3xl px-4 py-16 sm:py-20">
-            <p className="font-mono text-xs uppercase tracking-widest text-phosphor">Open source</p>
-            <h1 className="mt-3 text-3xl font-800 leading-tight sm:text-5xl">
+          <div className="mx-auto w-full max-w-3xl px-6 py-16 sm:py-20">
+            <p className="text-sm font-medium text-phosphor">Open source</p>
+            <h1 className="mt-3 text-3xl font-semibold leading-tight sm:text-5xl">
               We believe in Open Source
             </h1>
             <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
@@ -103,7 +103,7 @@ export default function OpenSourcePage() {
                 href={SPONSOR_LINKS.stripeOrDirect}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center rounded-md bg-primary px-8 py-3.5 text-base font-semibold text-primary-foreground hover:opacity-90"
+                className="inline-flex items-center rounded-md bg-primary px-8 py-3.5 text-base font-medium text-primary-foreground hover:bg-primary/90"
               >
                 Sponsor Peon
               </a>
@@ -113,13 +113,13 @@ export default function OpenSourcePage() {
 
         {/* Commitments */}
         <section className="border-b border-border">
-          <div className="mx-auto w-full max-w-3xl px-4 py-14">
-            <h2 className="panel-title-slashes text-2xl font-700 sm:text-3xl">What this means</h2>
+          <div className="mx-auto w-full max-w-3xl px-6 py-14">
+            <h2 className="text-2xl font-semibold sm:text-3xl">What this means</h2>
             <p className="mt-3 text-muted-foreground">Our commitments to the community.</p>
             <div className="mt-10 space-y-8">
               {COMMITMENTS.map((item) => (
                 <div key={item.title}>
-                  <h3 className="font-heading text-base font-700 text-phosphor">{item.title}</h3>
+                  <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
                     {item.body}
                   </p>
@@ -140,8 +140,8 @@ export default function OpenSourcePage() {
 
         {/* Sustain */}
         <section className="border-b border-border">
-          <div className="mx-auto w-full max-w-3xl px-4 py-14">
-            <h2 className="panel-title-slashes text-2xl font-700 sm:text-3xl">
+          <div className="mx-auto w-full max-w-3xl px-6 py-14">
+            <h2 className="text-2xl font-semibold sm:text-3xl">
               How we sustain development
             </h2>
             <p className="mt-3 text-muted-foreground">Because we still need to pay the bills.</p>
@@ -153,7 +153,7 @@ export default function OpenSourcePage() {
 
             <div className="mt-10 space-y-6">
               <div>
-                <h3 className="font-heading text-base font-700 text-phosphor">
+                <h3 className="text-base font-semibold text-foreground">
                   Community donations
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
@@ -163,7 +163,7 @@ export default function OpenSourcePage() {
                 </p>
               </div>
               <div>
-                <h3 className="font-heading text-base font-700 text-phosphor">Hosted services</h3>
+                <h3 className="text-base font-semibold text-foreground">Hosted services</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
                   Prefer not to operate the control plane?{' '}
                   <AppCtaLink
@@ -194,10 +194,10 @@ export default function OpenSourcePage() {
                   rel={channel.href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
                   className="flex flex-col rounded-lg border border-border bg-card p-5 transition-colors hover:border-border-bright"
                 >
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-faint">
+                  <p className="text-xs text-faint">
                     Support us
                   </p>
-                  <h3 className="mt-2 font-heading text-base font-700 text-phosphor">
+                  <h3 className="mt-2 text-base font-semibold text-foreground">
                     {channel.name}
                   </h3>
                   <p className="mt-2 flex-1 text-xs leading-relaxed text-muted-foreground">
@@ -214,8 +214,8 @@ export default function OpenSourcePage() {
 
         {/* Today: honest metrics */}
         <section className="border-b border-border">
-          <div className="mx-auto w-full max-w-3xl px-4 py-14">
-            <h2 className="panel-title-slashes text-2xl font-700 sm:text-3xl">Where we are today</h2>
+          <div className="mx-auto w-full max-w-3xl px-6 py-14">
+            <h2 className="text-2xl font-semibold sm:text-3xl">Where we are today</h2>
             <p className="mt-3 text-muted-foreground">
               Transparency without vanity. We are early. Here is what is real right now.
             </p>
@@ -225,10 +225,10 @@ export default function OpenSourcePage() {
                   key={stat.label}
                   className="rounded-lg border border-border bg-card px-5 py-6"
                 >
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-faint">
+                  <p className="text-xs text-faint">
                     {stat.label}
                   </p>
-                  <p className="mt-2 font-heading text-3xl font-900 text-phosphor">{stat.value}</p>
+                  <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground tabular">{stat.value}</p>
                   <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{stat.hint}</p>
                 </div>
               ))}
@@ -278,8 +278,8 @@ export default function OpenSourcePage() {
 
         {/* Closing */}
         <section>
-          <div className="mx-auto w-full max-w-3xl px-4 py-14">
-            <h2 className="panel-title-slashes text-2xl font-700 sm:text-3xl">Built for the community</h2>
+          <div className="mx-auto w-full max-w-3xl px-6 py-14">
+            <h2 className="text-2xl font-semibold sm:text-3xl">Built for the community</h2>
             <p className="mt-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
               This philosophy guides everything we do at Peon: free to self-host, open to
               inspect, and funded by people who want the work to continue through donations,
@@ -293,13 +293,13 @@ export default function OpenSourcePage() {
                 href={SPONSOR_LINKS.stripeOrDirect}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90"
+                className="inline-flex rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90"
               >
                 Sponsor Peon
               </a>
               <a
                 href="/docs/contributing"
-                className="inline-flex rounded-md border border-border-bright px-5 py-2.5 text-sm font-semibold hover:bg-accent"
+                className="inline-flex rounded-md border border-border-bright px-5 py-2.5 text-sm font-medium hover:bg-accent"
               >
                 Contribute code
               </a>

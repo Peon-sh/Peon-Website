@@ -8,12 +8,20 @@ export const metadata: Metadata = {
   description:
     "Peon documentation: set up MCP for Cursor and Claude, configure workspaces, deploy services, manage databases, and troubleshoot common issues.",
   alternates: { canonical: "/docs" },
+  openGraph: {
+    title: "Peon Docs: Deployments, MCP, Databases & Troubleshooting",
+    description:
+      "Peon documentation: set up MCP for Cursor and Claude, configure workspaces, deploy services, manage databases, and troubleshoot common issues.",
+    url: "/docs",
+    siteName: "Peon",
+    type: "website",
+  },
 }
 
 export default function DocsIndexPage() {
   return (
     <div>
-      <h1 className="panel-title-slashes text-3xl font-800">Documentation</h1>
+      <h1 className="text-3xl font-semibold">Documentation</h1>
       <p className="mt-3 max-w-2xl text-muted-foreground">
         Start with MCP and the Chat assistant, then servers, services, and day-2 ops.
         Field-level guides match the Peon dashboard.
@@ -22,20 +30,20 @@ export default function DocsIndexPage() {
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
         <a
           href="/docs/mcp"
-          className="rounded-lg border border-phosphor/40 bg-accent/40 p-5 ring-1 ring-phosphor/20 transition-colors hover:border-phosphor"
+          className="rounded-lg border border-border bg-card p-5 transition-colors hover:border-border-bright"
         >
-          <p className="font-mono text-[10px] uppercase tracking-widest text-phosphor">Featured</p>
-          <h2 className="mt-2 font-heading text-base font-700 text-phosphor">MCP Server</h2>
+          <p className="text-xs font-medium text-muted-foreground">Featured</p>
+          <h2 className="mt-2 text-base font-semibold text-foreground">MCP Server</h2>
           <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
             JSON config for Cursor and Claude, API tokens, tool catalog, and RBAC.
           </p>
         </a>
         <a
           href="/docs/chat-assistant"
-          className="rounded-lg border border-phosphor/40 bg-accent/40 p-5 ring-1 ring-phosphor/20 transition-colors hover:border-phosphor"
+          className="rounded-lg border border-border bg-card p-5 transition-colors hover:border-border-bright"
         >
-          <p className="font-mono text-[10px] uppercase tracking-widest text-phosphor">Featured</p>
-          <h2 className="mt-2 font-heading text-base font-700 text-phosphor">Chat Assistant</h2>
+          <p className="text-xs font-medium text-muted-foreground">Featured</p>
+          <h2 className="mt-2 text-base font-semibold text-foreground">Chat Assistant</h2>
           <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
             BYO LLM keys, manual lookup, visuals, Approve cards, and example prompts.
           </p>
@@ -45,13 +53,13 @@ export default function DocsIndexPage() {
       <div className="mt-6 flex flex-wrap gap-3">
         <a
           href="/docs/first-deployment"
-          className="rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:opacity-90"
+          className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
         >
           Deploy your first app
         </a>
         <a
           href="/docs/introduction"
-          className="rounded-md border border-border-bright px-4 py-2 text-sm font-semibold hover:bg-accent"
+          className="rounded-md border border-border-bright px-4 py-2 text-sm font-medium hover:bg-accent"
         >
           Introduction
         </a>
@@ -59,23 +67,18 @@ export default function DocsIndexPage() {
 
       {DOC_GROUPS.map((group) => (
         <section key={group.label} className="mt-12">
-          <h2 className="font-mono text-xs uppercase tracking-widest text-phosphor">
+          <h2 className="text-sm font-medium text-phosphor">
             {group.label}
           </h2>
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
             {group.pages.map((page) => {
-              const featured = page.slug === "mcp" || page.slug === "chat-assistant"
-              return (
+                            return (
                 <a
                   key={page.slug}
                   href={`/docs/${page.slug}`}
-                  className={
-                    featured
-                      ? "group rounded-lg border border-phosphor/30 bg-card p-5 transition-colors hover:border-phosphor"
-                      : "group rounded-lg border border-border bg-card p-5 transition-colors hover:border-border-bright"
-                  }
+                  className="group rounded-lg border border-border bg-card p-5 transition-colors hover:border-border-bright"
                 >
-                  <h3 className="font-heading text-sm font-700 group-hover:text-phosphor">
+                  <h3 className="text-sm font-semibold group-hover:text-foreground">
                     {page.title}
                   </h3>
                   <p className="mt-2 text-xs leading-relaxed text-muted-foreground">

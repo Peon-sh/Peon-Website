@@ -14,8 +14,8 @@ export function LogoMark({ className, size = 28 }: { className?: string; size?: 
       className={cn('shrink-0', className)}
       aria-hidden="true"
     >
-      <rect width="64" height="64" rx="14" className="fill-[#050807]" />
-      <rect x="1" y="1" width="62" height="62" rx="13" className="stroke-[#1B2822]" strokeWidth="2" />
+      <rect width="64" height="64" rx="14" className="fill-[#0a0a0b]" />
+      <rect x="1" y="1" width="62" height="62" rx="13" className="stroke-[#2a2a30]" strokeWidth="2" />
       <path
         d="M18 22 L30 32 L18 42"
         stroke="#3ECF8E"
@@ -32,9 +32,7 @@ export function Logo({ className }: { className?: string }) {
   return (
     <span className={cn('inline-flex items-center gap-2', className)}>
       <LogoMark />
-      <span className="font-heading text-base font-800 tracking-tight">
-        <span className="text-phosphor">Peon</span>
-      </span>
+      <span className="text-[15px] font-semibold tracking-tight">Peon</span>
     </span>
   );
 }

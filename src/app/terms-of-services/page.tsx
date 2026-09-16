@@ -6,6 +6,14 @@ export const metadata: Metadata = {
   description:
     "Peon's terms of service: rules for using the open-source deployment platform at peon.sh, including billing, acceptable use, and account rights.",
   alternates: { canonical: '/terms-of-services' },
+  openGraph: {
+    title: 'Peon Terms of Service: Billing, Usage & Account Rules',
+    description:
+      "Peon's terms of service: rules for using the open-source deployment platform at peon.sh, including billing, acceptable use, and account rights.",
+    url: '/terms-of-services',
+    siteName: 'Peon',
+    type: 'website',
+  },
 };
 
 export default function TermsOfServicePage() {
