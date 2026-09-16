@@ -4,8 +4,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { DOC_GROUPS } from '@/lib/docs';
 
-const FEATURED_SLUGS = new Set(['mcp', 'chat-assistant']);
-
 /** Client island for active-path highlighting. Rest of docs chrome is a server layout. */
 export function DocsSidebar() {
   const pathname = usePathname();
@@ -19,9 +17,7 @@ export function DocsSidebar() {
             <div key={group.label}>
               <p
                 className={
-                  isAiGroup
-                    ? 'font-mono text-[10px] font-semibold uppercase tracking-widest text-phosphor'
-                    : 'font-mono text-[10px] uppercase tracking-widest text-faint'
+                  isAiGroup ? 'text-xs font-medium text-foreground' : 'text-xs font-medium text-muted-foreground'
                 }
               >
                 {group.label}
@@ -29,16 +25,15 @@ export function DocsSidebar() {
               <ul className="mt-2 space-y-1">
                 {group.pages.map((page) => {
                   const href = `/docs/${page.slug}`;
-                  const featured = FEATURED_SLUGS.has(page.slug);
-                  const current = pathname === href;
+                                    const current = pathname === href;
                   return (
                     <li key={page.slug}>
                       <Link
                         href={href}
                         className={
-                          featured || current
-                            ? 'block rounded bg-accent/60 px-2 py-1 text-sm font-semibold text-phosphor hover:bg-accent'
-                            : 'block rounded px-2 py-1 text-sm text-muted-foreground hover:bg-accent hover:text-foreground'
+                          current
+                            ? 'block rounded-md bg-accent px-2 py-1.5 text-sm font-medium text-foreground'
+                            : 'block rounded-md px-2 py-1.5 text-sm text-muted-foreground hover:bg-accent hover:text-foreground'
                         }
                       >
                         {page.title}

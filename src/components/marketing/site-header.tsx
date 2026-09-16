@@ -1,38 +1,27 @@
 import { LogoMark } from '@/components/logo';
 import { GithubIcon } from '@/components/icons/github';
-import { AppCtaLink } from '@/components/marketing/app-cta-link';
+import { Button, buttonClass } from '@/components/ui/button';
+import { SPONSOR_LINKS } from '@/lib/sponsors';
 import { cn } from '@/lib/utils';
 
 const NAV_ITEMS = [
-  { label: 'Features', href: '/#features' },
-  { label: 'Compare', href: '/#compare' },
-  { label: 'Pricing', href: '/#pricing' },
-  { label: 'FAQ', href: '/#faq' },
+  { label: 'Product', href: '/#features' },
   { label: 'Marketplace', href: '/marketplace' },
   { label: 'Docs', href: '/docs' },
+  { label: 'Pricing', href: '/#pricing' },
   { label: 'Blog', href: '/blogs' },
-  { label: 'Open Source', href: '/open-source', differentiator: true },
+  { label: 'Open source', href: '/open-source' },
 ] as const;
 
 type NavItem = (typeof NAV_ITEMS)[number];
 type ActivePage = 'docs' | 'blog' | 'open-source' | 'marketplace';
 
-const HASH_ITEMS = NAV_ITEMS.filter((item) => item.href.startsWith('/#'));
-const PAGE_ITEMS = NAV_ITEMS.filter(
-  (item) => !item.href.startsWith('/#') && !('differentiator' in item),
-);
-const OPEN_SOURCE_ITEM = NAV_ITEMS.find((item) => 'differentiator' in item)!;
-
-const LOGIN_CLASS =
-  'bg-primary text-primary-foreground rounded-md px-3 py-1.5 text-sm font-semibold hover:opacity-90';
-
-function isActiveItem(item: NavItem, active?: ActivePage) {
-  return (
-    (active === 'docs' && item.href === '/docs') ||
-    (active === 'blog' && item.href === '/blogs') ||
-    (active === 'marketplace' && item.href === '/marketplace')
-  );
-}
+const ACTIVE_HREF: Record<ActivePage, string> = {
+  docs: '/docs',
+  blog: '/blogs',
+  marketplace: '/marketplace',
+  'open-source': '/open-source',
+};
 
 function NavLink({
   item,
@@ -43,28 +32,14 @@ function NavLink({
   active?: ActivePage;
   className?: string;
 }) {
-  if ('differentiator' in item && item.differentiator) {
-    return (
-      <a
-        href={item.href}
-        className={cn(
-          'inline-flex items-center gap-1.5 rounded-md border border-phosphor/40 bg-accent/50 px-2.5 py-1 font-semibold text-phosphor hover:border-phosphor hover:bg-accent',
-          className,
-        )}
-      >
-        <GithubIcon className="size-3.5 shrink-0" />
-        {item.label}
-      </a>
-    );
-  }
-
+  const current = active ? ACTIVE_HREF[active] === item.href : false;
   return (
     <a
       href={item.href}
+      aria-current={current ? 'page' : undefined}
       className={cn(
-        isActiveItem(item, active)
-          ? 'font-semibold text-phosphor'
-          : 'hover:text-foreground',
+        'rounded-md px-2.5 py-1.5 text-sm transition-colors',
+        current ? 'text-foreground' : 'text-muted-foreground hover:text-foreground',
         className,
       )}
     >
@@ -79,93 +54,73 @@ function NavLink({
  */
 export function SiteHeader({ active }: { active?: ActivePage }) {
   return (
-    <header className="border-border bg-background sticky top-0 z-40 border-b">
-      <nav className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-4">
-        <a
-          href="/"
-          className="font-heading font-800 inline-flex items-center gap-2 text-base tracking-tight"
-        >
-          <LogoMark size={26} />
-          <span className="text-phosphor">Peon</span>
+    <header className="sticky top-0 z-40 border-b border-border/80 bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
+      <nav className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-6">
+        <a href="/" className="inline-flex items-center gap-2.5 text-[15px] font-semibold tracking-tight">
+          <LogoMark size={24} />
+          <span>Peon</span>
         </a>
 
-        <div className="text-muted-foreground hidden items-center gap-5 text-sm lg:flex">
+        <div className="hidden items-center gap-1 lg:flex">
           {NAV_ITEMS.map((item) => (
             <NavLink key={item.href} item={item} active={active} />
           ))}
         </div>
 
         <div className="flex items-center gap-2">
+          <a
+            href={SPONSOR_LINKS.githubApp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={buttonClass({ variant: 'ghost', size: 'sm', className: 'hidden px-2 lg:inline-flex' })}
+            aria-label="Peon on GitHub"
+          >
+            <GithubIcon className="size-4" />
+            <span>GitHub</span>
+          </a>
+          <Button appPath="/login" variant="ghost" size="sm" className="hidden lg:inline-flex">
+            Log in
+          </Button>
+          <Button appPath="/register" variant="primary" size="sm" className="hidden lg:inline-flex">
+            Get started
+          </Button>
+
           <details className="group lg:hidden">
             <summary
-              className="text-foreground hover:bg-accent cursor-pointer list-none rounded-md p-2 marker:hidden [&::-webkit-details-marker]:hidden"
+              className="flex size-9 cursor-pointer list-none items-center justify-center rounded-md text-foreground hover:bg-accent"
               aria-label="Open menu"
             >
-              <svg
-                className="size-5 group-open:hidden"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                aria-hidden
-              >
-                <path d="M4 6h16M4 12h16M4 18h16" />
+              <svg className="size-5 group-open:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" aria-hidden>
+                <path d="M4 7h16M4 12h16M4 17h16" />
               </svg>
-              <svg
-                className="hidden size-5 group-open:block"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                aria-hidden
-              >
+              <svg className="hidden size-5 group-open:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" aria-hidden>
                 <path d="M6 6l12 12M18 6L6 18" />
               </svg>
             </summary>
-
-            <div className="border-border bg-background absolute inset-x-0 top-14 border-b">
-              <div className="mx-auto flex w-full max-w-6xl flex-col px-4 py-4 text-sm">
-                <div className="text-muted-foreground flex flex-col">
-                  {HASH_ITEMS.map((item) => (
-                    <NavLink
-                      key={item.href}
-                      item={item}
-                      active={active}
-                      className="py-2"
-                    />
-                  ))}
-                </div>
-                <div className="border-border my-2 border-t" />
-                <div className="text-muted-foreground flex flex-col">
-                  {PAGE_ITEMS.map((item) => (
-                    <NavLink
-                      key={item.href}
-                      item={item}
-                      active={active}
-                      className="py-2"
-                    />
-                  ))}
-                </div>
-                <NavLink
-                  item={OPEN_SOURCE_ITEM}
-                  active={active}
-                  className="mt-3 w-fit"
-                />
-                <AppCtaLink
-                  path="/login"
-                  className={cn(LOGIN_CLASS, 'mt-4 block w-full py-2 text-center')}
+            <div className="absolute inset-x-0 top-14 border-b border-border bg-background">
+              <div className="mx-auto flex w-full max-w-6xl flex-col gap-1 px-6 py-4">
+                {NAV_ITEMS.map((item) => (
+                  <NavLink key={item.href} item={item} active={active} className="-mx-2.5 py-2.5 text-base" />
+                ))}
+                <a
+                  href={SPONSOR_LINKS.githubApp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="-mx-2.5 inline-flex items-center gap-2 rounded-md px-2.5 py-2.5 text-base text-muted-foreground hover:text-foreground"
                 >
-                  Log in
-                </AppCtaLink>
+                  <GithubIcon className="size-4" /> GitHub
+                </a>
+                <div className="mt-3 grid grid-cols-2 gap-2 border-t border-border pt-4">
+                  <Button appPath="/login" variant="secondary" size="md">
+                    Log in
+                  </Button>
+                  <Button appPath="/register" variant="primary" size="md">
+                    Get started
+                  </Button>
+                </div>
               </div>
             </div>
           </details>
-
-          <AppCtaLink path="/login" className={cn(LOGIN_CLASS, 'hidden lg:inline-flex')}>
-            Log in
-          </AppCtaLink>
         </div>
       </nav>
     </header>
