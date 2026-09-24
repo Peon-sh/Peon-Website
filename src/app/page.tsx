@@ -15,7 +15,7 @@ import { FinalCta, OpenSourceStrip } from "@/components/marketing/landing/closin
 export const dynamic = "force-static"
 
 export const metadata: Metadata = {
-  title: "Open Source Docker Hosting & Deployment Platform | Peon",
+  title: { absolute: "Open Source Docker Hosting & Deployment Platform | Peon" },
   description:
     "Open source deployment platform for your own servers. Git push deploys, Docker hosting, unlimited team members. Self-hosted Vercel alternative.",
   keywords: [

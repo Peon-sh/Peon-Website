@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const page = getSolutionPage(slug);
   if (!page) return {};
   return {
-    title: page.title,
+    title: page.title.endsWith('| Peon') ? { absolute: page.title } : page.title,
     description: page.description,
     keywords: page.keywords,
     alternates: { canonical: `/solutions/${page.slug}` },
