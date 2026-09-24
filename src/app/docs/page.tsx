@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
 import { DOC_GROUPS } from "@/lib/docs"
+import { buildDocsIndexJsonLd } from "@/lib/docs/json-ld"
+import { publicEnv } from "@/lib/env"
 
 export const metadata: Metadata = {
   title: {
@@ -19,8 +21,14 @@ export const metadata: Metadata = {
 }
 
 export default function DocsIndexPage() {
+  const jsonLd = buildDocsIndexJsonLd(publicEnv.siteUrl)
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <h1 className="text-3xl font-semibold">Documentation</h1>
       <p className="mt-3 max-w-2xl text-muted-foreground">
         Start with MCP and the Chat assistant, then servers, services, and day-2 ops.
