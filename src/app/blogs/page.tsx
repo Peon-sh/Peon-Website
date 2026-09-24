@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { SiteHeader } from '@/components/marketing/site-header';
 import { SiteFooter } from '@/components/marketing/site-footer';
 import { groupPostsByTag, listPublishedPosts } from '@/lib/blog';
+import { publicEnv } from '@/lib/env';
 
 export const dynamic = 'force-dynamic';
 
@@ -29,12 +30,42 @@ function formatDate(iso: string | null): string {
   });
 }
 
+function buildBlogIndexJsonLd(siteUrl: string) {
+  const url = `${siteUrl}/blogs`;
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Blog',
+        '@id': url,
+        url,
+        name: 'Blog - Guides, Comparisons & Tech Help for Self-Hosting | Peon',
+        description:
+          'Practical deployment guides, honest platform comparisons, and Docker troubleshooting for teams running self-hosted apps on their own servers.',
+        publisher: { '@type': 'Organization', name: 'Peon', url: siteUrl },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Peon', item: siteUrl },
+          { '@type': 'ListItem', position: 2, name: 'Blog', item: url },
+        ],
+      },
+    ],
+  };
+}
+
 export default async function BlogIndexPage() {
   const posts = await listPublishedPosts();
   const groups = groupPostsByTag(posts);
+  const jsonLd = buildBlogIndexJsonLd(publicEnv.siteUrl);
 
   return (
     <div className="flex min-h-screen flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <SiteHeader active="blog" />
 
       <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-16">

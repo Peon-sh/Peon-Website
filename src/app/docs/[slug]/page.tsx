@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import { Check } from "lucide-react";
 import { notFound } from "next/navigation"
 import { ALL_DOC_PAGES, docGroupFor, getDocPage } from "@/lib/docs"
+import { buildDocArticleJsonLd } from "@/lib/docs/json-ld"
+import { publicEnv } from "@/lib/env"
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -40,8 +42,14 @@ export default async function DocPage({ params }: Props) {
   const prev = idx > 0 ? ALL_DOC_PAGES[idx - 1] : null
   const next = idx < ALL_DOC_PAGES.length - 1 ? ALL_DOC_PAGES[idx + 1] : null
 
+  const jsonLd = buildDocArticleJsonLd(page, publicEnv.siteUrl)
+
   return (
     <article>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <nav className="text-xs text-faint">
         <a href="/docs" className="hover:text-foreground">docs</a>
         {group && (
