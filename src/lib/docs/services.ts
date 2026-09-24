@@ -418,7 +418,7 @@ export const SERVICE_PAGES: DocPage[] = [
     title: 'Databases',
     seoTitle: 'Peon Databases: Postgres, MySQL, MongoDB & Redis Docs',
     description:
-      'Deploy Postgres, MySQL, MongoDB, or Redis on Peon: create fields, access credentials, internal and public URLs, and backup wiring.',
+      'Managed Postgres, MySQL, MongoDB, and Redis on your own VPS. Peon handles credentials, internal networking, backups, and public URLs, from $3/project.',
     sections: [
       {
         h: 'Create',
@@ -555,7 +555,7 @@ REDIS_URL=redis://:<password>@<redis-container>:6379`,
     title: 'Domains & SSL',
     seoTitle: 'Custom Domains and Auto-SSL for Peon Services | Docs',
     description:
-      'Add custom domains to Peon services: DNS to your VPS, Traefik or Caddy gateway, Let’s Encrypt, Force HTTPS, Gzip, Strip prefix, Cloudflare, and how this differs from preview wildcard hosts.',
+      "Add custom domains to Peon services: point DNS at your VPS, auto-issue Let's Encrypt SSL via Traefik or Caddy, force HTTPS, and use Cloudflare.",
     sections: [
       {
         h: 'What Domains & SSL are',

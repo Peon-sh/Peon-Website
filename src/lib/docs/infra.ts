@@ -111,7 +111,7 @@ export const INFRA_PAGES: DocPage[] = [
     title: 'Git Sources',
     seoTitle: 'Connect GitHub & GitLab as Git Sources | Peon Docs',
     description:
-      'Connect GitHub or GitLab in Peon as workspace Git sources: platform vs custom apps, when to skip a source, how services pick Git App / public repo / deploy key, and how webhooks relate to auto-deploy.',
+      'Connect GitHub or GitLab as Peon Git sources: platform vs custom apps, when to skip one, how services pick a repo, and how webhooks trigger auto-deploy.',
     sections: [
       {
         h: 'What Git Sources are',
@@ -263,7 +263,7 @@ export const INFRA_PAGES: DocPage[] = [
     title: 'Keys & Tokens',
     seoTitle: 'Manage SSH Keys and API Tokens in Peon | Peon Docs',
     description:
-      'Manage workspace SSH keys for servers and git deploy keys, plus personal API tokens (peon_…) for REST and MCP. Who can create them, how to rotate, and how they differ from Environment and Shared Variables.',
+      'Manage workspace SSH keys, git deploy keys, and personal API tokens for REST and MCP. Covers rotation and how they differ from Variables.',
     sections: [
       {
         h: 'What Keys & Tokens are',
