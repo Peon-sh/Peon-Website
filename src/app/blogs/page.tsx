@@ -66,6 +66,7 @@ export default async function BlogIndexPage() {
                           src={post.featuredImage.url}
                           alt={post.featuredImage.alt || post.title}
                           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                          loading="lazy"
                         />
                       ) : (
                         <div className="flex h-full items-center justify-center text-xs text-faint">
