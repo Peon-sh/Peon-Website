@@ -122,6 +122,9 @@
   summary::-webkit-details-marker {
     display: none;
   }
+  html:has(#mobile-nav[open]) {
+    overflow: hidden;
+  }
 }
 
 /* Subtle dotted grid used behind the hero. */
