@@ -27,7 +27,7 @@ function CellValue({ value, peon }: { value: string; peon: boolean }) {
   }
   if (v === 'No') {
     return (
-      <span className="inline-flex items-center gap-1.5 text-faint">
+      <span className="inline-flex items-center gap-1.5 text-muted-foreground">
         <Minus className="size-4" aria-hidden />
         No
       </span>
@@ -59,7 +59,10 @@ export function Comparison({
           }
         />
 
-        <div className="mt-12 overflow-x-auto rounded-xl border border-border">
+        <div className="relative mt-12">
+          <p className="mb-2 text-xs text-muted-foreground lg:hidden">Swipe to compare</p>
+          <div className="relative">
+            <div className="overflow-x-auto rounded-xl border border-border">
           <table className="w-full min-w-[880px] text-left text-sm">
             <thead>
               <tr className="border-b border-border bg-secondary/50">
@@ -97,10 +100,16 @@ export function Comparison({
               ))}
             </tbody>
           </table>
+            </div>
+            <div
+              className="pointer-events-none absolute inset-y-0 right-0 w-8 rounded-r-xl bg-gradient-to-l from-background to-transparent lg:hidden"
+              aria-hidden
+            />
+          </div>
         </div>
 
         <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-          <p className="max-w-xl text-xs leading-relaxed text-faint">
+          <p className="max-w-xl text-xs leading-relaxed text-muted-foreground">
             Competitor pricing and plan limits reflect published entry-level plans and may change.
             Dokploy audit logs and fine-grained RBAC are Enterprise-tier on their published plans.
           </p>
