@@ -48,6 +48,23 @@ export function LogoMark({ className, size = 28 }: { className?: string; size?: 
   );
 }
 
+/**
+ * Full horizontal wordmark ("peon" in layered strokes), transparent background.
+ * Same artwork as public/logos/brand/peon-horizontal.svg; sized via className.
+ */
+export function LogoHorizontal({ className }: { className?: string }) {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element -- static brand SVG
+    <img
+      src="/logos/brand/peon-horizontal.svg"
+      alt="Peon"
+      width={160}
+      height={72}
+      className={cn('shrink-0', className)}
+    />
+  );
+}
+
 export function Logo({ className }: { className?: string }) {
   return (
     <span className={cn('inline-flex items-center gap-2', className)}>

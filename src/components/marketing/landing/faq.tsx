@@ -1,6 +1,5 @@
-import { ChevronDown } from 'lucide-react';
+import { ArrowCircle } from '@/components/ui/arrow-circle';
 import { Container, Section } from '@/components/ui/container';
-import { SectionHeading } from '@/components/ui/section-heading';
 
 export type FaqItem = { q: string; a: string };
 
@@ -8,19 +7,20 @@ export function Faq({ items }: { items: readonly FaqItem[] }) {
   const half = Math.ceil(items.length / 2);
   const cols = [items.slice(0, half), items.slice(half)];
   return (
-    <Section id="faq">
+    <Section id="faq" divider={false}>
       <Container>
-        <SectionHeading eyebrow="FAQ" title="Frequently asked questions" />
-        <div className="mt-12 grid gap-x-10 lg:grid-cols-2">
+        <p className="text-sm font-medium text-muted-foreground">FAQ</p>
+        <h2 className="title-xl mt-3">Frequently asked questions</h2>
+        <div className="mt-12 grid gap-x-12 lg:grid-cols-2">
           {cols.map((col, i) => (
-            <div key={i} className="divide-y divide-border border-t border-border">
+            <div key={i} className="border-t border-foreground/80">
               {col.map((f) => (
-                <details key={f.q} className="group py-4">
-                  <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-[15px] font-medium text-foreground">
+                <details key={f.q} className="group border-b border-foreground/80 py-5">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold tracking-[-0.015em] text-foreground select-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring">
                     {f.q}
-                    <ChevronDown className="mt-0.5 size-4 shrink-0 text-faint transition-transform group-open:rotate-180" aria-hidden />
+                    <ArrowCircle size="sm" />
                   </summary>
-                  <p className="mt-3 pr-8 text-sm leading-relaxed text-muted-foreground">{f.a}</p>
+                  <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">{f.a}</p>
                 </details>
               ))}
             </div>

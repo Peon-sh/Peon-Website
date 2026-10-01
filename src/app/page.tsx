@@ -5,12 +5,15 @@ import { SiteFooter } from "@/components/marketing/site-footer"
 import { LogoCloud } from "@/components/ui/logo-cloud"
 import { Container } from "@/components/ui/container"
 import { Hero } from "@/components/marketing/landing/hero"
+import { ArtStrip } from "@/components/marketing/landing/art-strip"
 import { HowItWorks } from "@/components/marketing/landing/how-it-works"
 import { Features } from "@/components/marketing/landing/features"
+import { PlatformPanel } from "@/components/marketing/landing/platform-panel"
+import { Stats } from "@/components/marketing/landing/stats"
 import { Comparison } from "@/components/marketing/landing/comparison"
 import { Pricing } from "@/components/marketing/landing/pricing"
 import { Faq } from "@/components/marketing/landing/faq"
-import { FinalCta, OpenSourceStrip } from "@/components/marketing/landing/closing"
+import { FinalCta } from "@/components/marketing/landing/closing"
 
 /** Fully static HTML for crawlers (incl. Google OAuth brand verification). */
 export const dynamic = "force-static"
@@ -53,14 +56,7 @@ export const metadata: Metadata = {
   },
 }
 
-const COMPARISON_PLATFORMS = [
-  "Peon",
-  "Coolify",
-  "Dokploy",
-  "Vercel",
-  "Heroku",
-  "DO App Platform",
-] as const
+const COMPARISON_PLATFORMS = ["Peon", "Coolify", "Dokploy", "Vercel"] as const
 
 /** Feature matrix. Peon column (index 0) is highlighted. */
 const COMPARISON_ROWS: { feature: string; cells: string[]; peonEdge?: boolean }[] = [
@@ -71,13 +67,11 @@ const COMPARISON_ROWS: { feature: string; cells: string[]; peonEdge?: boolean }[
       "From ~$5/mo · + per extra server",
       "From $4.50 / server",
       "$20 / seat / mo + usage",
-      "Per dyno · team plans extra",
-      "$5+ / app / mo",
     ],
   },
   {
     feature: "Self-host free",
-    cells: ["Yes", "Yes", "Yes", "No", "No", "No"],
+    cells: ["Yes", "Yes", "Yes", "No"],
   },
   {
     feature: "Where apps run",
@@ -86,8 +80,6 @@ const COMPARISON_ROWS: { feature: string; cells: string[]; peonEdge?: boolean }[
       "Your servers (any provider)",
       "Your servers (any provider)",
       "Vercel only",
-      "Heroku only",
-      "DigitalOcean only",
     ],
   },
   {
@@ -97,13 +89,11 @@ const COMPARISON_ROWS: { feature: string; cells: string[]; peonEdge?: boolean }[
       "Teams",
       "Basic · fine-grained on Enterprise",
       "Team seats",
-      "Team plans",
-      "Team plans",
     ],
   },
   {
     feature: "Unlimited team members",
-    cells: ["Yes · included", "Yes (self-host)", "Plan limits on Hobby", "Paid per seat", "Paid team plans", "Team plans"],
+    cells: ["Yes · included", "Yes (self-host)", "Plan limits on Hobby", "Paid per seat"],
   },
   {
     feature: "Audit logs",
@@ -112,25 +102,23 @@ const COMPARISON_ROWS: { feature: string; cells: string[]; peonEdge?: boolean }[
       "Limited / DIY",
       "Enterprise only",
       "Enterprise features",
-      "Enterprise",
-      "Limited",
     ],
   },
   {
     feature: "MCP for AI agents",
-    cells: ["Included", "No", "Yes", "No", "No", "No"],
+    cells: ["Included", "No", "Yes", "No"],
   },
   {
     feature: "In-app AI assistant",
-    cells: ["Included", "No", "No", "No", "No", "No"],
+    cells: ["Included", "No", "No", "No"],
   },
   {
     feature: "PR preview deploys",
-    cells: ["Yes", "Yes", "Yes", "Yes", "Review apps", "Yes"],
+    cells: ["Yes", "Yes", "Yes", "Yes"],
   },
   {
     feature: "Open source",
-    cells: ["Yes", "Yes", "Yes", "No", "No", "No"],
+    cells: ["Yes", "Yes", "Yes", "No"],
   },
 ]
 
@@ -252,7 +240,8 @@ export default function LandingPage() {
       <SiteHeader />
       <main className="flex-1">
         <Hero />
-        <section className="border-t border-border py-12">
+        <ArtStrip />
+        <section className="py-12">
           <Container>
             <p className="mb-8 text-center text-sm text-muted-foreground">
               Runs on any server with SSH and Docker
@@ -260,11 +249,12 @@ export default function LandingPage() {
             <LogoCloud />
           </Container>
         </section>
-        <HowItWorks />
         <Features />
+        <HowItWorks />
+        <PlatformPanel />
+        <Stats />
         <Comparison platforms={COMPARISON_PLATFORMS} rows={COMPARISON_ROWS} />
         <Pricing />
-        <OpenSourceStrip />
         <Faq items={FAQ} />
         <FinalCta />
       </main>
