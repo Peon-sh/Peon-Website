@@ -2,12 +2,40 @@ import type { Metadata } from "next"
 import { SiteHeader } from "@/components/marketing/site-header"
 import { SiteFooter } from "@/components/marketing/site-footer"
 import { MarketplaceGrid } from "@/components/marketing/marketplace-grid"
+import { publicEnv } from "@/lib/env"
 import { listTemplateCategories, listTemplates } from "@/lib/templates"
 
+const MARKETPLACE_NAME = "300+ Apps, One Click to Deploy | Peon Marketplace"
+const MARKETPLACE_DESCRIPTION =
+  "One-click deploy 333+ self-hosted services to your own server. Plausible, n8n, WordPress, Ghost and more. Secrets and HTTPS set up automatically."
+
+function buildMarketplaceJsonLd(siteUrl: string) {
+  const url = `${siteUrl}/marketplace`
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": url,
+        url,
+        name: MARKETPLACE_NAME,
+        description: MARKETPLACE_DESCRIPTION,
+        publisher: { "@type": "Organization", name: "Peon", url: siteUrl },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Peon", item: siteUrl },
+          { "@type": "ListItem", position: 2, name: "Marketplace", item: url },
+        ],
+      },
+    ],
+  }
+}
+
 export const metadata: Metadata = {
-  title: { absolute: '300+ Apps, One Click to Deploy | Peon Marketplace' },
-  description:
-    "One-click deploy 333+ self-hosted services to your own server. Plausible, n8n, WordPress, Ghost and more. Secrets and HTTPS set up automatically.",
+  title: { absolute: MARKETPLACE_NAME },
+  description: MARKETPLACE_DESCRIPTION,
   keywords: [
     "self-hosted services",
     "one-click deploy",
@@ -18,9 +46,8 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/marketplace" },
   openGraph: {
-    title: '300+ Apps, One Click to Deploy | Peon Marketplace',
-    description:
-      "One-click deploy 333+ self-hosted services to your own server. Plausible, n8n, WordPress, Ghost and more. Secrets and HTTPS set up automatically.",
+    title: MARKETPLACE_NAME,
+    description: MARKETPLACE_DESCRIPTION,
     url: "/marketplace",
     siteName: "Peon",
     type: "website",
@@ -30,9 +57,14 @@ export const metadata: Metadata = {
 export default function MarketplacePage() {
   const templates = listTemplates()
   const categories = listTemplateCategories()
+  const jsonLd = buildMarketplaceJsonLd(publicEnv.siteUrl)
 
   return (
     <div className="flex min-h-screen flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <SiteHeader active="marketplace" />
       <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-12">
         <p className="text-sm font-medium text-phosphor">Marketplace</p>
