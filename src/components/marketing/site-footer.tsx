@@ -1,4 +1,4 @@
-import { LogoMark } from '@/components/logo';
+import { LogoHorizontal } from '@/components/logo';
 import { GithubIcon } from '@/components/icons/github';
 import { AppCtaLink } from '@/components/marketing/app-cta-link';
 import { SPONSOR_LINKS } from '@/lib/sponsors';
@@ -68,13 +68,12 @@ function FooterColumn({ title, links }: { title: string; links: FooterLink[] }) 
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border">
+    <footer className="border-t-8 border-surface-pink">
       <div className="mx-auto w-full max-w-6xl px-6 py-16">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <a href="/" className="inline-flex items-center gap-2.5 text-[15px] font-semibold tracking-tight">
-              <LogoMark size={24} />
-              <span>Peon</span>
+            <a href="/" className="inline-flex items-center" aria-label="Peon home">
+              <LogoHorizontal className="h-12 w-auto" />
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
               Open-source deployment platform for servers you already own. Free to self-host,
@@ -95,24 +94,8 @@ export function SiteFooter() {
           <FooterColumn title="Resources" links={RESOURCES} />
         </div>
 
-        <div className="mt-14 flex flex-col gap-4 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-14 border-t border-border pt-6 text-xs text-muted-foreground">
           <p>© {new Date().getFullYear()} Peon. MIT licensed.</p>
-          <a
-            href="https://www.producthunt.com/products/peon?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-peon"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block opacity-70 transition-opacity hover:opacity-100"
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element -- self-hosted badge route */}
-            <img
-              src="/badges/product-hunt-featured.svg"
-              alt="Peon - Featured on Product Hunt"
-              width={200}
-              height={43}
-              className="h-8 w-auto"
-              loading="lazy"
-            />
-          </a>
         </div>
       </div>
     </footer>

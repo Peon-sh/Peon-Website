@@ -1,7 +1,7 @@
+import { ArrowCircle } from '@/components/ui/arrow-circle';
 import { Button } from '@/components/ui/button';
 import { CheckList } from '@/components/ui/check-list';
 import { Container, Section } from '@/components/ui/container';
-import { SectionHeading } from '@/components/ui/section-heading';
 import { SPONSOR_LINKS } from '@/lib/sponsors';
 import { cn } from '@/lib/utils';
 
@@ -55,39 +55,50 @@ export function Pricing() {
   return (
     <Section id="pricing">
       <Container>
-        <SectionHeading
-          eyebrow="Pricing"
-          title="Simple, affordable pricing"
-          lede="Self-host for free, or let us run the control plane for $3 per project a month. Either way your apps stay on hardware you own and every teammate is included."
-        />
+        <p className="text-sm font-medium text-muted-foreground">Pricing</p>
+        <h2 className="title-xl mt-3">Choose your plan</h2>
+        <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+          Self-host for free, or let us run the control plane for $3 per project a month. Either
+          way your apps stay on hardware you own and every teammate is included.
+        </p>
 
         <div className="mt-12 grid gap-4 lg:grid-cols-3">
           {PLANS.map((p) => (
             <div
               key={p.name}
               className={cn(
-                'relative flex flex-col rounded-xl border bg-card p-7',
-                p.highlight ? 'border-border-bright shadow-[inset_0_2px_0_0_var(--phosphor)]' : 'border-border',
+                'relative flex flex-col rounded-sm p-7',
+                p.highlight
+                  ? 'bg-surface-cream text-surface-cream-foreground'
+                  : 'border border-foreground/80 bg-card',
               )}
             >
               <div className="flex items-center justify-between">
                 <h3 className="text-base font-semibold">{p.name}</h3>
                 {p.highlight ? (
-                  <span className="rounded-full bg-phosphor/10 px-2 py-0.5 text-xs font-medium text-phosphor">
+                  <span className="rounded-full bg-surface-indigo px-2.5 py-0.5 text-xs font-medium text-white">
                     Most popular
                   </span>
                 ) : null}
               </div>
-              <div className="mt-5 flex items-baseline gap-2">
-                <span className="text-4xl font-semibold tracking-tight tabular">{p.price}</span>
-                <span className="text-sm text-muted-foreground">{p.cadence}</span>
+              <div className="mt-6 flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                <span className="font-heading text-5xl font-semibold tracking-[-0.04em] tabular">{p.price}</span>
+                <span className={cn('text-sm', p.highlight ? 'text-surface-cream-muted' : 'text-muted-foreground')}>{p.cadence}</span>
               </div>
-              {'sub' in p ? <p className="mt-1 text-sm text-muted-foreground">{p.sub}</p> : <p className="mt-1 h-5" />}
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{p.blurb}</p>
-              <CheckList items={p.bullets} className="mt-6 flex-1" dense />
+              {'sub' in p ? (
+                <p className={cn('mt-1 text-sm', p.highlight ? 'text-surface-cream-muted' : 'text-muted-foreground')}>{p.sub}</p>
+              ) : (
+                <p className="mt-1 h-5" />
+              )}
+              <p className={cn('mt-4 text-sm leading-relaxed', p.highlight ? 'text-surface-cream-muted' : 'text-muted-foreground')}>{p.blurb}</p>
+              <CheckList
+                items={p.bullets}
+                className={cn('mt-6 flex-1', p.highlight && '[&_li]:text-surface-cream-muted [&_svg]:text-surface-indigo')}
+                dense
+              />
               <div className="mt-8">
                 {'appPath' in p.cta ? (
-                  <Button appPath={p.cta.appPath} variant={p.highlight ? 'primary' : 'secondary'} className="w-full">
+                  <Button appPath={p.cta.appPath} variant="primary" className="w-full">
                     {p.cta.label}
                   </Button>
                 ) : (
@@ -105,17 +116,21 @@ export function Pricing() {
           ))}
         </div>
 
-        <div className="mt-12 rounded-xl border border-border bg-card/50 p-7">
-          <p className="text-sm font-medium">Included in every plan</p>
-          <ul className="mt-4 grid gap-x-8 gap-y-2.5 text-sm text-muted-foreground sm:grid-cols-2 lg:grid-cols-3">
+        {/* Full feature list stays indexable; collapsed by default. */}
+        <details className="group mt-12 rounded-sm border border-foreground/80 p-7">
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-xl font-semibold tracking-[-0.02em] select-none sm:text-2xl">
+            Included in every plan
+            <ArrowCircle />
+          </summary>
+          <ul className="mt-6 grid gap-x-8 gap-y-2.5 text-sm text-muted-foreground sm:grid-cols-2 lg:grid-cols-3">
             {EVERY_PLAN.map((item) => (
               <li key={item} className="flex items-start gap-2.5">
-                <span className="mt-2 size-1 shrink-0 rounded-full bg-phosphor" />
+                <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand-pink" />
                 {item}
               </li>
             ))}
           </ul>
-        </div>
+        </details>
       </Container>
     </Section>
   );
