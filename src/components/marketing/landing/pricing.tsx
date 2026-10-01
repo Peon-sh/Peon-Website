@@ -66,10 +66,13 @@ export function Pricing() {
             <div
               key={p.name}
               className={cn(
-                'relative flex flex-col rounded-xl border bg-card p-7',
-                p.highlight ? 'border-border-bright shadow-[inset_0_2px_0_0_var(--phosphor)]' : 'border-border',
+                'relative flex flex-col overflow-hidden rounded-xl border bg-card p-7',
+                p.highlight ? 'border-border-bright' : 'border-border',
               )}
             >
+              {p.highlight ? (
+                <span className="bg-gradient-brand absolute inset-x-0 top-0 h-0.5" aria-hidden />
+              ) : null}
               <div className="flex items-center justify-between">
                 <h3 className="text-base font-semibold">{p.name}</h3>
                 {p.highlight ? (

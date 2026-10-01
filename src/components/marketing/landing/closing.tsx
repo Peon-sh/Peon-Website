@@ -34,8 +34,14 @@ export function FinalCta() {
   return (
     <Section className="relative isolate overflow-hidden py-24 sm:py-32">
       <div className="bg-grid pointer-events-none absolute inset-0 -z-10 rotate-180" aria-hidden />
+      <div
+        className="bg-glow-brand pointer-events-none absolute inset-x-0 top-1/2 -z-10 h-72 -translate-y-1/2 blur-3xl"
+        aria-hidden
+      />
       <Container className="text-center">
-        <h2 className="mx-auto max-w-2xl text-3xl sm:text-5xl">Own your deployment platform.</h2>
+        <h2 className="mx-auto max-w-2xl text-3xl sm:text-5xl">
+          Own your <span className="text-gradient-brand">deployment platform.</span>
+        </h2>
         <p className="mx-auto mt-5 max-w-xl text-base text-muted-foreground sm:text-lg">
           Connect a server, push your code, and go live in minutes. Self-host for free or start on Cloud for $3 per project.
         </p>

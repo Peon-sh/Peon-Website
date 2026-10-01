@@ -2,10 +2,12 @@ import { Container, Section } from '@/components/ui/container';
 import { SectionHeading } from '@/components/ui/section-heading';
 import { MockRow, MockTerminal } from './mock-bits';
 import { Check } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 const STEPS = [
   {
     n: '01',
+    accent: 'text-brand-cyan',
     title: 'Connect a server',
     body: 'Any Linux box with SSH: Hetzner, DigitalOcean, AWS, OVH or your own rack. Peon installs Docker and the proxy for you.',
     mock: (
@@ -27,6 +29,7 @@ const STEPS = [
   },
   {
     n: '02',
+    accent: 'text-brand-pink',
     title: 'Push code or pick a template',
     body: 'Connect GitHub, GitLab or Bitbucket, point at a Dockerfile or Compose file, or choose one of 300+ marketplace services.',
     mock: (
@@ -37,6 +40,7 @@ const STEPS = [
   },
   {
     n: '03',
+    accent: 'text-brand-indigo',
     title: 'Peon runs it for you',
     body: 'Builds, zero-downtime rollouts, custom domains with automatic HTTPS, health checks, logs, backups and rollbacks.',
     mock: (
@@ -69,7 +73,7 @@ export function HowItWorks() {
           {STEPS.map((s) => (
             <li key={s.n} className="flex min-w-0 flex-col">
               <div className="flex items-center gap-3">
-                <span className="font-mono text-xs text-phosphor tabular">{s.n}</span>
+                <span className={cn('font-mono text-xs font-semibold tabular', s.accent)}>{s.n}</span>
                 <span className="h-px flex-1 bg-border" />
               </div>
               <h3 className="mt-4 text-lg">{s.title}</h3>

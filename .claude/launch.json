@@ -4,8 +4,9 @@
     {
       "name": "peon-website",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["dev"],
-      "port": 3001
+      "runtimeArgs": ["exec", "next", "dev"],
+      "port": 3001,
+      "autoPort": true
     }
   ]
 }

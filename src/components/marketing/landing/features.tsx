@@ -12,27 +12,40 @@ const ALSO = [
   ['Any Git provider', 'GitHub, GitLab, Bitbucket, or a plain Git URL with a deploy key.'],
 ] as const;
 
+type Accent = 'cyan' | 'pink' | 'indigo';
+
+/** Top stripe and link colour per brand hue. */
+const ACCENT: Record<Accent, { bar: string; text: string }> = {
+  cyan: { bar: 'bg-brand-cyan', text: 'text-brand-cyan' },
+  pink: { bar: 'bg-brand-pink', text: 'text-brand-pink' },
+  indigo: { bar: 'bg-brand-indigo', text: 'text-brand-indigo' },
+};
+
 function Cell({
   title,
   body,
   children,
   className,
   links,
+  accent,
 }: {
   title: string;
   body: string;
   children: React.ReactNode;
   className?: string;
   links?: { label: string; href: string }[];
+  accent: Accent;
 }) {
+  const a = ACCENT[accent];
   return (
-    <article className={cn('flex min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card p-6', className)}>
+    <article className={cn('relative flex min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card p-6', className)}>
+      <span className={cn('absolute inset-x-0 top-0 h-0.5', a.bar)} aria-hidden />
       <h3 className="text-base font-semibold">{title}</h3>
       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{body}</p>
       {links ? (
         <p className="mt-3 flex flex-wrap gap-x-4 text-sm">
           {links.map((l) => (
-            <a key={l.href} href={l.href} className="font-medium text-foreground underline-offset-4 hover:underline">
+            <a key={l.href} href={l.href} className={cn('font-medium underline-offset-4 hover:underline', a.text)}>
               {l.label} →
             </a>
           ))}
@@ -62,28 +75,33 @@ export function Features() {
               { label: 'Chat assistant', href: '/docs/chat-assistant' },
             ]}
             className="lg:col-span-2"
+            accent="indigo"
           >
             <MockChat />
           </Cell>
           <Cell
+            accent="cyan"
             title="Git push to deploy, with previews"
             body="Every push builds and ships with zero-downtime rollouts and instant rollbacks. Pull requests get their own preview URL."
           >
             <MockGitPush />
           </Cell>
           <Cell
+            accent="pink"
             title="Managed databases with backups"
             body="Postgres, MySQL, MariaDB, MongoDB and Redis on your own hardware, backed up on a schedule to S3-compatible storage."
           >
             <MockBackups />
           </Cell>
           <Cell
+            accent="cyan"
             title="Domains and automatic HTTPS"
             body="Custom domains, auto-renewed Let’s Encrypt certificates, HTTP to HTTPS redirects and per-service routing out of the box."
           >
             <MockDomains />
           </Cell>
           <Cell
+            accent="indigo"
             title="Team roles and audit logs"
             body="Workspace and project roles so teammates get an app, not root on every server. Owners see who did what, included on every plan."
           >

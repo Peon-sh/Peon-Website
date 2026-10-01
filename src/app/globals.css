@@ -15,6 +15,9 @@
   --color-warning: var(--warning);
   --color-info: var(--info);
   --color-phosphor: var(--phosphor);
+  --color-brand-cyan: var(--brand-cyan);
+  --color-brand-pink: var(--brand-pink);
+  --color-brand-indigo: var(--brand-indigo);
   --color-faint: var(--faint);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
@@ -37,13 +40,19 @@
 }
 
 :root {
+  /* Brand palette: the three layered strokes of the logo mark. Constant across themes. */
+  --brand-cyan: #22d3ee;
+  --brand-pink: #f472b6;
+  --brand-indigo: #7170ff;
+  --brand-gradient: linear-gradient(135deg, var(--brand-cyan) 0%, var(--brand-pink) 50%, var(--brand-indigo) 100%);
+
   --background: #fafafa;
   --foreground: #111113;
   --card: #ffffff;
   --card-foreground: #111113;
   --popover: #ffffff;
   --popover-foreground: #111113;
-  --primary: #111113;
+  --primary: #5b5ae6;
   --primary-foreground: #ffffff;
   --secondary: #f1f1f3;
   --secondary-foreground: #111113;
@@ -55,12 +64,13 @@
   --success: #0c9268;
   --warning: #a96d08;
   --info: #1b76b6;
-  --phosphor: #0c9268;
+  /* Accent used for eyebrows, badges, highlights. Darker indigo for contrast on light surfaces. */
+  --phosphor: #5b5ae6;
   --faint: #9a9aa3;
   --border: #e4e4e8;
   --border-bright: #d0d0d6;
   --input: #e4e4e8;
-  --ring: #111113;
+  --ring: #5b5ae6;
 }
 
 .dark {
@@ -70,8 +80,8 @@
   --card-foreground: #ededef;
   --popover: #16161a;
   --popover-foreground: #ededef;
-  --primary: #ededef;
-  --primary-foreground: #0a0a0b;
+  --primary: #7170ff;
+  --primary-foreground: #ffffff;
   --secondary: #16161a;
   --secondary-foreground: #ededef;
   --muted: #16161a;
@@ -82,12 +92,12 @@
   --success: #3ecf8e;
   --warning: #e8a33d;
   --info: #52a9df;
-  --phosphor: #3ecf8e;
+  --phosphor: #7170ff;
   --faint: #5c5c66;
   --border: #1f1f23;
   --border-bright: #2a2a30;
   --input: #1f1f23;
-  --ring: #ededef;
+  --ring: #7170ff;
 }
 
 @layer base {
@@ -134,6 +144,27 @@
     linear-gradient(to bottom, color-mix(in oklab, var(--border) 70%, transparent) 1px, transparent 1px);
   background-size: 64px 64px;
   mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 80%);
+}
+
+/* Brand gradient clipped to text. Pair with a solid first line for legibility. */
+@utility text-gradient-brand {
+  background-image: var(--brand-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Brand gradient as a fill (buttons, stripes, dots). */
+@utility bg-gradient-brand {
+  background-image: var(--brand-gradient);
+}
+
+/* Three soft radial blobs in the brand hues, for glows behind hero and CTA sections. */
+@utility bg-glow-brand {
+  background-image:
+    radial-gradient(ellipse 40% 60% at 20% 50%, color-mix(in oklab, var(--brand-cyan) 28%, transparent), transparent 70%),
+    radial-gradient(ellipse 40% 60% at 50% 40%, color-mix(in oklab, var(--brand-pink) 24%, transparent), transparent 70%),
+    radial-gradient(ellipse 40% 60% at 80% 50%, color-mix(in oklab, var(--brand-indigo) 32%, transparent), transparent 70%);
 }
 
 /* Product mock frames. */
