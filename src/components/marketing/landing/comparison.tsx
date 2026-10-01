@@ -21,7 +21,7 @@ function CellValue({ value, peon }: { value: string; peon: boolean }) {
   if (v === 'Yes' || v === 'Included' || v.startsWith('Yes ·')) {
     return (
       <span className={cn('inline-flex items-center gap-1.5', peon ? 'text-foreground' : 'text-muted-foreground')}>
-        <Check className={cn('size-4', peon ? 'text-brand-cyan' : 'text-muted-foreground')} strokeWidth={2.5} aria-hidden />
+        <Check className={cn('size-4', peon ? 'text-brand-pink' : 'text-muted-foreground')} strokeWidth={3} aria-hidden />
         <span>{v === 'Yes' ? 'Yes' : v}</span>
       </span>
     );
@@ -49,7 +49,7 @@ export function Comparison({
       <Container>
         <SectionHeading
           eyebrow="Compare"
-          title="Peon vs Coolify, Dokploy, Vercel, Heroku & DigitalOcean"
+          title="Peon vs Coolify, Dokploy & Vercel"
           className="max-w-3xl"
         />
         {/* Positioning copy kept in the HTML; collapsed by default. */}
@@ -69,7 +69,7 @@ export function Comparison({
         <div className="relative mt-12">
           <p className="mb-2 text-xs text-muted-foreground lg:hidden">Swipe to compare</p>
           <div className="relative">
-            <div className="overflow-x-auto rounded-[10px] border border-foreground/80">
+            <div className="overflow-x-auto rounded-sm border border-foreground/80">
           <table className="w-full min-w-[880px] text-left text-sm">
             <thead>
               <tr className="bg-surface-indigo text-surface-indigo-foreground">
@@ -79,7 +79,12 @@ export function Comparison({
                 {platforms.map((name, i) => (
                   <th
                     key={name}
-                    className={cn('px-4 py-3.5 font-semibold', i === 0 ? 'text-white' : 'text-white/80')}
+                    className={cn(
+                      'px-4 py-3.5',
+                      i === 0
+                        ? 'bg-surface-pink text-base font-bold tracking-tight text-surface-pink-foreground'
+                        : 'font-semibold text-white/80',
+                    )}
                   >
                     {name}
                   </th>
@@ -96,7 +101,10 @@ export function Comparison({
                     {row.feature}
                   </th>
                   {row.cells.map((cell, i) => (
-                    <td key={`${row.feature}-${platforms[i]}`} className={cn('px-4 py-3', i === 0 && 'bg-surface-indigo/10')}>
+                    <td
+                      key={`${row.feature}-${platforms[i]}`}
+                      className={cn('px-4 py-3', i === 0 && 'bg-surface-pink/10 font-semibold text-foreground')}
+                    >
                       <CellValue value={cell} peon={i === 0} />
                     </td>
                   ))}
@@ -112,11 +120,7 @@ export function Comparison({
           </div>
         </div>
 
-        <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-          <p className="max-w-xl text-xs leading-relaxed text-muted-foreground">
-            Competitor pricing and plan limits reflect published entry-level plans and may change.
-            Dokploy audit logs and fine-grained RBAC are Enterprise-tier on their published plans.
-          </p>
+        <div className="mt-6">
           <p className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
             {COMPARE_LINKS.map((l) => (
               <a key={l.href} href={l.href} className="hover:text-foreground">

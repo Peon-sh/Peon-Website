@@ -22,7 +22,7 @@ export function StatTile({
   className?: string;
 }) {
   return (
-    <div className={cn('flex flex-col justify-between rounded-[10px] p-6 sm:p-8', SURFACE[surface], className)}>
+    <div className={cn('flex flex-col justify-between rounded-sm p-6 sm:p-8', SURFACE[surface], className)}>
       <p className="font-heading text-5xl leading-none font-semibold tracking-[-0.04em] tabular sm:text-6xl">{value}</p>
       <p className="mt-10 text-sm font-medium sm:text-base">{label}</p>
     </div>

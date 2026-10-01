@@ -40,7 +40,7 @@ export function ArtStrip() {
                 height={1024}
                 loading={i < 3 ? 'eager' : 'lazy'}
                 decoding="async"
-                className="h-44 w-auto rounded-[10px] sm:h-56"
+                className="h-44 w-auto rounded-sm sm:h-56"
               />
             </li>
           ))}

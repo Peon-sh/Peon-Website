@@ -1,16 +1,17 @@
 import { GithubIcon } from '@/components/icons/github';
 import { Button } from '@/components/ui/button';
-import { Section } from '@/components/ui/container';
+import { Container, Section } from '@/components/ui/container';
 import { Reveal } from '@/components/ui/reveal';
 import { SPONSOR_LINKS } from '@/lib/sponsors';
-import { MockAudit, MockChat } from './mock-bits';
+import { ArtImage } from '@/components/ui/art-image';
 
 /** Indigo colour-block panel: platform-level promises with the detail folded into rows. */
 export function PlatformPanel() {
   return (
-    <Section divider={false} className="py-0 sm:py-0">
-      <div className="grid lg:grid-cols-2">
-        <div className="flex flex-col justify-between bg-surface-indigo px-6 py-16 text-surface-indigo-foreground sm:px-10 lg:min-h-[640px] lg:px-16 lg:py-20">
+    <Section divider={false} className="bg-surface-indigo text-surface-indigo-foreground">
+      <Container>
+      <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="flex flex-col justify-between lg:min-h-[520px]">
           <h2 className="display max-w-md">
             Your servers.
             <br />
@@ -22,9 +23,9 @@ export function PlatformPanel() {
           </p>
         </div>
 
-        <div className="bg-surface-indigo px-6 pb-16 text-surface-indigo-foreground sm:px-10 lg:py-20 lg:pr-16 lg:pl-12">
+        <div>
           <div className="border-t border-white/70">
-            <Reveal tone="inverse" size="lg" title="MCP server and in-app AI assistant">
+            <Reveal tone="inverse" size="lg" title="MCP server and AI assistant">
               <p className="max-w-xl text-sm leading-relaxed sm:text-base">
                 A hosted MCP endpoint for Cursor and Claude, plus a chat assistant that uses the same
                 tools under the same RBAC. Mutations wait for your approval and land in the audit
@@ -38,18 +39,22 @@ export function PlatformPanel() {
                   Chat assistant →
                 </a>
               </p>
-              <div className="mt-6">
-                <MockChat />
-              </div>
+              <ArtImage
+                name="mcp-chat"
+                alt="Two vintage telephones joined by a zigzag line in front of a glowing monitor"
+                className="mt-6"
+              />
             </Reveal>
             <Reveal tone="inverse" size="lg" title="Team roles and audit logs">
               <p className="max-w-xl text-sm leading-relaxed sm:text-base">
                 Workspace and project roles so teammates get an app, not root on every server.
                 Owners see who did what, included on every plan, not gated behind Enterprise.
               </p>
-              <div className="mt-6">
-                <MockAudit />
-              </div>
+              <ArtImage
+                name="audit-log"
+                alt="Punched cards and a ledger under a desk lamp"
+                className="mt-6"
+              />
             </Reveal>
             <Reveal tone="inverse" size="lg" title="Open source, MIT licensed">
               <p className="max-w-xl text-sm leading-relaxed sm:text-base">
@@ -77,6 +82,7 @@ export function PlatformPanel() {
           </div>
         </div>
       </div>
+      </Container>
     </Section>
   );
 }

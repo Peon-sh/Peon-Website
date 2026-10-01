@@ -1,6 +1,5 @@
 import { ArrowRight } from 'lucide-react';
 import { ArrowCircle } from '@/components/ui/arrow-circle';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
 
@@ -10,16 +9,12 @@ export function Hero() {
       <div className="bg-dots pointer-events-none absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_80%_70%_at_50%_0%,#000_40%,transparent_85%)]" aria-hidden />
       <Container className="pt-16 pb-14 sm:pt-24 sm:pb-16">
         <div className="mx-auto max-w-5xl text-center">
-          <Badge tone="neutral" className="mb-8">
-            <span className="size-1.5 rounded-full bg-brand-pink" />
-            Open source · MIT licensed
-          </Badge>
           <h1 className="display">
             Deploy your apps on
             <br />
             your server in clicks
           </h1>
-          <p className="mx-auto mt-7 max-w-2xl text-lg text-muted-foreground sm:text-xl">
+          <p className="mx-auto mt-7 max-w-xl text-lg text-muted-foreground sm:text-xl">
             The open-source deployment platform for servers you already own.
           </p>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-3">

@@ -1,4 +1,4 @@
-import { LogoMark } from '@/components/logo';
+import { LogoHorizontal } from '@/components/logo';
 import { GithubIcon } from '@/components/icons/github';
 import { Button, buttonClass } from '@/components/ui/button';
 import { SPONSOR_LINKS } from '@/lib/sponsors';
@@ -55,11 +55,10 @@ function NavLink({
 export function SiteHeader({ active }: { active?: ActivePage }) {
   return (
     <>
-    <header className="sticky top-0 z-40 border-b border-foreground/80 bg-background/85 backdrop-blur-md supports-[backdrop-filter]:bg-background/70">
+    <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur-md supports-[backdrop-filter]:bg-background/70">
       <nav className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6">
-        <a href="/" className="inline-flex items-center gap-2.5 text-base font-semibold tracking-tight">
-          <LogoMark size={28} />
-          <span>Peon</span>
+        <a href="/" className="inline-flex items-center" aria-label="Peon home">
+          <LogoHorizontal className="h-9 w-auto" />
         </a>
 
         <div className="hidden items-center gap-1 lg:absolute lg:left-1/2 lg:flex lg:-translate-x-1/2">

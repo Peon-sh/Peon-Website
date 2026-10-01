@@ -106,7 +106,7 @@ export default async function BlogPostPage({ params }: Props) {
 
       <SiteHeader active="blog" />
 
-      <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-14">
+      <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-14">
         <nav className="text-xs text-faint">
           <a href="/blogs" className="hover:text-foreground">
             blog

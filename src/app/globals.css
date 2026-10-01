@@ -120,36 +120,6 @@
   --ring: #7170ff;
 }
 
-/*
- * Token scope for content placed on a cream surface. Anything inside (mock rows,
- * check lists, status colours) re-skins to light values automatically, so product
- * mocks look native to the card instead of like dark bricks dropped onto it.
- */
-.theme-cream {
-  --background: #ffffff;
-  --foreground: #0a0a0a;
-  --card: #ffffff;
-  --card-foreground: #0a0a0a;
-  --secondary: #f7f4ee;
-  --secondary-foreground: #0a0a0a;
-  --muted: #f7f4ee;
-  --muted-foreground: #5c5a55;
-  --accent: #ece7dd;
-  --accent-foreground: #0a0a0a;
-  --faint: #8a867d;
-  --border: #e3ddd1;
-  --border-bright: #d2cab9;
-  --input: #e3ddd1;
-  --primary: #5b5ae6;
-  --primary-foreground: #ffffff;
-  --ring: #5b5ae6;
-  --phosphor: #5b5ae6;
-  --success: #0c9268;
-  --warning: #a96d08;
-  --info: #1b76b6;
-  --destructive: #d13438;
-}
-
 @layer base {
   * {
     @apply border-border outline-ring/40;
@@ -259,20 +229,13 @@
     radial-gradient(ellipse 40% 60% at 80% 50%, color-mix(in oklab, var(--brand-indigo) 32%, transparent), transparent 70%);
 }
 
-/* Product mock frames: quiet 1px border, one radius, a whisper of depth. */
+/* Product mock frames. */
 @utility frame {
   background: var(--card);
-  border: 1px solid var(--border-bright);
-  border-radius: 10px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
   box-shadow:
-    inset 0 1px 0 0 color-mix(in oklab, white 5%, transparent),
-    0 12px 32px -20px rgb(0 0 0 / 0.5);
-}
-
-/* Hero-sized frame: the big dashboard mock gets the deeper shadow. */
-@utility frame-lg {
-  box-shadow:
-    inset 0 1px 0 0 color-mix(in oklab, white 5%, transparent),
+    0 0 0 1px color-mix(in oklab, var(--border-bright) 60%, transparent),
     0 40px 80px -40px rgb(0 0 0 / 0.6);
 }
 

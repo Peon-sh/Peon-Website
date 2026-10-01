@@ -62,14 +62,7 @@ export const metadata: Metadata = {
   },
 }
 
-const COMPARISON_PLATFORMS = [
-  "Peon",
-  "Coolify",
-  "Dokploy",
-  "Vercel",
-  "Heroku",
-  "DO App Platform",
-] as const
+const COMPARISON_PLATFORMS = ["Peon", "Coolify", "Dokploy", "Vercel"] as const
 
 /** Feature matrix. Peon column (index 0) is highlighted. */
 const COMPARISON_ROWS: { feature: string; cells: string[]; peonEdge?: boolean }[] = [
@@ -80,13 +73,11 @@ const COMPARISON_ROWS: { feature: string; cells: string[]; peonEdge?: boolean }[
       "From ~$5/mo · + per extra server",
       "From $4.50 / server",
       "$20 / seat / mo + usage",
-      "Per dyno · team plans extra",
-      "$5+ / app / mo",
     ],
   },
   {
     feature: "Self-host free",
-    cells: ["Yes", "Yes", "Yes", "No", "No", "No"],
+    cells: ["Yes", "Yes", "Yes", "No"],
   },
   {
     feature: "Where apps run",
@@ -95,8 +86,6 @@ const COMPARISON_ROWS: { feature: string; cells: string[]; peonEdge?: boolean }[
       "Your servers (any provider)",
       "Your servers (any provider)",
       "Vercel only",
-      "Heroku only",
-      "DigitalOcean only",
     ],
   },
   {
@@ -106,13 +95,11 @@ const COMPARISON_ROWS: { feature: string; cells: string[]; peonEdge?: boolean }[
       "Teams",
       "Basic · fine-grained on Enterprise",
       "Team seats",
-      "Team plans",
-      "Team plans",
     ],
   },
   {
     feature: "Unlimited team members",
-    cells: ["Yes · included", "Yes (self-host)", "Plan limits on Hobby", "Paid per seat", "Paid team plans", "Team plans"],
+    cells: ["Yes · included", "Yes (self-host)", "Plan limits on Hobby", "Paid per seat"],
   },
   {
     feature: "Audit logs",
@@ -121,25 +108,23 @@ const COMPARISON_ROWS: { feature: string; cells: string[]; peonEdge?: boolean }[
       "Limited / DIY",
       "Enterprise only",
       "Enterprise features",
-      "Enterprise",
-      "Limited",
     ],
   },
   {
     feature: "MCP for AI agents",
-    cells: ["Included", "No", "Yes", "No", "No", "No"],
+    cells: ["Included", "No", "Yes", "No"],
   },
   {
     feature: "In-app AI assistant",
-    cells: ["Included", "No", "No", "No", "No", "No"],
+    cells: ["Included", "No", "No", "No"],
   },
   {
     feature: "PR preview deploys",
-    cells: ["Yes", "Yes", "Yes", "Yes", "Review apps", "Yes"],
+    cells: ["Yes", "Yes", "Yes", "Yes"],
   },
   {
     feature: "Open source",
-    cells: ["Yes", "Yes", "Yes", "No", "No", "No"],
+    cells: ["Yes", "Yes", "Yes", "No"],
   },
 ]
 
