@@ -4,6 +4,7 @@ import { notFound } from "next/navigation"
 import { ALL_DOC_PAGES, docGroupFor, getDocPage } from "@/lib/docs"
 import { buildDocArticleJsonLd } from "@/lib/docs/json-ld"
 import { publicEnv } from "@/lib/env"
+import { defaultOgImage } from "@/lib/og"
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -28,6 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: `/docs/${page.slug}`,
       siteName: "Peon",
       type: "website",
+      images: [defaultOgImage],
     },
   }
 }

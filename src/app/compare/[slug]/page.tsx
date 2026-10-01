@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { SeoMarketingPage } from '@/components/marketing/seo-page';
+import { defaultOgImage } from '@/lib/og';
 import { COMPARE_PAGES, getComparePage } from '@/lib/seo-pages';
 
 export const dynamic = 'force-static';
@@ -30,6 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: `/compare/${page.slug}`,
       siteName: 'Peon',
       type: 'website',
+      images: [defaultOgImage],
     },
   };
 }

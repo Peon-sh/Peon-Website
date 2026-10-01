@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { SeoMarketingPage } from '@/components/marketing/seo-page';
+import { defaultOgImage } from '@/lib/og';
 import { SOLUTION_PAGES, getSolutionPage } from '@/lib/seo-pages';
 
 export const dynamic = 'force-static';
@@ -26,6 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: `/solutions/${page.slug}`,
       siteName: 'Peon',
       type: 'website',
+      images: [defaultOgImage],
     },
   };
 }

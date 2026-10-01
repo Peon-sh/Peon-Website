@@ -2,21 +2,52 @@ import type { Metadata } from 'next';
 import { SiteHeader } from '@/components/marketing/site-header';
 import { SiteFooter } from '@/components/marketing/site-footer';
 import { GithubIcon } from '@/components/icons/github';
+import { publicEnv } from '@/lib/env';
+import { defaultOgImage } from '@/lib/og';
 import { SPONSOR_LINKS, VISIBLE_SPONSOR_CHANNELS } from '@/lib/sponsors';
 import { AppCtaLink } from '@/components/marketing/app-cta-link';
 
 export const dynamic = 'force-static';
 
+const OPEN_SOURCE_NAME = 'Open Source: We believe in Open Source | Peon';
+const OPEN_SOURCE_DESCRIPTION =
+  'Peon is free and open source. Same features when you self-host. Sustainability via donations and optional Peon Cloud, not feature paywalls.';
+
+function buildOpenSourceJsonLd(siteUrl: string) {
+  const url = `${siteUrl}/open-source`;
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebPage',
+        '@id': url,
+        url,
+        name: OPEN_SOURCE_NAME,
+        description: OPEN_SOURCE_DESCRIPTION,
+        publisher: { '@type': 'Organization', name: 'Peon', url: siteUrl },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Peon', item: siteUrl },
+          { '@type': 'ListItem', position: 2, name: 'Open source', item: url },
+        ],
+      },
+    ],
+  };
+}
+
 export const metadata: Metadata = {
   title: 'Open Source: We believe in Open Source',
-  description:
-    'Peon is free and open source. Same features when you self-host. Sustainability via donations and optional Peon Cloud, not feature paywalls.',
+  description: OPEN_SOURCE_DESCRIPTION,
   alternates: { canonical: '/open-source' },
   openGraph: {
     title: 'We believe in Open Source | Peon',
     description:
       'Software should be free and accessible. Peon is open source, self-hostable, and funded by the community and optional Cloud, not locked features.',
     url: '/open-source',
+    type: 'website',
+    images: [defaultOgImage],
   },
 };
 
@@ -63,8 +94,14 @@ const TODAY = [
 ] as const;
 
 export default function OpenSourcePage() {
+  const jsonLd = buildOpenSourceJsonLd(publicEnv.siteUrl);
+
   return (
     <div className="flex min-h-screen flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <SiteHeader active="open-source" />
       <main className="flex-1">
         {/* Hero */}
