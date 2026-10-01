@@ -69,7 +69,7 @@ export function Comparison({
         <div className="relative mt-12">
           <p className="mb-2 text-xs text-muted-foreground lg:hidden">Swipe to compare</p>
           <div className="relative">
-            <div className="overflow-x-auto rounded-sm border border-foreground/80">
+            <div className="overflow-x-auto rounded-[10px] border border-foreground/80">
           <table className="w-full min-w-[880px] text-left text-sm">
             <thead>
               <tr className="bg-surface-indigo text-surface-indigo-foreground">

@@ -13,12 +13,12 @@ const STEPS = [
       <div className="space-y-2" aria-hidden>
         <MockRow className="text-muted-foreground">
           <span className="text-faint">Host</span>
-          <span className="font-mono text-[11px] text-foreground">65.108.24.17</span>
+          <span className="truncate font-mono text-[11px] text-foreground">65.108.24.17</span>
           <span className="ml-auto text-faint">root · 22</span>
         </MockRow>
         <MockRow className="text-muted-foreground">
           <span className="text-faint">Key</span>
-          <span className="font-mono text-[11px] text-foreground">peon-deploy · ed25519</span>
+          <span className="truncate font-mono text-[11px] text-foreground">peon-deploy · ed25519</span>
           <span className="ml-auto inline-flex items-center gap-1.5 text-success">
             <Check className="size-3.5" /> Reachable
           </span>
@@ -46,12 +46,12 @@ const STEPS = [
       <div className="space-y-2" aria-hidden>
         <MockRow>
           <span className="size-1.5 rounded-full bg-success" />
-          <span className="font-medium text-foreground">api.acme.dev</span>
+          <span className="truncate font-medium text-foreground">api.acme.dev</span>
           <span className="ml-auto text-faint">HTTPS · 200 · 38 ms</span>
         </MockRow>
         <MockRow className="text-muted-foreground">
           <span className="text-faint">Rollout</span>
-          <span>api-web-3 replaced api-web-2</span>
+          <span className="truncate">api-web-3 replaced api-web-2</span>
           <span className="ml-auto text-success">0 s downtime</span>
         </MockRow>
       </div>
@@ -70,14 +70,14 @@ export function HowItWorks() {
             <li
               key={s.n}
               className={cn(
-                'flex min-w-0 flex-col rounded-sm border-b-8 bg-surface-cream p-7 text-surface-cream-foreground',
+                'theme-cream flex min-w-0 flex-col rounded-[10px] border-b-8 bg-surface-cream p-7 text-surface-cream-foreground',
                 s.border,
               )}
             >
               <span className="font-mono text-sm font-semibold tabular">{s.n}</span>
               <h3 className="mt-10 text-2xl leading-tight font-semibold tracking-[-0.02em] sm:text-3xl">{s.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-surface-cream-muted">{s.body}</p>
-              <div className="dark mt-8">{s.mock}</div>
+              <div className="mt-8">{s.mock}</div>
             </li>
           ))}
         </ol>

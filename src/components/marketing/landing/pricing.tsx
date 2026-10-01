@@ -74,9 +74,9 @@ export function Pricing() {
             <div
               key={p.name}
               className={cn(
-                'relative flex flex-col rounded-sm p-7',
+                'relative flex flex-col rounded-[10px] p-7',
                 p.highlight
-                  ? 'bg-surface-cream text-surface-cream-foreground'
+                  ? 'theme-cream bg-surface-cream text-surface-cream-foreground'
                   : 'border border-foreground/80 bg-card',
               )}
             >
@@ -98,11 +98,7 @@ export function Pricing() {
                 <p className="mt-1 h-5" />
               )}
               <p className={cn('mt-4 text-sm leading-relaxed', p.highlight ? 'text-surface-cream-muted' : 'text-muted-foreground')}>{p.blurb}</p>
-              <CheckList
-                items={p.bullets}
-                className={cn('mt-6 flex-1', p.highlight && '[&_li]:text-surface-cream-muted [&_svg]:text-surface-indigo')}
-                dense
-              />
+              <CheckList items={p.bullets} className="mt-6 flex-1" dense />
               <div className="mt-8">
                 {'appPath' in p.cta ? (
                   <Button appPath={p.cta.appPath} variant="primary" className="w-full">
@@ -125,7 +121,7 @@ export function Pricing() {
         </div>
 
         {/* Full feature list stays indexable; collapsed by default. */}
-        <details className="group mt-12 rounded-sm border border-foreground/80 p-7">
+        <details className="group mt-12 rounded-[10px] border border-foreground/80 p-7">
           <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-xl font-semibold tracking-[-0.02em] select-none sm:text-2xl">
             Included in every plan
             <ArrowCircle />

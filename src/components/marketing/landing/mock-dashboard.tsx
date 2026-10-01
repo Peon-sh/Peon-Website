@@ -49,7 +49,7 @@ function StatusDot({ tone }: { tone: 'success' | 'warning' | 'muted' }) {
 
 export function MockDashboard({ className }: { className?: string }) {
   return (
-    <div className={cn('frame min-w-0 overflow-hidden text-[12px] leading-none', className)} aria-hidden>
+    <div className={cn('frame frame-lg min-w-0 overflow-hidden text-[12px] leading-none', className)} aria-hidden>
       {/* Window chrome */}
       <div className="flex h-9 items-center gap-2 border-b border-border bg-secondary/60 px-3">
         <span className="size-2.5 rounded-full bg-border-bright" />
@@ -141,9 +141,9 @@ export function MockDashboard({ className }: { className?: string }) {
             </div>
           </div>
 
-          <div className="border-t border-border bg-[#070708] px-4 py-3 overflow-hidden font-mono text-[11px] leading-[1.7]">
+          <div className="border-t border-border bg-[#0b0b0d] px-4 py-3 overflow-hidden font-mono text-[11px] leading-[1.7]">
             <div className="mb-1.5 flex items-center gap-2 text-faint">
-              <span className="text-phosphor">●</span> build · a41f9c2 · streaming
+              <span className="text-brand-cyan">●</span> build · a41f9c2 · streaming
             </div>
             {LOG.map(([t, line]) => (
               <div key={t} className="flex gap-3 whitespace-nowrap">
@@ -153,8 +153,8 @@ export function MockDashboard({ className }: { className?: string }) {
             ))}
             <div className="mt-0.5 flex gap-3">
               <span className="text-faint">00:44.12</span>
-              <span className="text-phosphor">✓ Deployment finished</span>
-              <span className="inline-block h-3 w-1.5 animate-pulse bg-phosphor/70 align-middle" />
+              <span className="text-success">✓ Deployment finished</span>
+              <span className="inline-block h-3 w-1.5 animate-pulse bg-brand-cyan/70 align-middle" />
             </div>
           </div>
         </div>
