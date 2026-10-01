@@ -37,7 +37,7 @@
     "openai": "^7.23.0",
     "tailwindcss": "^4",
     "tsx": "^4.23.15",
-    "typescript": "^7.0.2"
+    "typescript": "^6.0.3"
   },
   "browserslist": [
     "chrome >= 111",
