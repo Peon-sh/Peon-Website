@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { defaultOgImage } from "@/lib/og"
 import { SiteHeader } from "@/components/marketing/site-header"
 import { SiteFooter } from "@/components/marketing/site-footer"
 import { LogoCloud } from "@/components/ui/logo-cloud"
@@ -41,21 +42,14 @@ export const metadata: Metadata = {
       "Deploy anything to any server you own. Git push to deploy, databases, compose stacks, TLS, backups and logs - $3/project with unlimited members.",
     url: "/",
     siteName: "Peon",
-    images: [
-      {
-        url: "/og.jpg",
-        width: 1024,
-        height: 599,
-        alt: "Peon — Deploy your apps on your server in clicks",
-      },
-    ],
+    images: [defaultOgImage],
   },
   twitter: {
     card: "summary_large_image",
     title: "Peon - Deploy your apps on your server in clicks",
     description:
       "The self-hostable deployment platform. Unlimited team members, flat $3 per project.",
-    images: ["/og.jpg"],
+    images: [defaultOgImage],
   },
 }
 

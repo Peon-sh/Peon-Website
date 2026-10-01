@@ -3,6 +3,7 @@ import { SiteHeader } from '@/components/marketing/site-header';
 import { SiteFooter } from '@/components/marketing/site-footer';
 import { GithubIcon } from '@/components/icons/github';
 import { publicEnv } from '@/lib/env';
+import { defaultOgImage } from '@/lib/og';
 import { SPONSOR_LINKS, VISIBLE_SPONSOR_CHANNELS } from '@/lib/sponsors';
 import { AppCtaLink } from '@/components/marketing/app-cta-link';
 
@@ -45,6 +46,8 @@ export const metadata: Metadata = {
     description:
       'Software should be free and accessible. Peon is open source, self-hostable, and funded by the community and optional Cloud, not locked features.',
     url: '/open-source',
+    type: 'website',
+    images: [defaultOgImage],
   },
 };
 

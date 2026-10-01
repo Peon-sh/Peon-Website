@@ -3,6 +3,7 @@ import { SiteHeader } from "@/components/marketing/site-header"
 import { SiteFooter } from "@/components/marketing/site-footer"
 import { MarketplaceGrid } from "@/components/marketing/marketplace-grid"
 import { publicEnv } from "@/lib/env"
+import { defaultOgImage } from "@/lib/og"
 import { listTemplateCategories, listTemplates } from "@/lib/templates"
 
 const MARKETPLACE_NAME = "300+ Apps, One Click to Deploy | Peon Marketplace"
@@ -51,6 +52,7 @@ export const metadata: Metadata = {
     url: "/marketplace",
     siteName: "Peon",
     type: "website",
+    images: [defaultOgImage],
   },
 }
 

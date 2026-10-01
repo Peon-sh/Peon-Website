@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { LegalPage } from '@/components/marketing/legal-page';
+import { defaultOgImage } from '@/lib/og';
 
 export const dynamic = 'force-static';
 
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     url: '/privacy-policy',
     siteName: 'Peon',
     type: 'website',
+    images: [defaultOgImage],
   },
 };
 
