@@ -91,6 +91,22 @@ function applyCtas(){
     if(next!==a.href)a.href=next;
   });
 }
+function isLeakedSchema(text){
+  var t=String(text==null?"":text).replace(/^\\s+|\\s+$/g,"");
+  if(!t||t.charAt(0)!=="{"||t.charAt(t.length-1)!=="}")return false;
+  return t.indexOf("@context")!==-1&&t.indexOf("schema.org")!==-1;
+}
+function sweepLeakedSchema(){
+  var nodes=document.body.childNodes,i,n;
+  for(i=nodes.length-1;i>=0;i--){
+    n=nodes[i];
+    if(n.nodeType===3){
+      if(isLeakedSchema(n.textContent))n.parentNode.removeChild(n);
+    }else if(n.nodeType===1&&n.tagName!=="SCRIPT"&&n.childElementCount===0&&isLeakedSchema(n.textContent)){
+      n.parentNode.removeChild(n);
+    }
+  }
+}
 function injectGtm(){
   if(!GTM_ID||document.getElementById("google-tag-manager"))return;
   window.dataLayer=window.dataLayer||[];
@@ -103,6 +119,8 @@ function injectGtm(){
 }
 capture();
 applyCtas();
+sweepLeakedSchema();
+new MutationObserver(sweepLeakedSchema).observe(document.body,{childList:true});
 var gtmLoaded=false;
 function loadGtm(){
   if(gtmLoaded)return;

@@ -3,7 +3,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-heading: var(--font-inter);
+  --font-heading: var(--font-inter-heading);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-plex-mono);
   --color-ring: var(--ring);
@@ -121,6 +121,9 @@
   }
   summary::-webkit-details-marker {
     display: none;
+  }
+  html:has(#mobile-nav[open]) {
+    overflow: hidden;
   }
 }
 

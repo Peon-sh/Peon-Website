@@ -10,12 +10,26 @@ const plexMono = IBM_Plex_Mono({
   subsets: ['latin'],
   weight: ['400', '600'],
   variable: '--font-plex-mono',
+  display: 'swap',
+  preload: false,
+});
+
+const interHeading = Inter({
+  subsets: ['latin'],
+  weight: '600',
+  variable: '--font-inter-heading',
+  display: 'swap',
+  preload: true,
+  adjustFontFallback: true,
 });
 
 const inter = Inter({
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
+  weight: ['400', '500'],
   variable: '--font-inter',
+  display: 'swap',
+  preload: false,
+  adjustFontFallback: true,
 });
 
 export const metadata: Metadata = {
@@ -58,7 +72,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={cn('dark antialiased', plexMono.variable, inter.variable)}
+      className={cn('dark antialiased', plexMono.variable, inter.variable, interHeading.variable)}
     >
       <body>
         <GoogleTagManagerNoscript />
