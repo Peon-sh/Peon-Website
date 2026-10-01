@@ -68,12 +68,12 @@ function FooterColumn({ title, links }: { title: string; links: FooterLink[] }) 
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border">
+    <footer className="border-t-8 border-surface-pink">
       <div className="mx-auto w-full max-w-6xl px-6 py-16">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <a href="/" className="inline-flex items-center gap-2.5 text-[15px] font-semibold tracking-tight">
-              <LogoMark size={24} />
+            <a href="/" className="inline-flex items-center gap-3 text-2xl font-semibold tracking-tight">
+              <LogoMark size={36} />
               <span>Peon</span>
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">

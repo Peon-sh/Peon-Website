@@ -4,12 +4,15 @@ import { SiteFooter } from "@/components/marketing/site-footer"
 import { LogoCloud } from "@/components/ui/logo-cloud"
 import { Container } from "@/components/ui/container"
 import { Hero } from "@/components/marketing/landing/hero"
+import { ArtStrip } from "@/components/marketing/landing/art-strip"
 import { HowItWorks } from "@/components/marketing/landing/how-it-works"
 import { Features } from "@/components/marketing/landing/features"
+import { PlatformPanel } from "@/components/marketing/landing/platform-panel"
+import { Stats } from "@/components/marketing/landing/stats"
 import { Comparison } from "@/components/marketing/landing/comparison"
 import { Pricing } from "@/components/marketing/landing/pricing"
 import { Faq } from "@/components/marketing/landing/faq"
-import { FinalCta, OpenSourceStrip } from "@/components/marketing/landing/closing"
+import { FinalCta } from "@/components/marketing/landing/closing"
 
 /** Fully static HTML for crawlers (incl. Google OAuth brand verification). */
 export const dynamic = "force-static"
@@ -258,7 +261,8 @@ export default function LandingPage() {
       <SiteHeader />
       <main className="flex-1">
         <Hero />
-        <section className="border-t border-border py-12">
+        <ArtStrip />
+        <section className="py-12">
           <Container>
             <p className="mb-8 text-center text-sm text-muted-foreground">
               Runs on any server with SSH and Docker
@@ -266,11 +270,12 @@ export default function LandingPage() {
             <LogoCloud />
           </Container>
         </section>
-        <HowItWorks />
         <Features />
+        <HowItWorks />
+        <PlatformPanel />
+        <Stats />
         <Comparison platforms={COMPARISON_PLATFORMS} rows={COMPARISON_ROWS} />
         <Pricing />
-        <OpenSourceStrip />
         <Faq items={FAQ} />
         <FinalCta />
       </main>

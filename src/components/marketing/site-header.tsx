@@ -55,14 +55,14 @@ function NavLink({
 export function SiteHeader({ active }: { active?: ActivePage }) {
   return (
     <>
-    <header className="sticky top-0 z-40 border-b border-border/80 bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
-      <nav className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-6">
-        <a href="/" className="inline-flex items-center gap-2.5 text-[15px] font-semibold tracking-tight">
-          <LogoMark size={24} />
+    <header className="sticky top-0 z-40 border-b border-foreground/80 bg-background/85 backdrop-blur-md supports-[backdrop-filter]:bg-background/70">
+      <nav className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6">
+        <a href="/" className="inline-flex items-center gap-2.5 text-base font-semibold tracking-tight">
+          <LogoMark size={28} />
           <span>Peon</span>
         </a>
 
-        <div className="hidden items-center gap-1 lg:flex">
+        <div className="hidden items-center gap-1 lg:absolute lg:left-1/2 lg:flex lg:-translate-x-1/2">
           {NAV_ITEMS.map((item) => (
             <NavLink key={item.href} item={item} active={active} />
           ))}
@@ -82,7 +82,7 @@ export function SiteHeader({ active }: { active?: ActivePage }) {
           <Button appPath="/login" variant="ghost" size="sm" className="hidden lg:inline-flex">
             Log in
           </Button>
-          <Button appPath="/register" variant="primary" size="sm" className="hidden lg:inline-flex">
+          <Button appPath="/register" variant="primary" size="sm" className="hidden rounded-full px-4 lg:inline-flex">
             Get started
           </Button>
         </div>
@@ -91,7 +91,7 @@ export function SiteHeader({ active }: { active?: ActivePage }) {
 
     <details id="mobile-nav" className="group lg:hidden">
       <summary
-        className="fixed top-1.5 right-6 z-50 flex size-11 cursor-pointer list-none items-center justify-center rounded-md text-foreground hover:bg-accent"
+        className="fixed top-2.5 right-6 z-50 flex size-11 cursor-pointer list-none items-center justify-center rounded-md text-foreground hover:bg-accent"
         aria-label="Open menu"
       >
         <svg className="size-5 group-open:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" aria-hidden>
@@ -101,7 +101,7 @@ export function SiteHeader({ active }: { active?: ActivePage }) {
           <path d="M6 6l12 12M18 6L6 18" />
         </svg>
       </summary>
-      <div className="fixed inset-x-0 top-14 bottom-0 z-30 flex flex-col overflow-y-auto bg-background">
+      <div className="fixed inset-x-0 top-16 bottom-0 z-30 flex flex-col overflow-y-auto bg-background">
         <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-1 px-6 py-4">
           {NAV_ITEMS.map((item) => (
             <NavLink key={item.href} item={item} active={active} className="-mx-2.5 py-2.5 text-base" />

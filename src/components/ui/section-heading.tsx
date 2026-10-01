@@ -19,19 +19,11 @@ export function SectionHeading({
   return (
     <div className={cn('max-w-2xl', align === 'center' && 'mx-auto text-center', className)}>
       {eyebrow ? (
-        <p className="mb-3 text-sm font-medium text-phosphor">{eyebrow}</p>
+        <p className="mb-3 text-sm font-medium text-muted-foreground">{eyebrow}</p>
       ) : null}
-      <Tag
-        className={cn(
-          Tag === 'h1'
-            ? 'text-4xl leading-[1.08] sm:text-5xl lg:text-[56px]'
-            : 'text-3xl leading-[1.15] sm:text-[40px]',
-        )}
-      >
-        {title}
-      </Tag>
+      <Tag className={Tag === 'h1' ? 'display' : 'title-xl'}>{title}</Tag>
       {lede ? (
-        <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">{lede}</p>
+        <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">{lede}</p>
       ) : null}
     </div>
   );

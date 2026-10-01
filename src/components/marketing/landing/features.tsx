@@ -1,122 +1,72 @@
 import { Container, Section } from '@/components/ui/container';
-import { SectionHeading } from '@/components/ui/section-heading';
-import { MockAudit, MockBackups, MockChat, MockDomains, MockGitPush } from './mock-bits';
-import { cn } from '@/lib/utils';
+import { Reveal } from '@/components/ui/reveal';
+import { MockBackups, MockDomains, MockGitPush } from './mock-bits';
+import { MockDashboard } from './mock-dashboard';
 
-const ALSO = [
-  ['Live logs, metrics and alerts', 'Container logs, resource meters, health checks and notifications.'],
-  ['Docker Compose and images', 'Prebuilt images, full Compose stacks or one-click templates.'],
-  ['Static sites and SPAs', 'Ship static builds from the same pipeline, with per-branch environments.'],
-  ['SSH terminal in the browser', 'Open a shell on any connected server without leaving the dashboard.'],
-  ['Scheduled tasks', 'Cron-style jobs that run inside your service containers.'],
-  ['Any Git provider', 'GitHub, GitLab, Bitbucket, or a plain Git URL with a deploy key.'],
+/**
+ * "The whole stack" list. Titles are always visible; the body copy and product mocks
+ * sit inside native <details>, so the page reads sparse while the full text remains in
+ * the HTML for crawlers.
+ */
+const ROWS = [
+  {
+    title: 'Git push to deploy, with previews',
+    body: 'Every push builds and ships with zero-downtime rollouts and instant rollbacks. Pull requests get their own preview URL. Connect GitHub, GitLab, Bitbucket, or a plain Git URL with a deploy key.',
+    mock: <MockGitPush />,
+  },
+  {
+    title: 'A dashboard for every project',
+    body: 'Deployments, servers, domains, logs and metrics in one place. Container logs, resource meters, health checks and notifications, so you never SSH in to find out what happened.',
+    mock: <MockDashboard />,
+    wide: true,
+  },
+  {
+    title: 'Managed databases with backups',
+    body: 'Postgres, MySQL, MariaDB, MongoDB and Redis on your own hardware, backed up on a schedule to S3-compatible storage.',
+    mock: <MockBackups />,
+  },
+  {
+    title: 'Domains and automatic HTTPS',
+    body: 'Custom domains, auto-renewed Let’s Encrypt certificates, HTTP to HTTPS redirects and per-service routing out of the box.',
+    mock: <MockDomains />,
+  },
+  {
+    title: 'Docker Compose, images and static sites',
+    body: 'Prebuilt images, full Compose stacks or one-click templates. Ship static builds and SPAs from the same pipeline, with per-branch environments.',
+  },
+  {
+    title: 'SSH terminal and scheduled tasks',
+    body: 'Open a shell on any connected server without leaving the dashboard. Cron-style jobs run inside your service containers.',
+  },
 ] as const;
-
-type Accent = 'cyan' | 'pink' | 'indigo';
-
-/** Top stripe and link colour per brand hue. */
-const ACCENT: Record<Accent, { bar: string; text: string }> = {
-  cyan: { bar: 'bg-brand-cyan', text: 'text-brand-cyan' },
-  pink: { bar: 'bg-brand-pink', text: 'text-brand-pink' },
-  indigo: { bar: 'bg-brand-indigo', text: 'text-brand-indigo' },
-};
-
-function Cell({
-  title,
-  body,
-  children,
-  className,
-  links,
-  accent,
-}: {
-  title: string;
-  body: string;
-  children: React.ReactNode;
-  className?: string;
-  links?: { label: string; href: string }[];
-  accent: Accent;
-}) {
-  const a = ACCENT[accent];
-  return (
-    <article className={cn('relative flex min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card p-6', className)}>
-      <span className={cn('absolute inset-x-0 top-0 h-0.5', a.bar)} aria-hidden />
-      <h3 className="text-base font-semibold">{title}</h3>
-      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{body}</p>
-      {links ? (
-        <p className="mt-3 flex flex-wrap gap-x-4 text-sm">
-          {links.map((l) => (
-            <a key={l.href} href={l.href} className={cn('font-medium underline-offset-4 hover:underline', a.text)}>
-              {l.label} →
-            </a>
-          ))}
-        </p>
-      ) : null}
-      <div className="mt-6 flex-1">{children}</div>
-    </article>
-  );
-}
 
 export function Features() {
   return (
-    <Section id="features">
+    <Section id="features" divider={false}>
       <Container>
-        <SectionHeading
-          eyebrow="Platform"
-          title="Everything a PaaS gives you, on hardware you control"
-          lede="Peon turns any Linux server into your own Docker hosting platform: git push deploys, managed databases and team access, without per-seat pricing or a walled garden."
-        />
-
-        <div className="mt-14 grid gap-4 lg:grid-cols-3">
-          <Cell
-            title="MCP server and in-app AI assistant"
-            body="A hosted MCP endpoint for Cursor and Claude, plus a chat assistant that uses the same tools under the same RBAC. Mutations wait for your approval and land in the audit log."
-            links={[
-              { label: 'MCP setup', href: '/docs/mcp' },
-              { label: 'Chat assistant', href: '/docs/chat-assistant' },
-            ]}
-            className="lg:col-span-2"
-            accent="indigo"
-          >
-            <MockChat />
-          </Cell>
-          <Cell
-            accent="cyan"
-            title="Git push to deploy, with previews"
-            body="Every push builds and ships with zero-downtime rollouts and instant rollbacks. Pull requests get their own preview URL."
-          >
-            <MockGitPush />
-          </Cell>
-          <Cell
-            accent="pink"
-            title="Managed databases with backups"
-            body="Postgres, MySQL, MariaDB, MongoDB and Redis on your own hardware, backed up on a schedule to S3-compatible storage."
-          >
-            <MockBackups />
-          </Cell>
-          <Cell
-            accent="cyan"
-            title="Domains and automatic HTTPS"
-            body="Custom domains, auto-renewed Let’s Encrypt certificates, HTTP to HTTPS redirects and per-service routing out of the box."
-          >
-            <MockDomains />
-          </Cell>
-          <Cell
-            accent="indigo"
-            title="Team roles and audit logs"
-            body="Workspace and project roles so teammates get an app, not root on every server. Owners see who did what, included on every plan."
-          >
-            <MockAudit />
-          </Cell>
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
+          <div>
+            <h2 className="title-xl">
+              The whole stack.
+              <br />
+              No setup
+              <br />
+              slowdown.
+            </h2>
+            <p className="mt-6 max-w-sm text-base leading-relaxed text-muted-foreground">
+              Peon turns any Linux server into your own Docker hosting platform, without per-seat
+              pricing or a walled garden.
+            </p>
+          </div>
+          <div className="border-t border-foreground/80">
+            {ROWS.map((r) => (
+              <Reveal key={r.title} title={r.title}>
+                <p className="max-w-2xl text-sm leading-relaxed sm:text-base">{r.body}</p>
+                {'mock' in r && r.mock ? <div className="mt-6">{r.mock}</div> : null}
+              </Reveal>
+            ))}
+          </div>
         </div>
-
-        <dl className="mt-12 grid gap-x-8 gap-y-6 border-t border-border pt-10 sm:grid-cols-2 lg:grid-cols-3">
-          {ALSO.map(([t, b]) => (
-            <div key={t}>
-              <dt className="text-sm font-medium text-foreground">{t}</dt>
-              <dd className="mt-1 text-sm leading-relaxed text-muted-foreground">{b}</dd>
-            </div>
-          ))}
-        </dl>
       </Container>
     </Section>
   );

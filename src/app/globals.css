@@ -18,6 +18,15 @@
   --color-brand-cyan: var(--brand-cyan);
   --color-brand-pink: var(--brand-pink);
   --color-brand-indigo: var(--brand-indigo);
+  --color-surface-indigo: var(--surface-indigo);
+  --color-surface-indigo-foreground: var(--surface-indigo-foreground);
+  --color-surface-pink: var(--surface-pink);
+  --color-surface-pink-foreground: var(--surface-pink-foreground);
+  --color-surface-cyan: var(--surface-cyan);
+  --color-surface-cyan-foreground: var(--surface-cyan-foreground);
+  --color-surface-cream: var(--surface-cream);
+  --color-surface-cream-foreground: var(--surface-cream-foreground);
+  --color-surface-cream-muted: var(--surface-cream-muted);
   --color-faint: var(--faint);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
@@ -45,6 +54,17 @@
   --brand-pink: #f472b6;
   --brand-indigo: #7170ff;
   --brand-gradient: linear-gradient(135deg, var(--brand-cyan) 0%, var(--brand-pink) 50%, var(--brand-indigo) 100%);
+
+  /* Colour-block surfaces: flat panels and tiles in the brand hues, plus a cream card for contrast on dark. */
+  --surface-indigo: #7170ff;
+  --surface-indigo-foreground: #ffffff;
+  --surface-pink: #f472b6;
+  --surface-pink-foreground: #0a0a0a;
+  --surface-cyan: #22d3ee;
+  --surface-cyan-foreground: #0a0a0a;
+  --surface-cream: #f3efe7;
+  --surface-cream-foreground: #0a0a0a;
+  --surface-cream-muted: #5c5a55;
 
   --background: #fafafa;
   --foreground: #111113;
@@ -134,6 +154,48 @@
   }
   html:has(#mobile-nav[open]) {
     overflow: hidden;
+  }
+}
+
+/* Display type: giant headlines that carry the page. */
+@utility display {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+/* Section title, one step down from display. */
+@utility title-xl {
+  font-family: var(--font-heading);
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+/* Fine dot grid texture, page-wide and faint. */
+@utility bg-dots {
+  background-image: radial-gradient(color-mix(in oklab, var(--border-bright) 85%, transparent) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+/* Horizontal marquee for the art strip. Static when the user prefers reduced motion. */
+@utility animate-marquee {
+  animation: marquee 60s linear infinite;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
   }
 }
 
