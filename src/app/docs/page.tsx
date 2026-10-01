@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { DOC_GROUPS } from "@/lib/docs"
 import { buildDocsIndexJsonLd } from "@/lib/docs/json-ld"
 import { publicEnv } from "@/lib/env"
+import { defaultOgImage } from "@/lib/og"
 
 export const metadata: Metadata = {
   title: {
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
     url: "/docs",
     siteName: "Peon",
     type: "website",
+    images: [defaultOgImage],
   },
 }
 

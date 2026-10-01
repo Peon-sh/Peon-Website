@@ -4,6 +4,7 @@ import { GoogleTagManagerNoscript } from '@/components/analytics/google-tag-mana
 import { MarketingBoot } from '@/components/analytics/marketing-boot';
 import { cn } from '@/lib/utils';
 import { publicEnv } from '@/lib/env';
+import { defaultOgImage } from '@/lib/og';
 import './globals.css';
 
 const plexMono = IBM_Plex_Mono({
@@ -52,19 +53,12 @@ export const metadata: Metadata = {
     type: 'website',
     siteName: 'Peon',
     title: 'Peon - Deploy your apps on your server in clicks',
-    images: [
-      {
-        url: '/og.jpg',
-        width: 1024,
-        height: 599,
-        alt: 'Peon — Deploy your apps on your server in clicks',
-      },
-    ],
+    images: [defaultOgImage],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Peon - Deploy your apps on your server in clicks',
-    images: ['/og.jpg'],
+    images: [defaultOgImage],
   },
 };
 

@@ -3,6 +3,7 @@ import { SiteHeader } from '@/components/marketing/site-header';
 import { SiteFooter } from '@/components/marketing/site-footer';
 import { groupPostsByTag, listPublishedPosts } from '@/lib/blog';
 import { publicEnv } from '@/lib/env';
+import { defaultOgImage } from '@/lib/og';
 
 export const dynamic = 'force-dynamic';
 
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
     url: '/blogs',
     siteName: 'Peon',
     type: 'website',
+    images: [defaultOgImage],
   },
 };
 

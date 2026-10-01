@@ -9,6 +9,7 @@ import {
 } from '@/lib/blog';
 import { AppCtaLink } from '@/components/marketing/app-cta-link';
 import { publicEnv } from '@/lib/env';
+import { defaultOgImage } from '@/lib/og';
 
 export const dynamic = 'force-dynamic';
 
@@ -59,7 +60,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: 'Peon',
       images: ogImage?.url
         ? [{ url: ogImage.url, alt: ogImage.alt || title }]
-        : undefined,
+        : [defaultOgImage],
     },
     twitter: {
       card:
@@ -67,7 +68,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         'summary_large_image',
       title: post.twitterTitle?.trim() || title,
       description: post.twitterDescription?.trim() || description,
-      images: ogImage?.url ? [ogImage.url] : undefined,
+      images: ogImage?.url ? [ogImage.url] : [defaultOgImage],
     },
   };
 }

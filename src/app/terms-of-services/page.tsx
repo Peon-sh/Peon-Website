@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { LegalPage } from '@/components/marketing/legal-page';
+import { defaultOgImage } from '@/lib/og';
 
 export const metadata: Metadata = {
   title: { absolute: 'Peon Terms of Service: Billing, Usage & Account Rules' },
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
     url: '/terms-of-services',
     siteName: 'Peon',
     type: 'website',
+    images: [defaultOgImage],
   },
 };
 
