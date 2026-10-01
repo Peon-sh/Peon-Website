@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 72" width="160" height="72">
+  <!-- Peon horizontal logo: lowercase "peon" in layered strokes (cyan, pink, indigo); constant 6px gap between glyphs -->
+  <rect width="160" height="72" fill="#FFFFFF"/>
+  <g transform="translate(-4 2)"><g transform="translate(4 4)" fill="none" stroke="#22D3EE" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 19 V58"/><circle cx="27" cy="30" r="11"/>
+  <path d="M52 30 H74"/><path d="M74 30 A11 11 0 1 0 70.78 37.78"/>
+  <circle cx="99" cy="30" r="11"/>
+  <path d="M124 41 V19"/><path d="M124 30 A10 10 0 0 1 144 30 V41"/></g>
+  <g transform="translate(2 2)" fill="none" stroke="#F472B6" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 19 V58"/><circle cx="27" cy="30" r="11"/>
+  <path d="M52 30 H74"/><path d="M74 30 A11 11 0 1 0 70.78 37.78"/>
+  <circle cx="99" cy="30" r="11"/>
+  <path d="M124 41 V19"/><path d="M124 30 A10 10 0 0 1 144 30 V41"/></g>
+  <g transform="translate(0 0)" fill="none" stroke="#7170FF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 19 V58"/><circle cx="27" cy="30" r="11"/>
+  <path d="M52 30 H74"/><path d="M74 30 A11 11 0 1 0 70.78 37.78"/>
+  <circle cx="99" cy="30" r="11"/>
+  <path d="M124 41 V19"/><path d="M124 30 A10 10 0 0 1 144 30 V41"/></g></g>
+</svg>
