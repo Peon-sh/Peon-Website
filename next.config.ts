@@ -2,6 +2,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   productionBrowserSourceMaps: true,
+  experimental: {
+    // Inline route CSS into the HTML so the stylesheet is not a render-blocking request.
+    inlineCss: true,
+  },
   // Keep canonical/robots/description in <head> for all UAs (Ahrefs, Chrome, etc.).
   htmlLimitedBots: /.*/,
   async redirects() {

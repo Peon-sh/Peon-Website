@@ -39,6 +39,12 @@
     "tsx": "^4.23.15",
     "typescript": "^7.0.2"
   },
+  "browserslist": [
+    "chrome >= 111",
+    "edge >= 111",
+    "firefox >= 111",
+    "safari >= 16.4"
+  ],
   "pnpm": {
     "overrides": {
       "sharp": "^0.35.4",
