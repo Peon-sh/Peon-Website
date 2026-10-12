@@ -5,6 +5,31 @@ import { AppCtaLink } from '@/components/marketing/app-cta-link';
 import type { SeoPage as SeoPageData } from '@/lib/seo-pages';
 import { appHref, publicEnv } from '@/lib/env';
 
+function LinkedText({ text }: { text: string }) {
+  const parts: React.ReactNode[] = [];
+  const re = /\[([^\]]+)\]\((\/[^)\s]*)\)/g;
+  let last = 0;
+  let match: RegExpExecArray | null;
+  let found = false;
+  while ((match = re.exec(text)) !== null) {
+    found = true;
+    if (match.index > last) parts.push(text.slice(last, match.index));
+    parts.push(
+      <a
+        key={match.index}
+        href={match[2]}
+        className="text-phosphor underline-offset-4 hover:underline"
+      >
+        {match[1]}
+      </a>,
+    );
+    last = match.index + match[0].length;
+  }
+  if (!found) return text;
+  if (last < text.length) parts.push(text.slice(last));
+  return <span>{parts}</span>;
+}
+
 export function SeoMarketingPage({ page }: { page: SeoPageData }) {
   const ctaHref = page.ctaHref ?? appHref('/register');
   const ctaLabel = page.ctaLabel ?? 'Start deploying';
@@ -44,11 +69,15 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
               <div className="mt-5 space-y-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
                 {page.introContent.map((block, index) =>
                   block.type === 'p' ? (
-                    <p key={index}>{block.text}</p>
+                    <p key={index}>
+                      <LinkedText text={block.text} />
+                    </p>
                   ) : (
                     <ul key={index} className="list-inside list-disc space-y-1 text-base sm:text-lg">
                       {block.items.map((item) => (
-                        <li key={item}>{item}</li>
+                        <li key={item}>
+                          <LinkedText text={item} />
+                        </li>
                       ))}
                     </ul>
                   ),
@@ -56,7 +85,7 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
               </div>
             ) : (
               <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
-                {page.intro}
+                <LinkedText text={page.intro} />
               </p>
             )}
             <div className="mt-8">
@@ -93,13 +122,15 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
               {section.list && section.paragraphs.length > 1 ? (
                 <>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
-                    {section.paragraphs[0]}
+                    <LinkedText text={section.paragraphs[0]} />
                   </p>
                   <ul className="mt-4 space-y-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
                     {section.list.map((item) => (
                       <li key={item} className="flex items-start gap-2">
                         <Check className="mt-1 size-3.5 shrink-0 text-phosphor" strokeWidth={2.5} aria-hidden />
-                        <span>{item}</span>
+                        <span>
+                          <LinkedText text={item} />
+                        </span>
                       </li>
                     ))}
                   </ul>
@@ -108,7 +139,7 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
                       key={para.slice(0, 48)}
                       className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base"
                     >
-                      {para}
+                      <LinkedText text={para} />
                     </p>
                   ))}
                 </>
@@ -119,7 +150,7 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
                       key={para.slice(0, 48)}
                       className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base"
                     >
-                      {para}
+                      <LinkedText text={para} />
                     </p>
                   ))}
                   {section.list ? (
@@ -127,7 +158,9 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
                       {section.list.map((item) => (
                         <li key={item} className="flex items-start gap-2">
                           <Check className="mt-1 size-3.5 shrink-0 text-phosphor" strokeWidth={2.5} aria-hidden />
-                          <span>{item}</span>
+                          <span>
+                            <LinkedText text={item} />
+                          </span>
                         </li>
                       ))}
                     </ul>
@@ -142,7 +175,7 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
                       key={para.slice(0, 48)}
                       className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base"
                     >
-                      {para}
+                      <LinkedText text={para} />
                     </p>
                   ))}
                   {subsection.list ? (
@@ -150,7 +183,9 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
                       {subsection.list.map((item) => (
                         <li key={item} className="flex items-start gap-2">
                           <Check className="mt-1 size-3.5 shrink-0 text-phosphor" strokeWidth={2.5} aria-hidden />
-                          <span>{item}</span>
+                          <span>
+                            <LinkedText text={item} />
+                          </span>
                         </li>
                       ))}
                     </ul>
@@ -215,7 +250,7 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
                       {faq.question}
                     </summary>
                     <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                      {faq.answer}{' '}
+                      <LinkedText text={faq.answer} />{' '}
                       {faq.relatedLink ? (
                         <a
                           href={faq.relatedLink.href}
