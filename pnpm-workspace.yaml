@@ -1,5 +1,12 @@
 packages: []
 
-ignoredBuiltDependencies:
-  - sharp
-  - unrs-resolver
+overrides:
+  sharp: "^0.35.5"
+  postcss: ">=8.5.18"
+  nanoid: ">=3.3.18"
+  source-map-js: ">=1.2.2"
+
+allowBuilds:
+  esbuild: true
+  sharp: false
+  unrs-resolver: false

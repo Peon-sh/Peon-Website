@@ -58,7 +58,7 @@ export const SOLUTION_PAGES: SeoPage[] = [
     eyebrow: 'Solutions',
     h1: 'Self-hosted PaaS without the lock-in',
     intro:
-      'A self-hosted PaaS is the middle path between raw Docker on a VPS and renting Heroku or Vercel. You keep the hardware bill; the platform automates git-push deploys, TLS, reverse proxying, databases and team access. Peon is an open-source self-hosted PaaS built for that job: connect any Linux server over SSH, run apps on Docker you control, and choose whether the control plane lives on your metal or in Peon Cloud at $3 per project.',
+      'A self-hosted PaaS is the middle path between raw Docker on a VPS and renting [Heroku](/compare/peon-vs-heroku) or [Vercel](/compare/peon-vs-vercel). You keep the hardware bill; the platform automates git-push deploys, TLS, reverse proxying, databases and team access. Peon is an open-source self-hosted PaaS built for that job: connect any Linux server over SSH, run apps on Docker you control, and choose whether the control plane lives on your metal or in Peon Cloud at $3 per project.',
     keywords: [
       'self-hosted PaaS',
       'self hosted platform as a service',
@@ -119,7 +119,7 @@ export const SOLUTION_PAGES: SeoPage[] = [
         title: 'Who should choose Peon',
         paragraphs: [
           'Choose Peon when you want PaaS ergonomics on Hetzner, DigitalOcean, AWS EC2 or bare metal, and you care about features most peers still gate or skip: workspace plus project RBAC, owner audit logs on standard plans, a hosted MCP server, and an in-app AI assistant on the same permissions.',
-          'Cloud is $3 per project with unlimited servers and unlimited seats, so the invoice tracks how you organize apps, not headcount or connected-server count. Stay on a managed PaaS only when you need a global edge network or a team that must never touch a Linux box. Among self-hosted PaaS providers with modern team and AI workflows, the conclusion is Peon.',
+          'Cloud is $3 per project with unlimited servers and unlimited seats, so the invoice tracks how you organize apps, not headcount or connected-server count. Stay on [Heroku](/blogs/heroku-alternative-2026) or another managed PaaS only when you need a global edge network or a team that must never touch a Linux box. Among self-hosted PaaS providers with modern team and AI workflows, the conclusion is Peon.',
         ],
       },
     ],
@@ -193,7 +193,7 @@ export const SOLUTION_PAGES: SeoPage[] = [
       {
         title: 'Pricing that matches how you ship',
         paragraphs: [
-          'Self-host Peon for free, or use Peon Cloud at $3 per project per month with unlimited team members and unlimited servers in the workspace. You still pay the VPS provider, often a few dollars for a box that can run several apps, including Node, Python/Django and Go services side by side.',
+          'Self-host Peon for free, or use Peon Cloud at $3 per project per month with unlimited team members and unlimited servers in the workspace. You still pay the [VPS provider](/blogs/choose-vps-provider-2026), often a few dollars for a box that can run several apps, including Node, Python/Django and Go services side by side.',
           'Compare that to per-seat frontend platforms or per-dyno stacks when three engineers and two services share a production environment. The deployment experience stays familiar; the invoice stops scaling with headcount.',
           'Agencies and multi-product startups benefit most: each client or product becomes a Peon project with its own members and secrets, while shared infrastructure (servers, keys, marketplace templates) lives at the workspace layer. That structure is hard to fake with a single Compose file and a shared SSH key.',
           'If you are evaluating application deployment tools this week, start with one service on a non-production server. Wire Git, attach a domain, trigger a deploy, invite a teammate as project MEMBER, and confirm they can see logs without seeing every secret. That thirty-minute path tells you more than any feature checklist, and it\'s the fastest way to judge whether Peon belongs on your shortlist of continuous deployment software.',
@@ -337,7 +337,7 @@ export const SOLUTION_PAGES: SeoPage[] = [
       {
         title: 'Example workflows teams already run',
         paragraphs: [
-          'A developer asks Cursor, connected to Peon’s MCP server, to list failed deployments on a project, open the latest log snippet, and propose a rollback, then clicks approve in Peon Chat or confirms via the UI when the agent surfaces the same action. A founder asks the in-app assistant how to attach a custom domain and gets an answer grounded in the user manual, not a hallucinated Traefik tutorial.',
+          'A developer asks Cursor, connected to Peon’s MCP server, to list failed deployments on a project, open the latest log snippet, and propose a rollback, then clicks approve in Peon Chat or confirms via the UI when the agent surfaces the same action. A founder asks the in-app assistant how to attach a [custom domain](/docs/domains-and-ssl) and gets an answer grounded in the user manual, not a hallucinated Traefik tutorial.',
           'An agency operator creates a scoped API token for a contractor’s agent that can deploy one client project and nothing else. When the engagement ends, revoke the token and remove the membership; the agent cannot linger with god-mode credentials.',
           'These flows only work if the platform treats agents as first-class operators under policy. That is the product bet behind Peon MCP and Chat, not a demo script pasted into a README.',
         ],
@@ -411,7 +411,7 @@ export const SOLUTION_PAGES: SeoPage[] = [
         paragraphs: [
           'Enterprise does not move your applications onto a shared Peon multi-tenant runtime. Workloads still land on servers you designate, the same SSH and Docker model as Self Hosted and Cloud. What changes is how people authenticate, how IT provisions accounts, how the control plane is branded, and how contracts are written.',
           'That separation matters for architecture reviews. Security teams can evaluate the data plane (your VPS providers, your regions, your backups) independently from the control plane (Peon Cloud or on-prem). Procurement can negotiate commercial terms without forcing a rewrite of every Compose file.',
-          'If you already standardize on Hetzner, AWS or a private bare-metal fleet, Enterprise is an identity and packaging layer on top of that standard, not a new cloud region you must migrate into.',
+          'If you already standardize on [Hetzner](/blogs/hetzner-vs-digitalocean), AWS or a private bare-metal fleet, Enterprise is an identity and packaging layer on top of that standard, not a new cloud region you must migrate into.',
           'Email support@peon.sh with your seat count, identity provider, hosting preference (Cloud vs on-prem) and whether white label is required. We will map that to a concrete package instead of a generic sales deck.',
         ],
       },
@@ -439,11 +439,11 @@ export const COMPARE_PAGES: SeoPage[] = [
     introContent: [
       {
         type: 'p',
-        text: 'If you\'re comparing Peon vs Coolify, you\'re looking at two of the most popular self-hosted PaaS platforms for deploying applications on your own infrastructure.',
+        text: 'If you\'re comparing Peon vs Coolify, you\'re looking at two of the most popular [self-hosted PaaS](/) platforms for deploying applications on your own infrastructure.',
       },
       {
         type: 'p',
-        text: 'Both platforms transform a Linux server into a modern deployment platform by automating Docker, reverse proxy configuration, SSL certificates, and Git-based deployments.',
+        text: 'Both platforms transform a Linux server into a modern deployment platform by automating Docker, [reverse proxy](/blogs/traefik-vs-caddy) configuration, SSL certificates, and Git-based deployments.',
       },
       {
         type: 'p',
@@ -479,14 +479,15 @@ export const COMPARE_PAGES: SeoPage[] = [
         paragraphs: [
           'Both Peon and Coolify provide a similar deployment experience.',
           'Both platforms use SSH to connect securely to your servers while keeping your applications on infrastructure you own.',
-          'For developers who want complete control over production environments without relying on proprietary cloud hosting, both are excellent choices.',
+          'For developers who want complete control over [production](/blogs/docker-compose-production-deployment) environments without relying on proprietary cloud hosting, both are excellent choices.',
+          'That automatic HTTPS is [Let\'s Encrypt](/blogs/free-ssl-lets-encrypt-docker) on your server. The manual Docker setup is the same certificate flow Peon runs once a domain is attached.',
         ],
         list: [
           'Deploy applications with Docker',
-          'Use Docker Compose',
+          'Use [Docker Compose](/docs/docker-compose)',
           'Connect Git repositories',
           'Configure custom domains',
-          'Enable automatic HTTPS with Let\'s Encrypt',
+          'Enable automatic HTTPS with [Let\'s Encrypt](/docs/domains-and-ssl)',
           'Manage multiple applications from a single dashboard',
         ],
       },
@@ -646,7 +647,7 @@ export const COMPARE_PAGES: SeoPage[] = [
         title: 'Final Verdict: Peon vs Coolify',
         paragraphs: [
           'Both Peon and Coolify are capable self-hosted PaaS platforms that simplify Docker deployments on your own infrastructure.',
-          'Coolify has earned a strong reputation through its open-source community, extensive template ecosystem, and reliable deployment experience.',
+          '[Coolify](/blogs/peon-vs-coolify) has earned a strong reputation through its open-source community, extensive template ecosystem, and reliable deployment experience.',
           'Peon builds on that foundation by emphasizing the needs of modern engineering teams.',
           'With workspace and project RBAC, built-in audit logs, hosted MCP support, an integrated AI assistant, unlimited servers and team members, and Cloud pricing starting at $3 per project/month, Peon offers a deployment platform designed for collaboration as well as infrastructure management.',
           'If you\'re looking for a Coolify alternative that combines Docker-native deployments with modern DevOps collaboration and AI-powered operations, Peon is a compelling choice for teams planning to scale beyond individual projects.',
@@ -657,7 +658,7 @@ export const COMPARE_PAGES: SeoPage[] = [
       {
         question: 'Coolify vs Dokploy: which one should I actually pick?',
         answer:
-          'Both are solid, actively developed self-hosted PaaS tools with real communities behind them. Dokploy tends to run lighter on resources with a simpler interface; Coolify has the larger template library and a more mature preview-deployment workflow. Neither ships project-level RBAC or an official operational MCP server the way Peon does, so if you\'re choosing between all three, the deciding factor is usually whether you need team isolation and AI-agent deploy access, not just "which one deploys Docker."',
+          'Both are solid, actively developed self-hosted PaaS tools with real communities behind them. [Dokploy](/blogs/coolify-vs-dokploy-vs-peon) tends to run lighter on resources with a simpler interface; Coolify has the larger template library and a more mature preview-deployment workflow. Neither ships project-level RBAC or an official operational MCP server the way Peon does, so if you\'re choosing between all three, the deciding factor is usually whether you need team isolation and AI-agent deploy access, not just "which one deploys Docker."',
         relatedLink: { label: 'Peon vs Dokploy', href: '/compare/peon-vs-dokploy' },
       },
       {
@@ -674,7 +675,7 @@ export const COMPARE_PAGES: SeoPage[] = [
       {
         question: 'What\'s a good Coolify alternative for a growing team, not a solo project?',
         answer:
-          'Peon is built specifically for that transition: workspace and project RBAC, owner-visible audit logs, and an MCP server with operational (not just read) actions are included on every plan, including self-hosted, rather than something you grow into on a higher tier.',
+          'Peon is built specifically for that transition: workspace and project RBAC, owner-visible audit logs, and an [MCP server](/docs/mcp) with operational (not just read) actions are included on every plan, including self-hosted, rather than something you grow into on a higher tier.',
       },
       {
         question: 'Is Peon a Coolify alternative?',
@@ -827,7 +828,7 @@ export const COMPARE_PAGES: SeoPage[] = [
       {
         title: '\'Coolify vs Dokploy\' often really means \'which self-hosted PaaS\'',
         paragraphs: [
-          'Many searches for “Coolify vs Dokploy” are not really about picking between two logos—they are shorthand for “which self-hosted PaaS should I run on my VPS?” Coolify and Dokploy both deploy Docker on hardware you own with open-source paths and optional cloud control planes.',
+          'Many searches for “[Coolify vs Dokploy](/blogs/coolify-vs-dokploy-vs-peon)” are not really about picking between two logos—they are shorthand for “which [self-hosted PaaS](/) should I run on my VPS?” Coolify and Dokploy both deploy Docker on hardware you own with open-source paths and optional cloud control planes.',
           'If you landed on Peon vs Dokploy after that comparison, the extra question is what happens when your team outgrows solo-operator deploys: project isolation, audit trails, AI agents under RBAC, and whether Cloud pricing scales by server or by project.',
           'Peon is worth evaluating alongside Dokploy when those team and AI features matter on standard plans, not only after an Enterprise upgrade.',
         ],
@@ -904,7 +905,7 @@ export const COMPARE_PAGES: SeoPage[] = [
       {
         question: 'Is Dokploy lighter than Coolify?',
         answer:
-          'Users comparing the two often report Dokploy using fewer server resources with a simpler interface, while Coolify has the larger template catalog and community. For a self-hosted PaaS on a small VPS, that resource difference can matter, but neither includes project-level RBAC or an included audit trail the way Peon does, worth weighing alongside raw resource usage.',
+          'Users comparing the two often report Dokploy using fewer server resources with a simpler interface, while [Coolify](/blogs/peon-vs-coolify) has the larger template catalog and community. For a self-hosted PaaS on a small VPS, that resource difference can matter, but neither includes project-level RBAC or an included audit trail the way Peon does, worth weighing alongside raw resource usage.',
         relatedLink: { label: 'Peon vs Coolify', href: '/compare/peon-vs-coolify' },
       },
       {
@@ -921,7 +922,7 @@ export const COMPARE_PAGES: SeoPage[] = [
       {
         question: 'What\'s a good Dokploy alternative with team permissions built in?',
         answer:
-          'Peon: same Docker-native, git-push deploy model as Dokploy, plus workspace and project RBAC, owner-visible audit logs, and an MCP server with operational actions included on every plan, not held back for an Enterprise contract.',
+          'Peon: same Docker-native, git-push deploy model as Dokploy, plus workspace and project RBAC, owner-visible audit logs, and an [MCP server](/docs/mcp) with operational actions included on every plan, not held back for an Enterprise contract.',
       },
       {
         question: 'Is Peon a Dokploy alternative?',
@@ -1118,15 +1119,15 @@ export const COMPARE_PAGES: SeoPage[] = [
           'For many companies, a hybrid architecture offers the best of both worlds.',
           'A common setup includes Vercel for marketing websites, documentation, and frontend applications that benefit from edge delivery, and Peon for APIs, databases, Redis, background workers, scheduled jobs, and internal services.',
           'This approach lets teams leverage Vercel\'s frontend performance while maintaining full ownership of backend infrastructure through Peon.',
-          'With Peon, organizations can create separate projects for staging and production, invite unlimited teammates, manage deployments with role-based access control, and automate operations using MCP and the built-in AI assistant—all without per-seat pricing.',
+          'With Peon, organizations can create separate projects for staging and production, invite unlimited teammates, manage deployments with role-based access control, and automate operations using [MCP](/docs/mcp) and the built-in AI assistant—all without per-seat pricing.',
         ],
       },
       {
         title: 'Final Verdict: Peon vs Vercel',
         paragraphs: [
           'Although Peon and Vercel are often compared, they are designed for different parts of the application stack.',
-          'Vercel remains one of the best platforms for frontend hosting, edge delivery, and serverless web applications.',
-          'Peon is built for developers who need complete infrastructure ownership, Docker-based deployments, long-running services, databases, and predictable pricing for growing teams.',
+          '[Vercel](/blogs/vercel-alternative-self-hosted) remains one of the best platforms for frontend hosting, edge delivery, and serverless web applications.',
+          'Peon is a [self-hosted PaaS](/) built for developers who need complete infrastructure ownership, Docker-based deployments, long-running services, databases, and predictable pricing for growing teams.',
           'If your primary goal is hosting static websites or Next.js applications with a global edge network, Vercel is an excellent choice.',
           'If you\'re looking for a Vercel alternative for backend infrastructure, Docker Compose deployments, databases, unlimited team collaboration, and AI-powered DevOps workflows, Peon provides a more flexible and cost-effective solution.',
           'For many modern teams, the ideal architecture is simple: use Vercel for the frontend and Peon for everything that powers your application.',
@@ -1143,7 +1144,7 @@ export const COMPARE_PAGES: SeoPage[] = [
       {
         question: 'What about Render vs Vercel?',
         answer:
-          'Render, like Railway, is a managed container platform rather than an edge network, so Render vs Vercel is again "managed containers vs edge/serverless," not two versions of the same thing. Peon covers the same container-first ground as Render, on your own VPS instead of Render\'s infrastructure, with unlimited seats included instead of per-plan limits.',
+          '[Render](/blogs/render-vs-self-hosted), like Railway, is a managed container platform rather than an edge network, so Render vs Vercel is again "managed containers vs edge/serverless," not two versions of the same thing. Peon covers the same container-first ground as Render, on your own VPS instead of Render\'s infrastructure, with unlimited seats included instead of per-plan limits.',
         relatedLink: { label: 'Peon vs Render', href: '/compare/peon-vs-render' },
       },
       {
@@ -1256,7 +1257,7 @@ export const COMPARE_PAGES: SeoPage[] = [
       {
         question: 'What are the best Heroku alternatives with a free tier in 2026?',
         answer:
-          'Depends what you mean by free. Render and Fly.io offer free tiers with real limits (Render\'s free web services sleep after inactivity). Railway doesn\'t have a traditional free plan but starts at a low usage-based minimum. Peon\'s self-hosted tier is free forever with no sleep timers or usage caps; you just need a VPS, which commonly costs $4-12/month.',
+          'Depends what you mean by free. Render and [Fly.io](/blogs/fly-io-alternative) offer free tiers with real limits (Render\'s free web services sleep after inactivity). Railway doesn\'t have a traditional free plan but starts at a low usage-based minimum. Peon\'s self-hosted tier is free forever with no sleep timers or usage caps; you just need a VPS, which commonly costs $4-12/month.',
         relatedLink: { label: 'Pricing', href: '/#pricing' },
       },
       {
@@ -1267,7 +1268,7 @@ export const COMPARE_PAGES: SeoPage[] = [
       {
         question: 'Is Peon a good Heroku alternative for teams, not just solo apps?',
         answer:
-          'Yes, that\'s specifically where Peon differs from most Heroku alternatives: workspace and project RBAC, owner-visible audit logs, and an MCP server for AI agents are included on every plan, so a growing team doesn\'t have to piece together access control the way you might on a bare VPS.',
+          'Yes, that\'s specifically where Peon differs from most [Heroku alternatives](/blogs/heroku-alternative-2026): workspace and project RBAC, owner-visible audit logs, and an MCP server for AI agents are included on every plan, so a growing team doesn\'t have to piece together access control the way you might on a bare VPS.',
       },
     ],
     related: [
@@ -1612,7 +1613,7 @@ export const COMPARE_PAGES: SeoPage[] = [
       {
         title: 'Railway vs Vercel, and where Peon fits',
         paragraphs: [
-          'Railway vs Vercel is a comparison between two different shapes of managed platform: Railway runs containers on Railway\'s infrastructure with usage billing, Vercel runs edge/serverless functions with per-seat billing. Vercel vs Railway questions usually come down to whether your app is edge-shaped (Vercel) or a long-running service (Railway). Peon sits outside both, as the option where the container runs on a server you own instead of either vendor\'s cloud. If you like Railway\'s workflow but want to stop metering usage on someone else\'s infrastructure, Peon is the closer migration path.',
+          'Railway vs [Vercel](/blogs/vercel-alternative-self-hosted) is a comparison between two different shapes of managed platform: Railway runs containers on Railway\'s infrastructure with usage billing, Vercel runs edge/serverless functions with per-seat billing. Vercel vs Railway questions usually come down to whether your app is edge-shaped (Vercel) or a long-running service (Railway). Peon sits outside both, as the option where the container runs on a server you own instead of either vendor\'s cloud. If you like Railway\'s workflow but want to stop metering usage on someone else\'s infrastructure, Peon is the closer migration path.',
         ],
       },
       {
@@ -1632,7 +1633,7 @@ export const COMPARE_PAGES: SeoPage[] = [
       {
         question: 'Railway vs Render, which should I use?',
         answer:
-          'Both are managed container platforms, so the comparison isn\'t self-hosted vs managed the way Peon\'s is. Railway tends to win on fast setup and usage-based pricing for bursty or prototype workloads; Render tends to win on flat, predictable per-service pricing and first-class background workers. Neither runs on a server you own; that\'s where Peon differs from both.',
+          'Both are managed container platforms, so the comparison isn\'t self-hosted vs managed the way Peon\'s is. Railway tends to win on fast setup and usage-based pricing for bursty or prototype workloads; [Render](/blogs/render-vs-self-hosted) tends to win on flat, predictable per-service pricing and first-class background workers. Neither runs on a server you own; that\'s where Peon differs from both.',
         relatedLink: { label: 'Peon vs Render', href: '/compare/peon-vs-render' },
       },
       {
@@ -1691,7 +1692,7 @@ export const COMPARE_PAGES: SeoPage[] = [
       {
         title: 'Team access and ops',
         paragraphs: [
-          'Render\'s team plans and seat handling live behind its paid tiers, and access control is scoped mainly to workspace-level roles. Peon includes unlimited team members on every plan, with workspace and project RBAC so a contractor can be scoped to one project instead of the whole account, plus owner-visible audit logs, a hosted MCP server for Cursor and Claude, and an in-app AI assistant on standard plans.',
+          'Render\'s team plans and seat handling live behind its paid tiers, and access control is scoped mainly to workspace-level roles. Peon includes unlimited team members on every plan, with workspace and project RBAC so a contractor can be scoped to one project instead of the whole account, plus owner-visible audit logs, a hosted [MCP server](/docs/mcp) for Cursor and Claude, and an in-app AI assistant on standard plans.',
         ],
         list: [
           'Render: per-component pricing, free tier sleeps, their cloud only',
@@ -1703,13 +1704,13 @@ export const COMPARE_PAGES: SeoPage[] = [
       {
         title: 'Render vs Vercel, and where Peon fits',
         paragraphs: [
-          'Render vs Vercel is a managed-containers-vs-edge comparison, similar to Railway vs Vercel: Render runs your app as a persistent (or sleeping, on free tier) container on Render\'s infrastructure, while Vercel runs edge and serverless functions. Neither is really competing with Peon head-on, both still run your app on the vendor\'s cloud. Peon\'s pitch is orthogonal to that debate: keep the container-based workflow Render popularized, but put it on a server you own instead of Render\'s.',
+          '[Render](/blogs/render-vs-self-hosted) vs [Vercel](/blogs/vercel-alternative-self-hosted) is a managed-containers-vs-edge comparison, similar to Railway vs Vercel: Render runs your app as a persistent (or sleeping, on free tier) container on Render\'s infrastructure, while Vercel runs edge and serverless functions. Neither is really competing with Peon head-on, both still run your app on the vendor\'s cloud. Peon\'s pitch is orthogonal to that debate: keep the container-based workflow Render popularized, but put it on a server you own instead of Render\'s.',
         ],
       },
       {
         title: 'How to decide',
         paragraphs: [
-          'Stay on Render for a genuine side project or prototype where the free tier\'s sleep behavior doesn\'t matter. Move to Peon once you need the app to stay warm, want a database colocated with it instead of a separate line item, or you\'re adding teammates and don\'t want per-plan seat friction. Self-host Peon for $0, or run Cloud at $3/project on the same VPS that used to just run one Render-equivalent service.',
+          'Stay on Render for a genuine side project or prototype where the free tier\'s sleep behavior doesn\'t matter. Move to Peon once you need the app to stay warm, want a database colocated with it instead of a separate line item, or you\'re adding teammates and don\'t want per-plan seat friction. [Self-host Peon](/docs/installation) for $0, or run Cloud at $3/project on the same VPS that used to just run one Render-equivalent service.',
         ],
       },
     ],
@@ -1729,12 +1730,12 @@ export const COMPARE_PAGES: SeoPage[] = [
       {
         question: 'Is Render a good choice for production apps?',
         answer:
-          'Render is built with production in mind, with first-class background workers, managed Postgres with backups and point-in-time recovery on paid plans, and zero-downtime deploys. The tradeoff versus Peon is that Render still runs on Render\'s cloud with per-component pricing, so cost adds up as you add services, where Peon\'s project fee stays flat regardless of how many services that project runs.',
+          'Render is built with production in mind, with first-class background workers, managed Postgres with backups and point-in-time recovery on paid plans, and [zero-downtime](/blogs/zero-downtime-deployments-docker) deploys. The tradeoff versus Peon is that Render still runs on Render\'s cloud with per-component pricing, so cost adds up as you add services, where Peon\'s project fee stays flat regardless of how many services that project runs.',
       },
       {
         question: 'Is there a Render alternative that runs on my own VPS?',
         answer:
-          'Yes, Peon. Same container-based, git-push deploy experience and colocated database model Render popularised, but on a Hetzner, DigitalOcean, or AWS server you own, for a flat $3/project/month instead of Render\'s per-component compute billing.',
+          'Yes, Peon. Same container-based, git-push deploy experience and colocated database model Render popularised, but on a [Hetzner](/blogs/hetzner-vs-digitalocean), DigitalOcean, or AWS server you own, for a flat $3/project/month instead of Render\'s per-component compute billing.',
       },
     ],
     related: [
@@ -1782,14 +1783,14 @@ export const COMPARE_PAGES: SeoPage[] = [
           'Netlify: edge/JAMstack, $20/mo flat Pro, unlimited seats, credit-metered usage',
           'Peon: BYO VPS, $3/project, unlimited seats, no usage credits to track',
           'Netlify wins: static hosting, edge functions, frontend DX',
-          'Peon wins: always-on backends, colocated databases, Docker Compose, project RBAC, audit logs, MCP',
+          'Peon wins: always-on backends, colocated databases, Docker Compose, project RBAC, audit logs, [MCP](/docs/mcp)',
         ],
       },
       {
         title: 'Cost and team shape',
         paragraphs: [
           'Netlify\'s 2026 move to flat, unlimited-seat Pro pricing removed its biggest historical pain point (seat tax), which is worth acknowledging plainly rather than pretending it didn\'t happen. What Netlify still doesn\'t do is run your backend: the moment you need an always-on API or a database, you\'re either paying for a separate service (a database add-on, a functions overage) or reaching for another platform.',
-          'Peon\'s $3-per-project Cloud pricing, or free self-host, covers exactly that gap: one place for the API, the database, the worker and the Compose stack, on the VPS you already pay for.',
+          'Peon\'s $3-per-project Cloud pricing, or free [self-host](/solutions/self-hosted-paas), covers exactly that gap: one place for the API, the database, the worker and the Compose stack, on the VPS you already pay for.',
         ],
       },
       {
@@ -1803,7 +1804,7 @@ export const COMPARE_PAGES: SeoPage[] = [
       {
         question: 'Netlify vs Vercel: which is better for Next.js?',
         answer:
-          'Vercel, since they build Next.js and optimise their platform around it first. Netlify remains strong for framework-agnostic static sites and JAMstack projects with built-in extras like form handling and identity management that Vercel doesn\'t offer natively. Neither question is really about Peon; both are frontend/edge platforms; Peon is what you\'d pair with either for the backend.',
+          '[Vercel](/blogs/vercel-alternative-self-hosted), since they build Next.js and optimise their platform around it first. Netlify remains strong for framework-agnostic static sites and JAMstack projects with built-in extras like form handling and identity management that Vercel doesn\'t offer natively. Neither question is really about Peon; both are frontend/edge platforms; Peon is what you\'d pair with either for the backend.',
         relatedLink: { label: 'Peon vs Vercel', href: '/compare/peon-vs-vercel' },
       },
       {
@@ -1855,33 +1856,33 @@ export const COMPARE_PAGES: SeoPage[] = [
         paragraphs: [
           'Portainer gives you a dashboard over Docker (or Kubernetes) environments you already have running: container start/stop/logs, stack deployment from Compose you paste in, image management, and, on Business Edition, RBAC, LDAP/AD integration and Git-based stack deployment. Every Portainer plan includes full Business Edition features from day one, there\'s no crippled community tier to upsell from.',
           'Per portainer.io/pricing as of August 2026, Business Edition is free forever for up to 3 nodes, no credit card required. Beyond that, Starter starts at $105/month for a 5-node bundle (community support, up to 16 vCPUs per node), Scale starts at $209/month for a 5-node bundle (9x5 next-business-day support, up to 24 vCPUs per node) and scales up through 35 nodes, and Enterprise is custom-priced with support for 32 to unlimited vCPUs per node. Annual billing saves about 16% on Starter and Scale. Node counts are configurable in the pricing calculator; the numbers above reflect the smallest paid tier, not a per-node add-on rate.',
-          'Peon starts one layer up: connect a server over SSH, and Peon provisions Docker, a reverse proxy and TLS automation on it, then gives you a project-based workflow for Git push deploys, Docker Compose stacks, managed databases and PR previews. Where Portainer shows you containers, Peon decides how those containers got there, how they get updated, and who is allowed to trigger that.',
+          'Peon starts one layer up: connect a server over SSH, and Peon provisions Docker, a [reverse proxy](/blogs/traefik-vs-caddy) and TLS automation on it, then gives you a project-based workflow for Git push deploys, [Docker Compose](/docs/docker-compose) stacks, managed databases and PR previews. Where Portainer shows you containers, Peon decides how those containers got there, how they get updated, and who is allowed to trigger that.',
         ],
       },
       {
         title: 'Where Portainer\'s model runs out',
         paragraphs: [
-          'Portainer alone doesn\'t build images from a Git push, issue or renew TLS certificates, run PR preview environments, or provision a database with scheduled backups. Business Edition\'s Git-based stack deployment gets closer, but the product\'s center of gravity is still "manage what\'s already running," not "own the full path from commit to production URL."',
+          'Portainer alone doesn\'t build images from a Git push, issue or renew TLS certificates, run PR preview environments, or provision a database with scheduled [backups](/docs/database-backups). Business Edition\'s Git-based stack deployment gets closer, but the product\'s center of gravity is still "manage what\'s already running," not "own the full path from commit to [production](/blogs/docker-compose-production-deployment) URL."',
           'For a single server with containers someone else already deployed, that\'s a reasonable scope. For a team shipping multiple projects with contributors who need scoped access and an audit trail, it\'s a gap you end up filling with scripts, exactly the manual glue a deployment platform is supposed to remove.',
         ],
         list: [
           'Portainer: container UI, node-tiered Business Edition pricing, no build/TLS pipeline',
           'Peon: Git-to-production pipeline, $3/project, unlimited seats',
           'Portainer wins: visual container/stack management for infra you already run, free up to 3 nodes',
-          'Peon wins: git push builds, automatic TLS, PR previews, databases, project RBAC, audit logs, MCP',
+          'Peon wins: git push builds, automatic TLS, PR previews, databases, project RBAC, audit logs, [MCP](/docs/mcp)',
         ],
       },
       {
         title: 'Cost shape',
         paragraphs: [
-          'Portainer\'s node-tiered licensing ($105/month and up for Starter, $209/month and up for Scale, both starting at 5 nodes) scales with how many servers you connect, similar in shape to how Coolify Cloud and Dokploy Cloud price. Peon\'s $3-per-project Cloud pricing, or free self-host, scales with how many projects you run instead, with unlimited servers included at every tier.',
+          'Portainer\'s node-tiered licensing ($105/month and up for Starter, $209/month and up for Scale, both starting at 5 nodes) scales with how many servers you connect, similar in shape to how [Coolify](/blogs/peon-vs-coolify) Cloud and [Dokploy](/compare/peon-vs-dokploy) Cloud price. Peon\'s $3-per-project Cloud pricing, or free self-host, scales with how many projects you run instead, with unlimited servers included at every tier.',
           'If you\'re running Portainer\'s free 3-node tier today and hand-rolling the build/TLS/deploy layer around it, Peon\'s self-host tier replaces both the dashboard and the scripts for $0, or Cloud for $3/project if you\'d rather not operate the control plane yourself.',
         ],
       },
       {
         title: 'How to decide',
         paragraphs: [
-          'Keep Portainer if all you need is a visual layer over Docker or Kubernetes environments you already manage by hand, and its free 3-node tier or node-based pricing fits your fleet. It\'s a mature, purpose-built tool for that job, not a weaker version of a deployment platform. Choose Peon if you want the container visibility Portainer gives you plus the deployment pipeline, database provisioning and RBAC that turn "a server with containers on it" into an actual platform your team can share.',
+          'Keep Portainer if all you need is a visual layer over Docker or Kubernetes environments you already manage by hand, and its free 3-node tier or node-based pricing fits your fleet. It\'s a mature, purpose-built tool for that job, not a weaker version of a deployment platform. Choose Peon if you want the container visibility Portainer gives you plus the deployment pipeline, database provisioning and RBAC that turn "a server with containers on it" into an actual platform your team can share. Teams that outgrow a container UI often compare [Dokploy](/blogs/coolify-vs-dokploy-vs-peon) next, which is a deploy platform rather than a Docker dashboard.',
         ],
       },
     ],
@@ -1958,7 +1959,7 @@ export const COMPARE_PAGES: SeoPage[] = [
       {
         title: 'Cloudflare vs Vercel, and where Peon fits',
         paragraphs: [
-          'Cloudflare vs Vercel is a comparison between two edge/serverless platforms with different billing models (CPU-time vs per-seat-plus-usage), not a comparison either has with Peon directly. Both run your code on the vendor\'s global network; neither runs a persistent server you control. Peon answers a different question: not "which edge network," but "where does the always-on part of my stack live, and who owns that server." If you\'re already using Cloudflare for the frontend or edge functions, Peon is a natural pairing for the backend rather than a replacement for either.',
+          'Cloudflare vs [Vercel](/blogs/vercel-alternative-self-hosted) is a comparison between two edge/serverless platforms with different billing models (CPU-time vs per-seat-plus-usage), not a comparison either has with Peon directly. Both run your code on the vendor\'s global network; neither runs a persistent server you control. Peon answers a different question: not "which edge network," but "where does the always-on part of my stack live, and who owns that server." If you\'re already using Cloudflare for the frontend or edge functions, Peon is a natural pairing for the backend rather than a replacement for either.',
         ],
       },
       {
@@ -1988,7 +1989,7 @@ export const COMPARE_PAGES: SeoPage[] = [
       {
         question: 'Is Peon a Cloudflare alternative?',
         answer:
-          'Not directly; they solve different problems. Cloudflare\'s edge network is not something a self-hosted platform replicates. What Peon replaces is the always-on backend and colocated database that Cloudflare\'s request-scoped execution model isn\'t built to hold. Most real applications end up using both: Cloudflare at the edge, Peon underneath it.',
+          'Not directly; they solve different problems. Cloudflare\'s edge network is not something a [self-hosted platform](/) replicates. What Peon replaces is the always-on backend and colocated database that Cloudflare\'s request-scoped execution model isn\'t built to hold. Most real applications end up using both: Cloudflare at the edge, Peon underneath it.',
       },
     ],
     related: [
