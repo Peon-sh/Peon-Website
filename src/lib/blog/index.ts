@@ -76,6 +76,10 @@ export function normalizeBlogBodyHtml(html: string): string {
   return upgradeHttpResourceUrls(repaired);
 }
 
+function indentOf(line: string): number {
+  return line.match(/^[ \t]*/)?.[0].length ?? 0;
+}
+
 function dedentPreInner(inner: string): string {
   const wrapped = inner.match(/<code\b([^>]*)>([\s\S]*?)<\/code>/i);
   const codeAttrs = wrapped?.[1] ?? '';
@@ -88,15 +92,28 @@ function dedentPreInner(inner: string): string {
     return wrapped ? `<code${codeAttrs}></code>` : '';
   }
 
-  const indentOf = (line: string) => line.match(/^[ \t]*/)?.[0].length ?? 0;
-  const nonempty = lines.filter((l) => l.trim().length > 0);
-  const min = Math.min(...nonempty.map(indentOf));
-  const dedented = lines.map((l) => l.slice(min));
+  const nonempty = lines
+    .map((line, index) => ({ line, index }))
+    .filter(({ line }) => line.trim().length > 0);
+  const min = Math.min(...nonempty.map(({ line }) => indentOf(line)));
+  const dedented = lines.map((line) => line.slice(min));
+
+  const rest = nonempty.slice(1);
+  if (rest.length) {
+    const firstIndent = indentOf(dedented[nonempty[0].index]);
+    const restIndents = rest.map(({ index }) => indentOf(dedented[index]));
+    const restIndent = restIndents[0];
+    const uniform = restIndents.every((n) => n === restIndent);
+    if (uniform && restIndent > firstIndent) {
+      for (const { index } of rest) dedented[index] = dedented[index].slice(restIndent);
+    }
+  }
 
   if (dedented.length >= 2) {
-    const first = indentOf(dedented[0]);
-    const next = indentOf(dedented.slice(1).find((l) => l.trim()) ?? '');
-    if (first > next) dedented[0] = dedented[0].slice(first - next);
+    const firstIndent = indentOf(dedented[0]);
+    const next = dedented.slice(1).find((line) => line.trim());
+    const nextIndent = next ? indentOf(next) : 0;
+    if (firstIndent > nextIndent) dedented[0] = dedented[0].slice(firstIndent - nextIndent);
   }
 
   const text = dedented.join('\n');

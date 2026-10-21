@@ -395,14 +395,17 @@
 
 .prose-blog pre {
   margin: 1rem 0 1.25rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   overflow-x: auto;
   border-radius: 0.5rem;
   border: 1px solid var(--border-bright);
-  background: var(--card);
-  padding: 1.15rem 1.25rem;
+  background: var(--secondary);
+  padding: 0.85rem 1rem;
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.8125rem;
-  line-height: 1.75;
+  line-height: 1.6;
   color: var(--foreground);
   tab-size: 2;
   text-align: left;
@@ -412,6 +415,9 @@
 
 .prose-blog pre code {
   display: block;
+  width: max-content;
+  min-width: 100%;
+  box-sizing: border-box;
   background: transparent;
   padding: 0;
   margin: 0;
