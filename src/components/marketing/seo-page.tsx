@@ -234,6 +234,37 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
                   </table>
                 </div>
               ) : null}
+              {section.links && section.links.length > 0 ? (
+                <p className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm">
+                  {section.links.map((link, index) => (
+                    <span key={link.label} className="inline-flex items-center gap-3">
+                      {index > 0 ? (
+                        <span className="text-muted-foreground" aria-hidden>
+                          |
+                        </span>
+                      ) : null}
+                      {link.appPath ? (
+                        <AppCtaLink
+                          path={link.appPath}
+                          className="text-phosphor underline-offset-4 hover:underline"
+                        >
+                          {link.label}
+                        </AppCtaLink>
+                      ) : (
+                        <a
+                          href={link.href}
+                          className="text-phosphor underline-offset-4 hover:underline"
+                          {...(link.href.startsWith('http')
+                            ? { target: '_blank', rel: 'noopener noreferrer' }
+                            : {})}
+                        >
+                          {link.label}
+                        </a>
+                      )}
+                    </span>
+                  ))}
+                </p>
+              ) : null}
             </section>
           ))}
 
