@@ -250,7 +250,7 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
                         >
                           {link.label}
                         </AppCtaLink>
-                      ) : (
+                      ) : link.href ? (
                         <a
                           href={link.href}
                           className="text-phosphor underline-offset-4 hover:underline"
@@ -260,7 +260,7 @@ export function SeoMarketingPage({ page }: { page: SeoPageData }) {
                         >
                           {link.label}
                         </a>
-                      )}
+                      ) : null}
                     </span>
                   ))}
                 </p>
