@@ -418,7 +418,7 @@ export const SERVICE_PAGES: DocPage[] = [
     title: 'Databases',
     seoTitle: 'Peon Databases: Postgres, MySQL, MongoDB & Redis Docs',
     description:
-      'Managed Postgres, MySQL, MongoDB, and Redis on your own VPS. Peon handles credentials, internal networking, backups, and public URLs, from $3/project.',
+      'Run Postgres, MySQL, MongoDB and Redis on your own VPS with Peon. It handles credentials, internal networking, backups and public URLs.',
     sections: [
       {
         h: 'Create',

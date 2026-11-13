@@ -11,12 +11,17 @@ export type SeoTable = {
   rows: { feature: string; cells: string[] }[];
 };
 
+export type SeoSectionLink =
+  | { label: string; appPath: string; href?: never }
+  | { label: string; href: string; appPath?: never };
+
 export type SeoSection = {
   title: string;
   paragraphs: string[];
   list?: string[];
   subsections?: SeoSubsection[];
   table?: SeoTable;
+  links?: SeoSectionLink[];
 };
 
 export type SeoIntroBlock =
@@ -431,7 +436,7 @@ export const COMPARE_PAGES: SeoPage[] = [
     kind: 'compare',
     title: 'Peon vs Coolify: Why Teams Switch to Peon',
     description:
-      'Peon vs Coolify: both self-hosted PaaS on your VPS. Peon uniquely combines project RBAC, audit logs & MCP for $3/project Cloud with unlimited servers & seats.',
+      'Peon vs Coolify: two self-hosted Docker PaaS compared. See why teams pick Peon for project RBAC, audit logs, MCP and $3/project Cloud pricing.',
     eyebrow: 'Compare',
     h1: 'Peon vs Coolify: a Coolify alternative built for teams',
     intro:
@@ -1564,95 +1569,418 @@ export const COMPARE_PAGES: SeoPage[] = [
   {
     slug: 'peon-vs-railway',
     kind: 'compare',
-    title: 'Peon vs Railway: Run It on Your Own Server',
+    title: 'Peon vs Railway: Self-Hosted Open-Source Alternative',
     description:
-      'Peon is a Railway alternative that runs the same container-first workflow on servers you own, for $3/project.',
+      'Compare Peon vs Railway and discover how to self-host an open-source Railway alternative with more infrastructure control.',
     eyebrow: 'Compare',
-    h1: 'Peon vs Railway: a Railway alternative you can self-host',
+    h1: 'Peon vs Railway: A Self-Hosted, Open-Source Alternative',
     intro:
-      'Railway popularized usage-based, container-first deploys with a clean UI: connect a repo, get a build, get a URL. Peon shares that container-first instinct but runs it on infrastructure you own instead of Railway\'s cloud. If you like Railway\'s workflow but want the compute meter to stop being someone else\'s cloud bill, Peon is the Railway alternative worth a look.',
+      'Keep the push-to-deploy workflow you like about Railway, but run it on servers you own. Self-host Peon for free, or use Peon Cloud for $3 per project per month with unlimited servers and seats.',
     keywords: [
       'Peon vs Railway',
       'Railway alternative',
-      'Railway vs Vercel',
+      'open source Railway alternative',
       'self hosted Railway',
-      'container deployment VPS',
-      'Railway pricing 2026',
+      'Railway pricing',
     ],
     ...CTA_REGISTER,
     sections: [
       {
-        title: 'What each product optimizes for',
+        title: 'The short version',
         paragraphs: [
-          'Railway optimizes for fast time-to-first-deploy with no server to think about: push a repo, Railway provisions the container and meters usage by the second. Per railway.com/pricing as of August 2026, Free is $0/month (30-day trial with $5 credit, then a $1/month minimum), Hobby is $5/month minimum (including $5 of usage credit, single developer per project), and Pro is $20/month minimum (including $20 of usage credit), with unlimited workspace seats and unlimited project members included on Pro. Usage beyond credits is billed per-second: roughly $10/GB-month for RAM, $20/vCPU-month for CPU, and $0.05/GB for network egress.',
-          'Correction from an earlier version of this page: Railway\'s Pro plan is not per-seat, it includes unlimited seats, closer to how Peon prices than to Vercel\'s per-seat model. We verified this directly against Railway\'s pricing page rather than repeating an assumption, and we\'re noting the correction here because getting a competitor\'s pricing wrong is exactly the kind of error that shouldn\'t survive a first draft.',
-          'Peon optimizes for owning the box the container runs on. You attach a Hetzner, DigitalOcean or AWS server once, and Peon manages Docker, TLS and the deploy pipeline on it for a flat $3 per project per month, or free if you self-host the control plane.',
-          'Both are container-native and both include unlimited seats on their team-oriented plans. The real difference is who owns the compute meter, not who charges per head.',
+          'Railway and Peon both want deploying a container to feel boring in the best way. You connect a repo, you get a build, you get a URL. Both handle environment variables, rollbacks, health checks, logs and databases. If you\'ve used one, the other will feel familiar within an hour.',
+          'The big difference is where your apps run and how you pay for them.',
+          'Railway runs your services on Railway\'s own infrastructure and bills you by the second for the RAM, CPU, storage and network you use. You never see a server. That\'s the whole appeal.',
+          'Peon runs your services on servers you own. That could be a Hetzner box, a DigitalOcean droplet, an AWS instance, an OVH machine, a Contabo VPS or a Raspberry Pi in a closet. You pay your server provider directly, and Peon itself is either free (self-hosted) or a flat $3 per project per month on Peon Cloud.',
+          'So if you\'re searching for a Railway self-hosted alternative or a Railway open source alternative, that split is basically the whole decision. The rest of this page goes through the details so you can decide which side of it you\'re on.',
         ],
       },
       {
-        title: 'Cost shape at scale',
+        title: 'Peon vs Railway at a glance',
+        paragraphs: [],
+        table: {
+          headers: ['Feature', 'Peon', 'Railway'],
+          rows: [
+            {
+              feature: 'Where apps run',
+              cells: [
+                'Your own servers, any Linux box with SSH and Docker',
+                'Railway\'s infrastructure (bring your own cloud on Enterprise)',
+              ],
+            },
+            {
+              feature: 'Open source',
+              cells: ['Yes, MIT licensed', 'No'],
+            },
+            {
+              feature: 'Self-hostable',
+              cells: ['Yes, free', 'No'],
+            },
+            {
+              feature: 'Pricing model',
+              cells: [
+                'Your server bill, plus $0 self-hosted or $3 per project per month on Cloud',
+                'Plan minimum plus per-second usage',
+              ],
+            },
+            {
+              feature: 'Git deploys',
+              cells: [
+                'GitHub, GitLab, Bitbucket or any Git URL with a deploy key',
+                'GitHub repo deploys, Docker images, CLI deploys',
+              ],
+            },
+            {
+              feature: 'Preview environments',
+              cells: ['Yes, pull requests get their own preview URL', 'Yes'],
+            },
+            {
+              feature: 'Rollbacks',
+              cells: ['Instant rollbacks, zero-downtime rollouts', 'One-click rollbacks'],
+            },
+            {
+              feature: 'Databases',
+              cells: [
+                'Postgres, MySQL, MariaDB, MongoDB, Redis with scheduled backups to S3-compatible storage',
+                'Deploy any open-source database, built-in backups',
+              ],
+            },
+            {
+              feature: 'Templates',
+              cells: ['300+ one-click marketplace templates', 'Template marketplace'],
+            },
+            {
+              feature: 'Team seats',
+              cells: [
+                'Unlimited team members on every plan',
+                'Unlimited workspace seats on Hobby and Pro',
+              ],
+            },
+            {
+              feature: 'Roles',
+              cells: [
+                'Workspace and project roles on every plan',
+                'Admin, Member, Deployer on Hobby and Pro; RBAC on Enterprise or committed spend',
+              ],
+            },
+            {
+              feature: 'Audit logs',
+              cells: [
+                'Included on every plan',
+                '48 hours on Free and Hobby, 30 days on Pro, 18 months on Enterprise',
+              ],
+            },
+            {
+              feature: 'AI tooling',
+              cells: [
+                'Hosted MCP server and in-app AI assistant under the same RBAC',
+                'Railway Agent, MCP server, plugins for Claude, Cursor and others',
+              ],
+            },
+            {
+              feature: 'Server management',
+              cells: ['You own the server and its upkeep', 'None, Railway handles it'],
+            },
+          ],
+        },
+      },
+      {
+        title: 'Railway pricing, explained',
         paragraphs: [
-          'Railway\'s per-second billing is transparent but variable: RAM, CPU and egress all meter independently, so a bursty app can see its bill move month to month even with a flat plan fee as the floor. Peon\'s variable cost is the VPS itself (often flat and cheap, $4-12/month for a box that can run several services), plus a fixed $3 per project regardless of how hard that project runs.',
-          'For steady, always-on workloads, a Peon setup on a right-sized VPS is usually easier to forecast than a usage-metered platform, because the largest cost driver (the server) is fixed instead of variable. For spiky or unpredictable workloads, Railway\'s pay-for-what-you-use model can work in your favor, that tradeoff runs both directions and we\'d rather say so than pretend it doesn\'t.',
+          'Railway\'s pricing has two parts: a plan, and usage on top of it. Here\'s what the pricing page listed on October 30, 2026.',
+        ],
+        table: {
+          headers: ['Plan', 'Price', 'Headline limits'],
+          rows: [
+            {
+              feature: 'Free',
+              cells: [
+                '$0, with a 30-day trial and $5 in credits, then $1 per month',
+                'Up to 1 vCPU and 0.5 GB RAM per service, 0.5 GB volume storage',
+              ],
+            },
+            {
+              feature: 'Hobby',
+              cells: [
+                '$5 minimum usage, includes $5 of monthly usage credits',
+                'Up to 48 vCPU and 48 GB RAM per service, up to 5 GB storage, single developer workspace, 7-day log history',
+              ],
+            },
+            {
+              feature: 'Pro',
+              cells: [
+                '$20 minimum usage, includes $20 of monthly usage credits',
+                'Up to 1,000 vCPU and 1 TB RAM per service, up to 1 TB storage, unlimited workspace seats, 30-day log history',
+              ],
+            },
+            {
+              feature: 'Enterprise',
+              cells: [
+                'Custom',
+                'SSO, RBAC, 18-month audit log retention, HIPAA BAAs, dedicated VMs, bring your own cloud, 90-day log history',
+              ],
+            },
+          ],
+        },
+      },
+      {
+        title: 'Usage rates and committed spend',
+        paragraphs: [
+          'The usage rates are listed per second. Railway shows memory at $0.00000386 per GB per second, CPU at $0.00000772 per vCPU per second, volumes at $0.00000006 per GB per second and egress at $0.05 per GB. Over a 30-day month, that works out to roughly $10 per GB of RAM, $20 per vCPU and about $0.16 per GB of volume storage. Object storage is listed separately at $0.015 per GB-month with free bucket egress.',
+          'Railway also sells features through committed monthly spend. The pricing page lists $1,000 a month for HIPAA BAAs, $2,000 a month for extended log history, RBAC, SSO and audit logs, $5,000 a month for enterprise support and higher limits, and $10,000 a month for dedicated VMs. Each tier includes everything below it.',
+          'Our honest read: this is a fair, transparent model. You really do pay only for what runs. Railway\'s own pitch is that you stop overprovisioning and stop guessing at box sizes, and for a lot of teams that\'s true. The tradeoff is that your bill follows your memory use and your traffic, so it can move month to month, and team controls like RBAC and SSO sit behind Enterprise or a committed spend.',
         ],
       },
       {
-        title: 'Team access and ops',
+        title: 'Peon pricing',
         paragraphs: [
-          'Railway includes unlimited workspace seats on Hobby and Pro, with project-level member limits on Hobby (1 project member) that open up to unlimited on Pro. Peon includes unlimited team members on every plan, including self-host, with workspace and project RBAC so a contractor can be scoped to one project without a plan upgrade.',
-          'Peon also adds owner-visible audit logs, a hosted MCP server for Cursor and Claude, and an in-app AI assistant on standard plans. Railway ships its own AI agent tooling and has audit log retention on paid plans (48 hours on Free/Hobby, 30 days on Pro, 18 months on Enterprise), so this isn\'t a case of Railway having nothing, it\'s a different packaging of similar ideas.',
-        ],
-        list: [
-          'Railway: usage-based per second, unlimited seats on Hobby/Pro, their cloud only',
-          'Peon: BYO VPS, $3/project flat, unlimited seats on every plan including self-host',
-          'Railway wins: zero server setup, fast first deploy, built-in AI agent',
-          'Peon wins: predictable cost at scale (fixed server + flat fee), you own the runtime',
+          'Peon has two ways to run it.',
+          'Self-hosted: $0. You run the Peon control plane yourself, on your own server, with unlimited projects and servers. You handle updates and hosting, and you get community support.',
+          'Peon Cloud: $3 per project per month, or $30 per project per year, which is about 17% off paying monthly. We host and update the dashboard and pipelines. Your apps still run on your servers. Cloud includes unlimited servers and unlimited seats.',
+          'Workspace and project roles, audit logs, the hosted MCP server and the in-app AI assistant are on standard plans. They aren\'t held back for an enterprise tier.',
+          'What Peon doesn\'t include is compute. You bring the servers, so your server provider\'s bill is a real part of your total cost. We\'d be misleading you if we compared Railway\'s full bill against Peon\'s $3 and called it a win.',
         ],
       },
       {
-        title: 'Railway vs Vercel, and where Peon fits',
+        title: 'Cost scenarios (illustrative only)',
         paragraphs: [
-          'Railway vs [Vercel](/blogs/vercel-alternative-self-hosted) is a comparison between two different shapes of managed platform: Railway runs containers on Railway\'s infrastructure with usage billing, Vercel runs edge/serverless functions with per-seat billing. Vercel vs Railway questions usually come down to whether your app is edge-shaped (Vercel) or a long-running service (Railway). Peon sits outside both, as the option where the container runs on a server you own instead of either vendor\'s cloud. If you like Railway\'s workflow but want to stop metering usage on someone else\'s infrastructure, Peon is the closer migration path.',
+          'The table below is an example we calculated from Railway\'s published per-second rates, rounded to 30-day months. It is not a benchmark, a quote or a real customer bill. It assumes services run all month and ignores build minutes and anything not listed.',
+        ],
+        table: {
+          headers: ['Scenario', 'Railway usage estimate', 'Railway plan floor', 'Peon cost'],
+          rows: [
+            {
+              feature: 'One small service, 0.5 GB RAM, 0.25 vCPU',
+              cells: [
+                'About $5 RAM plus $5 CPU, so about $10',
+                'Hobby $5 minimum, so about $10',
+                'Your server, plus $3 on Cloud or $0 self-hosted',
+              ],
+            },
+            {
+              feature: 'Two services, each 1 GB RAM and 0.5 vCPU',
+              cells: [
+                'About $20 RAM plus $20 CPU, so about $40',
+                'Pro $20 minimum, so about $40',
+                'Your server, plus $3 per project on Cloud or $0 self-hosted',
+              ],
+            },
+            {
+              feature: 'App plus database, 4 GB RAM, 2 vCPU, 20 GB volume, 100 GB egress',
+              cells: [
+                'About $40 RAM, $40 CPU, $3 volume, $5 egress, so about $88',
+                'Pro $20 minimum, so about $88',
+                'Your server, plus $3 per project on Cloud or $0 self-hosted',
+              ],
+            },
+          ],
+        },
+      },
+      {
+        title: 'How to read those numbers',
+        paragraphs: [
+          'Two things to notice. First, on Railway the plan fee acts as a floor that your usage credits count against, so once you\'re past it you mostly pay usage. Second, on Peon the right-hand column depends entirely on which server you rent. Server prices vary a lot by provider, region and contract length, so check your provider\'s own pricing page instead of trusting a number from us.',
+          'Here\'s how we\'d think about it. If your apps are steady and always on, a fixed server is usually easier to budget than a meter. If your apps are tiny, sit idle most of the day or spike hard and then go quiet, paying by the second can genuinely cost less than keeping a server running. Run your own numbers with your real RAM and CPU use. Railway\'s usage dashboard makes that easy if you\'re already on it.',
         ],
       },
       {
-        title: 'How to decide',
+        title: 'Deploy workflow',
         paragraphs: [
-          'Stay on Railway if you want zero infrastructure to think about and you\'re comfortable with usage-based billing tracking your spend in real time. Move to Peon when a steady always-on workload, or a preference for owning the server, makes a flat $3/project on your own VPS the more predictable bet. Self-host Peon for $0, or use Cloud, and keep Railway around for quick prototypes if that workflow still earns its keep.',
+          'On Railway, you connect a GitHub repo, deploy a Docker image or push from your machine with the Railway CLI. Railway builds the code, and supports custom Dockerfiles, config as code in TOML or JSON, preview environments, healthcheck endpoints, configurable restart policies and one-click rollbacks. The real-time project canvas, where you see your services and how they connect, is one of the nicest parts of the product.',
+          'On Peon, you first connect a server. Peon installs Docker and the proxy for you. Then you connect GitHub, GitLab or Bitbucket, or use a plain Git URL with a deploy key, and point it at a Dockerfile or Compose file. You can also ship prebuilt images, full Compose stacks, static sites and SPAs from the same pipeline. Every push builds and ships with zero-downtime rollouts, and pull requests get their own preview URL. Rollbacks are instant.',
+          'The day-to-day feel is close. The main difference is the first ten minutes: Railway has no server step, and Peon does. After that, you\'re mostly pushing code on both.',
+          'If Docker Compose is how you already describe your stack, Peon will feel especially natural, because Compose stacks are a first-class deploy target. Our [Docker Compose production guide](/blogs/docker-compose-production-deployment) covers how to get a Compose file ready for real traffic.',
+        ],
+      },
+      {
+        title: 'Databases and volumes',
+        paragraphs: [
+          'Railway lets you deploy any open-source database, and its docs cover PostgreSQL, MySQL, Redis and MongoDB, including high-availability options, connection pooling and point-in-time recovery for Postgres. The pricing page lists built-in database and volume backups and 3,000 read and write operations per second on standard plans. Volume size depends on plan: 0.5 GB on Free, up to 5 GB on Hobby and up to 1 TB on Pro.',
+          'Peon runs Postgres, MySQL, MariaDB, MongoDB and Redis on your own hardware, backed up on a schedule to S3-compatible storage. Your database disk is limited by your server, not a plan tier. That\'s good if you need a lot of storage cheaply, but it also means disk performance and capacity are whatever your server gives you.',
+          'Where Railway wins here: managed high availability and point-in-time recovery are documented features you can turn on. On Peon, a high-availability database setup is something you\'d design yourself across your servers. If you need HA Postgres and don\'t want to run it, that\'s a real point for Railway.',
+        ],
+      },
+      {
+        title: 'Scaling',
+        paragraphs: [
+          'Railway\'s plans set clear ceilings. Hobby allows up to 6 replicas per service, Pro up to 42, and Railway lists vertical autoscaling and horizontal scaling via replicas. You never think about the machine under the container.',
+          'On Peon, scaling means adding or resizing servers. You decide where services run and how big each box is. That gives you control and a predictable bill, but it\'s work Railway does for you. If your traffic is unpredictable and you\'d rather not plan capacity at all, Railway is the easier option.',
+        ],
+      },
+      {
+        title: 'Networking and regions',
+        paragraphs: [
+          'Railway lists global regions on paid plans, concurrent regions on Pro, private networking between services, a TCP proxy, an HTTP proxy, DDoS protection, wildcard domains and static outbound IPs. Custom domains are limited by plan: 2 on Hobby, 20 on Pro and unlimited on Enterprise.',
+          'With Peon, your region is wherever your server is. If you want a box in Helsinki, Singapore or your own office, you can have it. Custom domains come with auto-renewed Let\'s Encrypt certificates, HTTP to HTTPS redirects and per-service routing. There isn\'t a domain cap tied to a plan. DDoS protection and network quality depend on your server provider, so check what they offer.',
+        ],
+      },
+      {
+        title: 'Observability and logs',
+        paragraphs: [
+          'Railway includes build and deploy logs, CPU, RAM, disk and network metrics, log filtering and structured logging, webhooks, configurable alerts and email alerts. Log retention depends on plan: 7 days on Hobby, 30 days on Pro and 90 days on Enterprise.',
+          'Peon gives you deployments, servers, domains, logs and metrics in one dashboard, with container logs, resource meters, health checks and notifications, so you don\'t have to SSH in to see what happened. If you do want a shell, you can open an SSH terminal on any connected server from the dashboard.',
+          'Railway\'s alerting and log querying are more built out today. If deep log search matters to you, plan to pair Peon with a log tool you already like.',
+        ],
+      },
+      {
+        title: 'Team access',
+        paragraphs: [
+          'This is one of the bigger differences.',
+          'Railway includes unlimited workspace seats on Hobby and Pro, which is generous. Project members are capped at 3 on Hobby and unlimited on Pro. Team roles on those plans are Admin, Member and Deployer. Full role-based access control and SSO are listed on Enterprise, or unlocked with the $2,000 a month committed spend.',
+          'Peon includes unlimited team members on every plan, including self-hosted. Workspace and project roles mean a teammate or contractor can get access to one app without getting root on every server. Owners can see who did what in the audit log, and that\'s included on every plan.',
+        ],
+      },
+      {
+        title: 'Security and compliance',
+        paragraphs: [
+          'Railway lists SOC 2 compliance and audit logs on all plans, with retention of 48 hours on Free and Hobby, 30 days on Pro and 18 months on Enterprise. HIPAA BAAs, SSO, dedicated VMs and bring your own cloud are on Enterprise or committed spend. If you need a vendor with SOC 2 and a HIPAA BAA on paper, Railway can give you that and Peon, as a self-hosted tool, doesn\'t hand you a compliance report for your servers.',
+          'With Peon, your data stays on servers you choose, which can matter for data residency or for teams that simply don\'t want customer data on a third party\'s platform. The deployment engine, dashboard and pipelines are public, MIT licensed code, and there\'s no proprietary agent running on your machines. You can read and audit all of it. The flip side is that securing the server is your job: OS updates, firewall rules and SSH keys are on you.',
+        ],
+      },
+      {
+        title: 'AI agents and assistants',
+        paragraphs: [
+          'Both products take AI seriously, and we want to be clear about that.',
+          'Railway has the Railway Agent, which can work across your project. Its docs say that when a deployment fails, the agent can read build and runtime logs, explain the failure and open a pull request with a fix. It\'s billed on LLM tokens at the model provider\'s published rates with no markup, and you can bring your own ChatGPT or OpenRouter account. The pricing page lists a default agent spend limit of $5 a month on Hobby and $20 a month on Pro. Railway also documents an MCP server and plugins for Claude, Cursor, Codex and others.',
+          'Peon has a hosted MCP endpoint for Cursor and Claude, plus an in-app chat assistant that uses the same tools. Both run under the same RBAC as your human teammates. Changes wait for your approval and land in the audit log. That approval step is the part we care about most, because it means an agent can help without being able to quietly change production.',
+        ],
+      },
+      {
+        title: 'Lock-in and portability',
+        paragraphs: [
+          'Railway is not open source and you can\'t self-host it. Your apps are mostly standard containers, so moving off Railway is very doable, but your config, networking setup and managed databases live on Railway\'s platform.',
+          'Peon is open source and runs on any Linux server with SSH and Docker. If you stop using Peon Cloud, you can self-host the same control plane. If you stop using Peon entirely, your apps are still Docker containers and Compose files on servers you already own. We think that\'s the strongest argument for Peon: there\'s very little to be locked into.',
+        ],
+      },
+      {
+        title: 'Who should pick which',
+        paragraphs: [],
+        subsections: [
+          {
+            title: 'Who should pick Railway',
+            list: [
+              'You don\'t want to own or maintain a server, ever.',
+              'You want the fastest path from an empty account to a live URL.',
+              'Your workloads are small, spiky or idle most of the time, so per-second billing saves money.',
+              'You need managed high-availability databases, autoscaling or multi-region without designing it yourself.',
+              'You need SOC 2 or a HIPAA BAA from your hosting vendor.',
+            ],
+          },
+          {
+            title: 'Who should pick Peon',
+            list: [
+              'You want a Railway-style dashboard on servers you own.',
+              'You want an open source, self-hosted Railway alternative you can audit and keep running forever.',
+              'Your apps are steady and always on, and you want a predictable bill.',
+              'You want project-level roles and audit logs without an enterprise contract.',
+              'You want AI agents to help with deployments, with approvals and an audit trail.',
+              'You care about data residency or picking your own provider and region.',
+            ],
+          },
+          {
+            title: 'Using both',
+            paragraphs: [
+              'Plenty of teams use both. Railway for quick experiments, Peon for the long-running production apps where a fixed server makes sense.',
+            ],
+          },
+        ],
+      },
+      {
+        title: 'How to migrate from Railway to Peon',
+        paragraphs: [
+          'Here\'s the process we\'d follow. Take your time with the database step, since that\'s where most problems show up.',
+          '1. Inventory your Railway project. Write down every service, database, volume, cron job, environment variable, custom domain and private network connection. Railway\'s project canvas makes this easy to see.',
+          '2. Check your real usage. Look at RAM, CPU and disk use for each service over the last month. This tells you how big your server needs to be.',
+          '3. Pick and rent a server. Any Linux box with SSH and Docker works. Choose a size that fits your current use with some headroom, in a region close to your users.',
+          '4. Set up Peon. Either self-host the control plane or sign up for Peon Cloud. Connect your server, and Peon installs Docker and the proxy.',
+          '5. Containerize anything that isn\'t already. If a service relied on Railway\'s build detection, add a Dockerfile so the build is explicit and portable.',
+          '6. Recreate your databases. Spin up Postgres, MySQL, Redis or MongoDB from a marketplace template. Set up scheduled backups to S3-compatible storage before you import anything.',
+          '7. Move the data. Dump your Railway database with the standard tool for that engine, such as pg_dump for Postgres, and restore it on Peon. Do a test run first and check row counts.',
+          '8. Copy environment variables. Recreate each service\'s variables in Peon. Update database connection strings to point at your new databases.',
+          '9. Deploy the services. Connect your Git repo, pick the branch and deploy. Recreate cron jobs as scheduled tasks.',
+          '10. Test on a temporary domain. Click through the app, run your test suite and watch the logs before you touch DNS.',
+          '11. Lower your DNS TTL. Do this a day before the cutover so the switch spreads quickly.',
+          '12. Freeze writes and do a final data sync. For a clean cutover, briefly stop writes on Railway, take a final dump and restore it on Peon.',
+          '13. Switch DNS. Point your domains at your server. Peon issues Let\'s Encrypt certificates automatically.',
+          '14. Keep Railway running for a few days. If anything goes wrong, you can roll back. Once you\'re confident, remove the Railway services so you stop paying for them.',
+          'The [Peon docs](/docs) cover each step on the Peon side in more detail.',
+        ],
+      },
+      {
+        title: 'Looking at other Railway alternatives?',
+        paragraphs: [
+          'This page is a straight Peon vs Railway comparison. For other self-hosted and managed options, see [Peon vs Coolify](/compare/peon-vs-coolify), [Peon vs Dokploy](/compare/peon-vs-dokploy) and [Peon vs Render](/compare/peon-vs-render).',
+        ],
+      },
+      {
+        title: 'Ready to run Railway-style deploys on your own servers?',
+        paragraphs: [
+          'Self-host Peon for free, or start on Peon Cloud for $3 per project per month with unlimited servers and seats. Connect a server, push your code and you\'re live.',
+        ],
+        links: [
+          { label: 'Start deploying', appPath: '/register' },
+          { label: 'Read the docs', href: '/docs' },
+          { label: 'View on GitHub', href: 'https://github.com/Peon-sh/Peon' },
         ],
       },
     ],
     faqs: [
       {
-        question: 'Does Railway have a free tier?',
+        question: 'Is Peon an open source alternative to Railway?',
         answer:
-          'Yes, per railway.com/pricing: Free is $0/month with a 30-day trial that includes $5 of usage credit, then a $1/month minimum after the trial ends. It\'s limited (1 vCPU / 0.5GB RAM per service, no custom domains on the free tier), meant for evaluation rather than a permanent free plan.',
-        relatedLink: { label: 'Pricing', href: '/#pricing' },
+          'Yes. Peon is MIT licensed and you can self-host the whole control plane for free. Railway isn\'t open source.',
       },
       {
-        question: 'Railway vs Render, which should I use?',
+        question: 'Can I self-host Railway?',
         answer:
-          'Both are managed container platforms, so the comparison isn\'t self-hosted vs managed the way Peon\'s is. Railway tends to win on fast setup and usage-based pricing for bursty or prototype workloads; [Render](/blogs/render-vs-self-hosted) tends to win on flat, predictable per-service pricing and first-class background workers. Neither runs on a server you own; that\'s where Peon differs from both.',
-        relatedLink: { label: 'Peon vs Render', href: '/compare/peon-vs-render' },
+          'No. Railway runs on its own infrastructure, with a bring your own cloud option listed on Enterprise. If you want a self-hosted Railway alternative with a similar dashboard and deploy flow, that\'s what Peon is built for.',
       },
       {
-        question: 'Railway vs Vercel, which is better for my project?',
+        question: 'How much does Railway cost?',
         answer:
-          'They\'re different shapes of platform: Railway runs containers (good for APIs, workers, anything long-running), Vercel runs edge/serverless functions (good for frontend-heavy, static-leaning apps). If your app is mostly backend logic, Railway\'s model fits closer. If it\'s mostly frontend with light API routes, Vercel fits closer. Peon covers the Railway-shaped workload (containers, databases) on a server you own instead of either vendor\'s cloud.',
-        relatedLink: { label: 'Peon vs Vercel', href: '/compare/peon-vs-vercel' },
+          'As of October 30, 2026, Railway lists Free at $0 with a 30-day trial and $5 in credits, then $1 per month. Hobby is $5 minimum usage, Pro is $20 minimum usage, and Enterprise is custom. Usage beyond your credits is billed per second for RAM, CPU, volumes and egress.',
       },
       {
-        question: 'Is there a good Railway alternative that runs on my own server?',
+        question: 'Is Peon cheaper than Railway?',
         answer:
-          'Yes, that\'s specifically what Peon is: the same container-first, git-push deploy workflow as Railway, but on a Hetzner, DigitalOcean, or AWS server you connect yourself, for a flat $3/project/month instead of per-second usage billing.',
+          'Yes, in most cases, for steady always-on apps, because you pay a fixed server price plus a flat Peon fee instead of usage. For small or mostly idle apps, Railway can cost less. Use your real usage numbers to compare.',
+      },
+      {
+        question: 'Does Peon need its own server?',
+        answer:
+          'Yes. Your apps run on servers you connect, such as Hetzner, DigitalOcean, AWS or OVH. Peon Cloud hosts the control plane for you, but your workloads still run on your machines.',
+      },
+      {
+        question: 'Does Railway have audit logs and RBAC?',
+        answer:
+          'Yes. Railway lists audit logs on every plan, with retention from 48 hours up to 18 months on Enterprise. Team roles on Hobby and Pro are Admin, Member and Deployer, and full RBAC and SSO are on Enterprise or committed spend. Peon includes roles and audit logs on every plan.',
+      },
+      {
+        question: 'Does Peon support AI agents like Railway does?',
+        answer:
+          'Yes, in a different way. Railway has the Railway Agent and an MCP server. Peon has a hosted MCP server for Cursor and Claude plus an in-app assistant, both under RBAC, with changes waiting for your approval.',
+      },
+      {
+        question: 'Can Peon run my Railway databases?',
+        answer:
+          'Peon runs Postgres, MySQL, MariaDB, MongoDB and Redis with scheduled backups to S3-compatible storage. You\'d export your data from Railway and import it into the new database.',
+        relatedLink: { label: 'Database backups', href: '/docs/database-backups' },
+      },
+      {
+        question: 'Can I move a Railway project to Peon without downtime?',
+        answer:
+          'Usually, yes. Run both side by side, test on a temporary domain, do a final data sync and then switch DNS.',
+      },
+      {
+        question: 'Is there a per-seat fee on either?',
+        answer:
+          'Railway includes unlimited workspace seats on Hobby and Pro. Peon includes unlimited team members on every plan. Neither charges per seat.',
       },
     ],
     related: [
-      { label: 'Peon vs Vercel', href: '/compare/peon-vs-vercel' },
+      { label: 'Peon vs Coolify', href: '/compare/peon-vs-coolify' },
+      { label: 'Peon vs Dokploy', href: '/compare/peon-vs-dokploy' },
       { label: 'Peon vs Render', href: '/compare/peon-vs-render' },
-      { label: 'Self-hosted PaaS', href: '/solutions/self-hosted-paas' },
-      { label: 'Application deployment', href: '/solutions/application-deployment' },
     ],
   },
   {
