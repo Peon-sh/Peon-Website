@@ -256,7 +256,7 @@ export const OPS_PAGES: DocPage[] = [
     title: 'Logs & Terminal',
     seoTitle: 'Container Logs & Terminal Access in Peon | Peon Docs',
     description:
-      'Read Peon container logs (tail, follow, download) and use UI-only interactive terminals for services and servers—roles, limits vs Chat/MCP, and debugging tips.',
+      'Read Peon container logs (tail, follow, download) and open interactive terminals for services and servers, with roles, limits and debugging tips.',
     sections: [
       {
         h: 'What Logs and Terminal are for',
@@ -468,7 +468,7 @@ export const REFERENCE_PAGES: DocPage[] = [
     slug: 'workflows',
     title: 'End-to-End Workflows',
     description:
-      'End-to-end Peon recipes: first deployment, marketplace setup, auto-deploy from Git, adding teammates, database backups, preview environments, and rollback.',
+      'Step-by-step Peon recipes: first deploy, marketplace apps, Git auto-deploy, adding teammates, database backups, preview environments and rollback.',
     sections: [
       {
         h: 'First deploy',
