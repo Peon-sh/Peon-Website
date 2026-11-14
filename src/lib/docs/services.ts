@@ -107,7 +107,7 @@ export const SERVICE_PAGES: DocPage[] = [
     title: 'Docker Images',
     seoTitle: 'Docker Image Deployments in Peon: Ports & Health Checks',
     description:
-      'Deploy prebuilt registry images on Peon: create a Docker Image service, configure ports, env, domains, health checks, resource limits, and roll back safely.',
+      'Deploy prebuilt registry images on Peon with a Docker Image service: ports, env vars, domains, health checks, resource limits and safe rollbacks.',
     sections: [
       {
         h: 'What Docker Image services are',
@@ -418,7 +418,7 @@ export const SERVICE_PAGES: DocPage[] = [
     title: 'Databases',
     seoTitle: 'Peon Databases: Postgres, MySQL, MongoDB & Redis Docs',
     description:
-      'Managed Postgres, MySQL, MongoDB, and Redis on your own VPS. Peon handles credentials, internal networking, backups, and public URLs, from $3/project.',
+      'Run managed Postgres, MySQL, MongoDB and Redis on your VPS. Peon handles credentials, networking, backups and public URLs from $3/project.',
     sections: [
       {
         h: 'Create',

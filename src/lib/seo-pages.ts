@@ -431,7 +431,7 @@ export const COMPARE_PAGES: SeoPage[] = [
     kind: 'compare',
     title: 'Peon vs Coolify: Why Teams Switch to Peon',
     description:
-      'Peon vs Coolify: both self-hosted PaaS on your VPS. Peon uniquely combines project RBAC, audit logs & MCP for $3/project Cloud with unlimited servers & seats.',
+      'Peon vs Coolify: both self-hosted PaaS on your VPS. Peon adds project RBAC, audit logs and MCP, from $3/project with unlimited servers and seats.',
     eyebrow: 'Compare',
     h1: 'Peon vs Coolify: a Coolify alternative built for teams',
     intro:
