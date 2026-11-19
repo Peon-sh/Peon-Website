@@ -111,7 +111,7 @@ export const INFRA_PAGES: DocPage[] = [
     title: 'Git Sources',
     seoTitle: 'Connect GitHub & GitLab as Git Sources | Peon Docs',
     description:
-      'Connect GitHub or GitLab as Git sources in Peon. Learn platform vs custom apps, how services pick a repo and how webhooks trigger auto-deploy.',
+      'Connect GitHub or GitLab to Peon: platform vs custom apps, how services pick a repo, and how webhooks trigger auto-deploy on every push.',
     sections: [
       {
         h: 'What Git Sources are',
@@ -340,7 +340,7 @@ export const INFRA_PAGES: DocPage[] = [
     slug: 'shared-variables',
     title: 'Shared Variables',
     description:
-      'Reuse secrets and config across Peon services with shared variables. Pick workspace, project or server scope, and rotate or clean up safely.',
+      'Reuse secrets and config across Peon services with workspace, project or server shared variables. Learn scopes, fields and when to use them.',
     sections: [
       {
         h: 'What Shared Variables are',
