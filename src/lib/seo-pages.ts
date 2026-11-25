@@ -1290,7 +1290,7 @@ export const COMPARE_PAGES: SeoPage[] = [
     description:
       'Peon is a DigitalOcean App Platform alternative and docker hosting provider for $3/project with unlimited seats and multi-cloud portability.',
     eyebrow: 'Compare',
-    h1: 'Peon vs DigitalOcean App Platform: Which Is Better for Docker Deployments?',
+    h1: 'Peon vs DigitalOcean App Platform: Better Docker Deployments',
     intro:
       'If you\'re comparing Peon vs DigitalOcean App Platform, you\'re likely deciding between a fully managed Platform as a Service (PaaS) and a Docker-native deployment platform that runs on your own infrastructure.',
     introContent: [
@@ -2080,7 +2080,7 @@ export const COMPARE_PAGES: SeoPage[] = [
     description:
       'Peon is one of the practical Netlify alternatives for backends and databases: your own VPS, $3/project, unlimited seats.',
     eyebrow: 'Compare',
-    h1: 'Peon vs Netlify: one of the Netlify alternatives worth pairing, not replacing',
+    h1: 'Peon vs Netlify: Self-Host the Docker Apps Netlify Can’t Run',
     intro:
       'Netlify is genuinely good at what it does: static sites, JAMstack frontends and serverless functions on a fast edge network, deployed straight from Git. Among Netlify alternatives, Peon isn\'t trying to out-edge Netlify. It\'s the option for the backend, database and long-running services that a static-first platform was never built to hold.',
     keywords: [
@@ -2166,7 +2166,7 @@ export const COMPARE_PAGES: SeoPage[] = [
     description:
       'Portainer manages existing containers. Peon builds from Git, issues TLS, and runs PR previews on the same server. Self-host free or $3/project.',
     eyebrow: 'Compare',
-    h1: 'Peon vs Portainer: a Portainer alternative with a deploy pipeline attached',
+    h1: 'Peon vs Portainer: Deploy Pipeline vs a UI-Only Docker Tool',
     intro:
       'Portainer and Peon aren\'t quite the same category, and that\'s the point. Portainer is a container management UI: it shows you what\'s running and lets you start, stop and inspect it. Peon is a Portainer alternative for teams who want that same visibility plus the deployment pipeline around it, git push, TLS, rollbacks, team roles, that Portainer was never built to provide.',
     keywords: [
